@@ -10,7 +10,7 @@
 <body>
     <?php include "menu_panel.php" ?>
 
-    
+    <!-- Prueba comentario -->
     <div class="usuarios-content main-content">
         <div class="titulo">
             <h3>TABLA DE PRODUCTOS</h3>
