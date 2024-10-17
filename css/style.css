@@ -1,0 +1,546 @@
+/* Colores */
+:root {
+  --color0: #ffffff;
+  --color1: #c8ccca;
+  --color2: #151e2d;
+  --color3: #a7afb6;
+  --color4: #53504a;
+}
+
+/* font */
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  /* Hack para box model */
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto";
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  height: 100vh;
+}
+
+/* css generico*/
+
+.ancho {
+  width: 1200px;
+  margin: auto;
+}
+.centrar {
+  text-align: center;
+}
+.main-content {
+  flex-grow: 1;
+  padding: 10px 20px;
+  margin-left: 250px;
+}
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  width: 110px;
+  height: 30px;
+  background-color: var(--color3);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.btn:hover {
+  background-color: var(--color2);
+  font-size: 17;
+}
+.btn a:hover {
+  color: var(--color0);
+  font-size: 18px;
+}
+.btn a {
+  display: flex;
+  color: var(--color2);
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  transition: 0.4s ease-out;
+  align-items: center;
+}
+
+.btn-form {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+
+.btn-form:hover {
+  color: var(--color0);
+  background-color: var(--color2);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.formulario {
+  padding: 10px 10px;
+}
+
+.formulario input {
+  border: none;
+  border-bottom: var(--color1) solid 1px;
+  outline: none;
+  padding: 0 5px;
+  width: 400px;
+}
+.formulario select{
+    border: none;
+  border-bottom: var(--color1) solid 1px;
+  outline: none;
+  padding: 0 5px;
+  width: 400px;
+}
+
+.formulario button {
+  background-color: var(--color3);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: var(--color2);
+  font-weight: bold;
+}
+.formulario label {
+  font-weight: bold;
+}
+
+.formulario textarea {
+  font-family: "Roboto";
+  padding: 5px;
+  width: 350px;
+  height: 85px;
+  resize: none;
+}
+
+.opciones-btn {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* inicio de sesion index.php*/
+.avisoerror {
+  width: 100%;
+  background-color: rgba(255, 0, 0, 0.678);
+  color: var(--color0);
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+.img-logo {
+  width: 190px;
+  margin: auto;
+}
+.container-iniciar-sesion {
+  width: 350px;
+  border: var(--color2) solid 1px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.container-iniciar-sesion input {
+  width: 100%;
+  border: none;
+  border-bottom: grey solid 1px;
+  outline: none;
+}
+
+.container-iniciar-sesion button {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 130px;
+  color: var(--color0);
+  background-color: var(--color1);
+  border-radius: 10px;
+  padding: 3px;
+  cursor: pointer;
+  border: none;
+}
+.container-iniciar-sesion h3 {
+  margin: auto;
+  /* border: 2px red solid; */
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.container-iniciar-sesion label {
+  font-weight: bold;
+}
+
+.container-iniciar-sesion form {
+  margin-top: 10px;
+}
+
+/* css Menu_panel */
+
+.container-menu-lateral {
+  display: flex;
+  height: 100%;
+  position: fixed;
+}
+
+.sidebar {
+  text-align: center;
+  width: 250px;
+  background-color: var(--color1);
+  color: var(--color0);
+}
+.sidebar h3{
+  color: var(--color2);
+}
+
+.sidebar hr {
+  max-width: 250px;
+  background-color: var(--color0);
+  height: 1px;
+  border: none;
+}
+
+.btn-sidebar a {
+  text-align: start;
+  display: flex;
+  align-items: center;
+  color: var(--color2);
+  text-decoration: none;
+  padding: 10px 5px;
+  margin: 5px 0;
+  width: 100%;
+  border-left: var(--color0) solid 0.5px;
+  transition: font-size 0.2s ease-out;
+}
+.btn-sidebar a:hover {
+  background-color: var(--color2);
+  font-size: 18px;
+  color: var(--color0);
+  border-left: var(--color3) solid 3px;
+}
+.sidebar-logo img {
+  width: 100px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: var(--color1);
+  height: 50px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* css de mostrar_usuarios */
+.titulo {
+  width: 450px;
+  text-align: center;
+  margin: auto;
+  background-color: var(--color2);
+  padding: 5px;
+  color: var(--color0);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+table {
+  border: var(--color2) solid 2px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+th {
+  background-color: var(--color2);
+  border: 2px var(--color2) solid;
+  color: var(--color0);
+  border-radius: 5px;
+}
+td {
+  text-align: center;
+  border: var(--color2) solid 1px;
+}
+
+td a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 0;
+}
+.btn-editar img {
+  border-radius: 100%;
+}
+
+.btn-eliminar {
+  width: 90px;
+  transition: 0.3s ease-out;
+}
+.btn-eliminar:hover {
+  background-color: var(--color2);
+}
+.btn-editar {
+  width: 70px;
+  transition: 0.3s ease-out;
+
+}
+.btn-editar:hover {
+  background-color: var(--color2);
+}
+.btn-ver {
+  width: 40px;
+  transition: 0.3s ease-out;
+
+}
+.btn-ver:hover {
+  background-color: var(--color2);
+}
+.btn-nuevo-cliente {
+  width: 150px;
+}
+
+/* css registrar_cliente */
+
+.formulario {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+.content-registrar textarea{
+  width: 400px;
+}
+
+.opciones-btn-registrar{
+  justify-content: center;
+  width: 400px;
+  margin: auto;
+  margin-top: 30px;
+  gap: 50px;
+}
+
+/* css de ver_cliente*/
+.opciones-btn-ver{
+  margin: auto;
+  justify-content: center;
+  width: 350px;
+}
+
+.informacion {
+  gap: 10px;
+}
+
+/* css editar_cliente */
+.content-edit textarea{
+  width: 400px;
+}
+
+/* css de mostrar_productos */
+
+.btn-nuevo-producto {
+  width: 150px;
+}
+.columna-id {
+  width: 30px;
+}
+
+.columna-precio {
+  width: 90px;
+}
+
+/* css de registrar_producto */
+
+.subir-img-producto input {
+  border-bottom: white solid 2px;
+}
+
+/* css de ver_producto */
+
+.info {
+  padding: 10px;
+  gap: 3px;
+}
+
+.info p {
+  border: var(--color2) solid 1.5px;
+  width: 350px;
+  padding: 0 5px;
+}
+
+.info label {
+  font-weight: bold;
+}
+
+.content-info {
+  display: flex;
+  justify-content: center;
+}
+
+/* css editar_producto */
+
+.content-editar-producto {
+  display: flex;
+}
+
+.der-editar {
+  display: flex;
+  margin: auto;
+  align-items: center;
+}
+
+.der-editar img {
+  width: 600px;
+}
+
+span {
+  color: var(--color4);
+}
+
+/* css content_menu */
+
+.navbar {
+  background-color: var(--color1);
+  padding: 0 20px;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  margin-right: 20px;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+}
+
+/* Controlar posiscion */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+}
+
+.navbar-menu li {
+  margin-right: 20px;
+}
+
+.navbar-menu li a {
+  color: var(--color0);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar-menu li a:hover {
+  color: var(--color2);
+  font-size: 19px;
+}
+
+.menu-productos {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.box-producto {
+  width: 290px;
+  /* height: 300px; */
+  border: var(--color2) solid 2px;
+  padding: 10px;
+  background-color: var(--color0);
+}
+
+.cont-precio-prod {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.box-producto h3 {
+  text-align: center;
+  margin: auto;
+}
+.box-producto img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.box-producto hr {
+  max-width: 100%;
+  margin: auto;
+  background-color: var(--color2);
+  height: 1px;
+  margin-bottom: 7px;
+  border: none;
+}
+
+.box-producto span {
+  color: var(--color1);
+}
+.precio-producto {
+  width: 20%;
+  background-color: var(--color2);
+  color: var(--color0);
+  text-align: center;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.precio-producto label {
+  font-weight: bold;
+}
+
+.box-producto p {
+  text-align: justify;
+}
+
+/* css Dashboard */
+.content-dashboard {
+  display: flex;
+  justify-content: center;
+}
+.content-dashboard img {
+  width: 400px;
+  margin: auto;
+}
+
+/* css editar_empleado */
+
+.btn-resetear-contrasena a{
+  color: var(--color4);
+  text-decoration: none;
+}
+.btn-resetear-contrasena a:hover{
+  color: var(--color2);
+}
+
+/* css boton nuevo producto */
+.btn-nuevo-producto {
+  width: 150px;
+} 
