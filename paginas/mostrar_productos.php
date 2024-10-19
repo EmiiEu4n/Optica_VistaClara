@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de clientes</title>
+    <title>Tabla de productos</title>
 </head>
 
 <body>
     <?php include "menu_panel.php" ?>
 
-    <!-- Prueba comentario -->
+    <!-- Menú del panel -->
     <div class="usuarios-content main-content">
         <div class="titulo">
             <h3>TABLA DE PRODUCTOS</h3>
@@ -23,54 +23,37 @@
         <table>
             <tr>
                 <th>ID</th>
-                <th>NOMBRES</th>
-                <th>CATEGORIA</th>
+                <th>NOMBRE</th>
+                <!-- <th>CATEGORIA</th> -->
                 <th>PRECIO</th>
                 <th>DESCRIPCIÓN</th>
-                <th>STOCK</th>
-                <th>PROVEEDOR</th>
+                <!-- <th>STOCK</th>
+                <th>PROVEEDOR</th> -->
                 <th>VER</th>
                 <th>EDITAR</th>
                 <th>ELIMINAR</th>
             </tr>
-            <?php
-            require "../php/conexion.php";
-
-            $datos_usuario = "SELECT * FROM clientes ORDER BY id_cliente ASC";
-            $resultado = mysqli_query($conectar, $datos_usuario);
-
-            while ($fila = mysqli_fetch_assoc($resultado)) { ?>
-                <tr>
-                    <td> <?php echo "$fila[id_producto]" ?></td>
-                    <td> <?php echo "$fila[nombre]" ?></td>
-                    <td> <?php echo "$fila[categoria]" ?></td>
-                    <td> <?php echo "$fila[precio]" ?></td>
-                    <td> <?php echo "$fila[descripcion]" ?></td>
-                    <td> <?php echo "$fila[stock]" ?></td>
-                    <td> <?php echo "$fila[id_proveedor]" ?></td>
-
-                    <!-- Ver usuario -->
-                    <td class="btn-ver"> <a href="/paginas/ver_producto.php?id=<?php echo $fila['id_producto']; ?>"><img src="/imagenes/ojo.png" alt=""></a></td>
-                    <!-- Editar usuario -->
-                    <td class="btn-editar"> <a href="/paginas/editar_producto.php?id=<?php echo $fila['id_producto']; ?>"><img src="/imagenes/edit.png" alt=""></a></td>
-                    <!-- Eliminar usuario -->
-                    <td class="btn-eliminar">
-                        <a href="#" onClick="validar('../php/delete_producto.php?id=<?php echo $fila['id_producto']; ?>');">
-                        <img src="/imagenes/borrar.png" alt="">
-                        </a>
-                    </td>
-                </tr>
-            <?php
-            }
-            ?>
-
+            <!-- Producto de ejemplo -->
+            <tr>
+                <td>1</td>
+                <td>Producto Ejemplo</td>
+                <td>$99.99</td>
+                <td>Descripción del producto de ejemplo.</td>
+                
+                <td class="btn-ver"> <a href="../paginas/ver_producto.php?id=1"><img src="../imagenes/ojo.png" alt=""></a></td>
+                <td class="btn-editar"> <a href="../paginas/editar_producto.php?id=1"><img src="../imagenes/edit.png" alt=""></a></td>
+                <td class="btn-eliminar">
+                    <a href="#" onClick="validar('/php/delete_producto.php?id=1');">
+                        <img src="../imagenes/borrar.png" alt="">
+                    </a>
+                </td>
+            </tr>
         </table>
-
-        <!-- fin -->
     </div>
+
     <script>
-        function validar(url, username) {
-            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR el producto: " + username + "?");
+        function validar(url, nombre) {
+            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR el producto: " + nombre + "?");
             if (eliminar == true) {
                 window.location = url;
             }

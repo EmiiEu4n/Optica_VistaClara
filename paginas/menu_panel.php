@@ -36,7 +36,7 @@
                 <!-- empleado -->
                 <a href="#">Citas</a>
                 <!-- empleado -->
-                <a href="#">Productos</a>
+                <a href="./mostrar_productos.php">Productos</a>
                 <!-- empleado -->
                 <a href="./mostrar_proveedores.php">Proveedores</a>
                 <!-- empleado -->
