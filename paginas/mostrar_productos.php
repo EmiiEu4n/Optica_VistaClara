@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -34,31 +34,51 @@
                 <th>ELIMINAR</th>
             </tr>
             <!-- Producto de ejemplo -->
+             <!-- ---- Solo es poner los nombres correspondientes de la otra tabla y listo --- -->
+              <!-- Pero si queires eliminar lo que puse, comienza de aqui abajo -->
+            <?php  //<---- de aquí
+          require "conexion.php";
+          $todos_datos = "SELECT * FROM producto INNER JOIN autor ON producto.autor = autor.id_autor INNER JOIN carreras ON libros.carrera = carreras.id_carreras";
+
+          $resultado = mysqli_query($conectar, $todos_datos);
+
+          while ($fila = $resultado->fetch_array()) {
+          ?>
             <tr>
-                <td>1</td>
-                <td>Producto Ejemplo</td>
-                <td>$99.99</td>
-                <td>Descripción del producto de ejemplo.</td>
-                
-                <td class="btn-ver"> <a href="../paginas/ver_producto.php?id=1"><img src="../imagenes/ojo.png" alt=""></a></td>
-                <td class="btn-editar"> <a href="../paginas/editar_producto.php?id=1"><img src="../imagenes/edit.png" alt=""></a></td>
-                <td class="btn-eliminar">
-                    <a href="#" onClick="validar('php/delete_producto.php?id=1');">
-                        <img src="../imagenes/borrar.png" alt="">
-                    </a>
-                </td>
+              <td><?php echo "$fila[id]" . "<br>"; ?></td>
+              <td><?php echo "$fila[nombre]" . "<br>"; ?></td>
+              <td><?php echo "$fila[precio]" . "<br>"; ?></td>
+              <td><?php echo "$fila[descripcion]" . "<br>"; ?></td>
+              <td> <a href="ver_producto.php?id=<?php echo $fila['id_libro'];?>">
+              <img class="foto1" src="../imagenes/ojo.png" alt="">
+              </a></td>
+              <td> <a href="editar_producto.php?id=<?php echo $fila['id_libro'];?>"><img class="foto1" src="../imagenes/edit.png" alt="">
+              </a></td>
+
+
+
+              <td class="eliminar"> <a href="#" onclick="validar('../php/delete_producto.php?id=<?php echo $fila['id_libro']; ?>')"> 
+                <div class="foto_eliminar">
+                  <img src="../imagenes/borrar.png" alt="">
+                </div>
+            </a></td>
             </tr>
-        </table>
+
+            <script>
+              function validar(url) {
+                var eliminar = confirm("Realmente desea ELIMINAR el registro ??");
+                if (eliminar == true) {
+                  window.location = url;
+                }
+              }
+            </script>
+          <?php
+          }
+          ?>
+          <!-- ------Hasta Aqui---- -->
+        </table> 
     </div>
 
-    <script>
-        function validar(url, nombre) {
-            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR el producto: " + nombre + "?");
-            if (eliminar == true) {
-                window.location = url;
-            }
-        }
-    </script>
 </body>
 
 </html>
