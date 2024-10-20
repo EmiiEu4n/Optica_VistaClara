@@ -22,30 +22,30 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input required name="nombres" type="text" placeholder="Escribe sus nombres"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel"><br><br>
                         <!-- apellidos -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input required name="apellidos" type="text" placeholder="Ingresa los apellidos"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González"><br><br>
                         <!-- direccion -->
                         <label for="">Domicilio<span>*</span></label><br>
-                        <input required placeholder="Ingresa el domicilio" name="direccion" type="text"><br><br>
+                        <input required placeholder="Ingresa la direccion del domicilio" name="direccion" type="text"><br><br>
                         
                     </fieldset>
                     <fieldset>
                         <legend>Contactos del cliente</legend>
                         <!-- correo -->
                         <label for="">Correo<span>*</span></label><br>
-                        <input required placeholder="Ingrese el correo electronico" name="correo" type="email"><br><br>
+                        <input required placeholder="Ingrese el correo electronico Ej.cliente@gmail.com" name="correo" type="email"><br><br>
                         <!-- telefono -->
                         <label for="">Telefono<span>*</span></label><br>
-                        <input id="telefono" pattern="[0-9]{10}" maxlength="10" required placeholder="Ingresa el numero celular ej. 9999123456" name="telefono" type="tel"><br><br>
+                        <input id="telefono" pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" required placeholder="Ingresa el numero celular ej.9999123456" name="telefono" type="tel"><br><br>
 
                     </fieldset>
                     <fieldset>
                         <legend>Información Médica</legend>
                         <!-- preescripcion -->
                         <label for="">Preescripcion<span>*</span></label><br>
-                        <textarea required placeholder="Ingresa información sobre la receta ej.Medida de la graduación" name="preescripcion"></textarea>
+                        <textarea required placeholder="Ingresa información sobre la receta Ej.Medida de la graduación" name="preescripcion"></textarea>
                         <br>
                     </fieldset>
 

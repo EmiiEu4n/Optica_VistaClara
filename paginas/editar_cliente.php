@@ -38,12 +38,12 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s):</label><br>
-                        <input required name="nombres" type="text" placeholder="Ingresa los nombres" value="<?php echo $info['nombres'] ?>"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Ingrese el nombre Ej. José Miguel" value="<?php echo $info['nombres'] ?>"><br><br>
 
 
                         <!-- apellidos -->
                         <label for="">Apellidos:</label><br>
-                        <input required name="apellidos" type="text" placeholder="Ingresa los apellidos" value="<?php echo $info['apellidos'] ?>"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Ingresa los apellidos Ej. Perez González" value="<?php echo $info['apellidos'] ?>"><br><br>
 
                         <!-- direccion -->
                         <label for="">Domicilio</label><br>
@@ -60,7 +60,7 @@
 
                         <!-- telefono -->
                         <label for="">Telefono:</label><br>
-                        <input pattern="[0-9]{10}" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456" value="<?php echo $info['telefono'] ?>"><br><br>
+                        <input pattern="[0-9]{10}" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456" title="Ejemplo: 9999123456" value="<?php echo $info['telefono'] ?>"><br><br>
 
                     </fieldset>
                     <fieldset>
@@ -68,7 +68,7 @@
 
                         <!-- Preescripcion -->
                         <label for="">Preescripcion:</label><br>
-                        <textarea placeholder="Ingresa información sobre la receta ej.Medida de la graduación" required name="preescripcion"><?php echo $info['preescripcion'] ?></textarea><br>
+                        <textarea placeholder="Ingresa información sobre la receta Ej. Medida de la graduación" required name="preescripcion"><?php echo $info['preescripcion'] ?></textarea><br>
                     </fieldset>
                     <!-- Verificación oculta para empleado -->
                     <!-- <fieldset>

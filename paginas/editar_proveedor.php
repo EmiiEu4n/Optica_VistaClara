@@ -10,64 +10,64 @@
 <body>
 <?php
     include "menu_panel.php";
+    require "../php/conexion.php";
+    $id = $_GET['id'];
+
+    // instruccion
+    $proveedor = "SELECT * FROM proveedores WHERE id_proveedor = '$id'";
+
+    // consulta
+    $query = mysqli_query($conectar, $proveedor);
+
+    $info = $query->fetch_array();
     ?>
 
     <div class="nuevo-usuario main-content">
         <div class="titulo">
-            <h3>Proveedor:</span></h3>
+            <h3>Proveedor: <?php echo $info['nombre']?></h3>
         </div>
 
         <div class="content-info">
             <div class="content-edit formulario">
-                <form action="#" method="post">
+                <form action="../php/update_proveedor.php" method="post">
 
-                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br><br>
+                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información de la empresa</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input value="#" required name="nombre" type="text" placeholder="Ingrese el nombre de la empresa"><br><br>
+                        <input value="<?php echo $info['nombre'] ?>" required name="nombre" type="text" placeholder="Ingrese el nombre de la empresa Ej.Grupo OMK"><br><br>
 
                         <!-- Dirección-->
                         <label for="">Dirección<span>*</span></label><br>
-                        <input value="#" required name="direccion" type="text" placeholder="Ingrese la dirección de la empresa"><br><br>
-                    </fieldset>
+                        <input value="<?php echo $info['direccion'] ?>" required name="direccion" type="text" placeholder="Ingrese la dirección de la empresa"><br><br>
 
+                    </fieldset>
+                    
                     <fieldset>
                         <legend>Información del trabajador</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input value="#" required name="contacto" type="text" placeholder="Ingrese el nombre del trabajador"><br><br>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Contactos del trabajador</legend>
-
-                        <!-- Correo -->
-                        <label for="">Correo<span>*</span></label><br>
-                        <input value="#" required name="correo" type="email" placeholder="Ingrese el correo electronico del trabajador"><br><br>
-
+                        <input pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['contacto'] ?>" required name="contacto" type="text" placeholder="Ingrese el nombre del trabajador Ej. José Manuel"><br><br>
+                        
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>
-                        <input pattern="[0-9]{10}" maxlength="10" value="#" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456"><br><br>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Producto suministrado</legend>
-                        <!-- Suministro -->
-                        <label for="">Suministro<span>*</span></label><br>
-                        <input value="#" required name="suministro" type="text" placeholder="Escribe el nombre del suministro"><br><br>
+                        <input pattern="[0-9]{10}" maxlength="10" title="Ejemplo: 9999123456" value="<?php echo $info['telefono'] ?>" required name="telefono" type="tel" placeholder="Ingresa el numero celular Ej.9999123456"><br><br>
                         
-                        
+                        <!-- Correo -->
+                        <label for="">Correo electronico<span>*</span></label><br>
+                        <input value="<?php echo $info['correo'] ?>" required name="correo" type="email" placeholder="Ingrese el correo electronico del trabajador Ej.contacto@empresa.com"><br><br>
                     </fieldset>
 
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="./mostrar_proveedor.php">Regresar</a>
+                            <a href="./mostrar_proveedores.php">Regresar</a>
                         </div>
                         <button class="btn-form">Guardar</button>
                     </div><br><br>
+                    <!-- Enviar id -->
+                    <input type="hidden" name="id" value="<?php echo $info['id_proveedor'] ?>">
 
                 </form>
 

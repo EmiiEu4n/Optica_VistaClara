@@ -25,33 +25,33 @@
                         <legend>Información del empleado</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input required name="nombres" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej.María josé"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input required name="apellidos" type="text" placeholder="Ingrese los apellidos"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos del empleado Ej.Ceh Can"><br><br>
 
                         <!-- Domicilio-->
                         <label for="">Domicilio<span>*</span></label><br>
-                        <input required name="direccion" type="text" placeholder="Ingrese el domicilio"><br><br>
+                        <input required name="direccion" type="text" placeholder="Ingrese la dirección del empleado"><br><br>
                     </fieldset>
                     <fieldset>
                         <legend>Contactos del empleado</legend>
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>
-                        <input pattern="[0-9]{10}" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456"><br><br>
+                        <input pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular Ej.9999123456"><br><br>
 
                         <!-- Correo -->
                         <label for="">Correo<span>*</span></label><br>
-                        <input required name="correo" type="text" placeholder="Ingrese el correo electronico"><br><br>
+                        <input required name="correo" type="text" placeholder="Escribe el correo electronico Ej.empleado@empresa.com"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Información de trabajo</legend>
 
                         <!-- usuario -->
-                        <label for="">Username<span>*</span></label><br>
-                        <input required name="username" type="text" placeholder="Ingrese el username"><br><br>
+                        <label  for="">Username<span>*</span></label><br>
+                        <input pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.Lupe"><br><br>
 
                         <!-- roles-->
                         <label for="">Rol<span>*</span></label><br>
@@ -65,12 +65,12 @@
 
                         <!-- fecha de contratacion -->
                         <label for="">Fecha de contratación<span>*</span></label><br>
-                        <input required name="fecha" type="date" placeholder="Ingrese la fecha de contratación"><br><br>
+                        <input required name="fecha" type="date"><br><br>
 
 
                         <!-- contraseña -->
                         <label for="">Contraseña(Temporal)*</label><br>
-                        <input required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal"><br>
+                        <input required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal del empleado"><br>
                     </fieldset>
 
 
