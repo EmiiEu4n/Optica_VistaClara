@@ -22,11 +22,7 @@
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
                         <input required name="nombres" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
-
-                        <!-- Categoría -->
-                        <label for="">Categoría<span>*</span></label><br>
-                        <input required name="categoria" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
-
+                        
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
                         <input required name="precio" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
