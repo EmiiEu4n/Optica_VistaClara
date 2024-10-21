@@ -43,7 +43,7 @@
                 <td class="btn-ver"> <a href="../paginas/ver_producto.php?id=1"><img src="../imagenes/ojo.png" alt=""></a></td>
                 <td class="btn-editar"> <a href="../paginas/editar_producto.php?id=1"><img src="../imagenes/edit.png" alt=""></a></td>
                 <td class="btn-eliminar">
-                    <a href="#" onClick="validar('/php/delete_producto.php?id=1');">
+                    <a href="#" onClick="validar('.../php/delete_producto.php?id=1');">
                         <img src="../imagenes/borrar.png" alt="">
                     </a>
                 </td>

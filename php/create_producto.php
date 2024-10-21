@@ -54,14 +54,14 @@ if ($query) {
 echo '
 <script>
 alert("SE GUARDARO EL PRODUCTO CORRECTAMENTE");
-location.href="ver_producto.php";
+location.href="registrar_producto.php";
 </script>
 ';
 } else {
 echo '
 <script>
 alert("NO SE GUARDO EL POST");
-location.href="registrar_producto.php";
+location.href="mostrar_productos.php";
 </script>
 ';
 }

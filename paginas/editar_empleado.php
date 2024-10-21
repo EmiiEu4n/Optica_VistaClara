@@ -41,15 +41,15 @@
                         <legend>Información del empleado</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input value="<?php echo $info['nombres']; ?>" required name="nombres" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['nombres']; ?>" required name="nombres" type="text" placeholder="Ingrese el/los nombres del empleado Ej. José Miguel"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input value="<?php echo $info['apellidos']; ?>" required name="apellidos" type="text" placeholder="Ingrese los apellidos"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['apellidos']; ?>" required name="apellidos" type="text" placeholder="Ingrese los apellidos del empleado Ej. Perez González"><br><br>
 
                         <!-- Domicilio-->
                         <label for="">Domicilio<span>*</span></label><br>
-                        <input value="<?php echo $info['direccion']; ?>" required name="direccion" type="text" placeholder="Ingrese el domicilio"><br><br>
+                        <input value="<?php echo $info['direccion']; ?>" required name="direccion" type="text" placeholder="Ingrese la dirección del domicilio"><br><br>
                     </fieldset>
 
                     <fieldset>
@@ -57,11 +57,11 @@
 
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>
-                        <input pattern="[0-9]{10}" maxlength="10" value="<?php echo $info['telefono']; ?>" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456"><br><br>
+                        <input pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" value="<?php echo $info['telefono']; ?>" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456"><br><br>
 
                         <!-- Correo -->
                         <label for="">Correo<span>*</span></label><br>
-                        <input value="<?php echo $info['correo']; ?>" required name="correo" type="email" placeholder="Ingrese el correo electronico"><br><br>
+                        <input value="<?php echo $info['correo']; ?>" required name="correo" type="email" placeholder="Ingrese el correo electronico Ej.cliente@gmail.com"><br><br>
 
                     </fieldset>
 
@@ -70,21 +70,38 @@
                         
                         <!-- usuario -->
                         <label for="">Username<span>*</span></label><br>
-                        <input value="<?php echo $info['usuario']; ?>" required name="username" type="text" placeholder="Ingrese el username"><br><br>
+                        <input pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" value="<?php echo $info['usuario']; ?>" required name="username" type="text" placeholder="Ingrese el username Ej.Jose NO usar espacios y numeros"><br><br>
 
                         <!-- roles-->
                         <label for="">Rol<span>*</span></label><br>
                         <select name="rol">
                             <!-- Opciones de rol -->
-                            <option value="<?php echo $info['rol']; ?>"><?php echo $info['rol']; ?></option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Empleado">Empleado</option>
+                            <!-- <option value="<?php echo $info['rol']; ?>"><?php echo $info['rol']; ?></option> -->
+                            <option value="Administrador"
+                            <?php
+                                    //inicio de if para seleccionar el autor
+                                    if ( $info['rol'] == "Administrador") {
+                                        echo "selected";
+                                    }
+                                    //fin de if
+                                    ?>
+                            >Administrador</option>
+
+                            <option value="Empleado"
+                            <?php
+                                    //inicio de if para seleccionar el autor
+                                    if ($info['rol'] == "Empleado") {
+                                        echo "selected";
+                                    }
+                                    //fin de if
+                                    ?>
+                            >Empleado</option>
                             
                         </select><br><br>
                         
                         <!-- fecha de contratacion -->
                         <label for="">Fecha de contratación<span>*</span></label><br>
-                        <input value="<?php echo $info['fecha_contratacion']; ?>" required name="fecha" type="date" placeholder="Ingrese la fecha de contratación"><br><br>
+                        <input value="<?php echo $info['fecha_contratacion']; ?>" required name="fecha" type="date"><br><br>
                         
                     </fieldset>
 
