@@ -53,7 +53,7 @@
                         <div class="btn">
                             <a href="./mostrar_productos.php">Regresar</a>
                         </div>
-                        <button class="btn-form" type="submit">Guardar Cambios</button>
+                        <button class="btn-form" type="submit">Guardar</button>
                     </div>
                 </form>
             </div>
