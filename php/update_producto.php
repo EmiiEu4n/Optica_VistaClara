@@ -3,7 +3,7 @@ require "conexion.php";
 
 $id = $_POST['id'];
 $nombre = addslashes($_POST['nombre']);
-$categoria = addslashes($_POST['categoria']);
+$categoria = addslashes($_POST['id_categoria']);
 $precio = addslashes($_POST['precio']);
 $descripcion = addslashes($_POST['descripcion']);
 $stock = addslashes($_POST['stock']);
