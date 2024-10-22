@@ -1,12 +1,12 @@
-<?php 
-session_start();
-if(isset($_SESSION['autentificado'])=="SI"){
-    header("Location:./paginas/menu.php");
-}
+<?php
+// session_start();
+// if (isset($_SESSION['autentificado']) == "SI") {
+//     header("Location:../index.php");
+// }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -25,32 +25,38 @@ if(isset($_SESSION['autentificado'])=="SI"){
 </head>
 
 <body>
-    <div class="img-logo">
-        <img class="img-logo" src="/imagenes/logo.png" alt="">
-    </div>
 
-    <div class="container-iniciar-sesion ancho">
-        <!-- Titulo -->
-        <h3>Iniciar Sesión</h3>
-        <!-- Mensaje de error -->
-        <?php
-        $errorusuario = isset($_GET["errorusuario"]);
-        if ($errorusuario == "SI") {
-            echo '<h4 class = "avisoerror"> Datos incorrectos</h4>';
-        }
-        ?>
-        <form action="./php/autentificar.php" method="post">
-            <!-- Usuario -->
-            <label for="">Usuario:</label><br>
-            <input name="username" type="text" placeholder="Ingresa tu usuario">
-            <br><br>
-            <!-- Contraseña -->
-            <label for="">Contraseña:</label><br>
-            <input name="contrasena" type="password" placeholder="Ingresa tu contraseña">
-            <br><br>
-            <!-- Boton -->
-            <button class="btn-form">Inicia Sesión</button>
-        </form>
+    <div class="content-inicio-sesion">
+        <div class="box-sesion">
+
+            <div class="img-logo">
+                <img class="img-logo" src="/imagenes/logo.png" alt="">
+            </div><br>
+
+            <div class="container-iniciar-sesion ancho">
+                <!-- Titulo -->
+                <h3>Iniciar Sesión</h3>
+                <!-- Mensaje de error -->
+                <?php
+                $errorusuario = isset($_GET["errorusuario"]);
+                if ($errorusuario == "SI") {
+                    echo '<h4 class = "avisoerror"> Usuario y/o Contraseña Invalido</h4>';
+                }
+                ?>
+                <form action="./php/autentificar.php" method="post">
+                    <!-- Usuario -->
+                    <label for="">Usuario</label><br>
+                    <input required name="username" type="text" placeholder="Ingresa tu correo o usuario">
+                    <br><br>
+                    <!-- Contraseña -->
+                    <label for="">Contraseña</label><br>
+                    <input required name="contrasena" type="password" placeholder="Ingresa tu contraseña">
+                    <br><br>
+                    <!-- Boton -->
+                    <button class="btn-form">Inicia Sesión</button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 

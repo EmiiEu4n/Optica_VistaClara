@@ -10,6 +10,9 @@
 <body>
     <?php
     include "menu_panel.php";
+    if ($_SESSION['rol'] != 'Administrador') {
+        header("Location: ../paginas/dashboard.php");
+    }
     require "../php/conexion.php";
     $id = $_GET['id'];
 
@@ -67,7 +70,7 @@
 
                     <fieldset>
                         <legend>Información de trabajo</legend>
-                        
+
                         <!-- usuario -->
                         <label for="">Username<span>*</span></label><br>
                         <input pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" value="<?php echo $info['usuario']; ?>" required name="username" type="text" placeholder="Ingrese el username Ej.Jose NO usar espacios y numeros"><br><br>
@@ -78,36 +81,34 @@
                             <!-- Opciones de rol -->
                             <!-- <option value="<?php echo $info['rol']; ?>"><?php echo $info['rol']; ?></option> -->
                             <option value="Administrador"
-                            <?php
-                                    //inicio de if para seleccionar el autor
-                                    if ( $info['rol'] == "Administrador") {
-                                        echo "selected";
-                                    }
-                                    //fin de if
-                                    ?>
-                            >Administrador</option>
+                                <?php
+                                //inicio de if para seleccionar el autor
+                                if ($info['rol'] == "Administrador") {
+                                    echo "selected";
+                                }
+                                //fin de if
+                                ?>>Administrador</option>
 
                             <option value="Empleado"
-                            <?php
-                                    //inicio de if para seleccionar el autor
-                                    if ($info['rol'] == "Empleado") {
-                                        echo "selected";
-                                    }
-                                    //fin de if
-                                    ?>
-                            >Empleado</option>
-                            
+                                <?php
+                                //inicio de if para seleccionar el autor
+                                if ($info['rol'] == "Empleado") {
+                                    echo "selected";
+                                }
+                                //fin de if
+                                ?>>Empleado</option>
+
                         </select><br><br>
-                        
+
                         <!-- fecha de contratacion -->
                         <label for="">Fecha de contratación<span>*</span></label><br>
                         <input value="<?php echo $info['fecha_contratacion']; ?>" required name="fecha" type="date"><br><br>
-                        
+
                     </fieldset>
 
                     <!-- contraseña -->
                     <label class="btn-resetear-contrasena" for="">¿NO recuerda su contraseña? <a href="#"> Cambiar contraseña</a></label><br>
-                    
+
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">

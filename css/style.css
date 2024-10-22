@@ -149,15 +149,30 @@ body {
   text-align: center;
   border-radius: 5px;
 }
-.img-logo {
-  width: 190px;
-  margin: auto;
+
+
+.content-inicio-sesion{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.box-sesion{
+  height: 400px;
+}
+
+.img-logo {
+  width: 130px;
+  margin: auto;
+  border-radius: 100%;
+}
+
 .container-iniciar-sesion {
   width: 350px;
   border: var(--color2) solid 1px;
   border-radius: 10px;
   padding: 5px;
+  background-color: var(--color0);
 }
 
 .container-iniciar-sesion input {
@@ -360,6 +375,7 @@ td a {
 
 .btn-nuevo-producto {
   width: 150px;
+  
 }
 .columna-id {
   width: 30px;

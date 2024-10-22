@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de productos</title>
+    <title>Tabla de categorías</title>
 </head>
 
 <body>
@@ -13,42 +13,31 @@
     <!-- Menú del panel -->
     <div class="usuarios-content main-content">
         <div class="titulo">
-            <h3>TABLA DE PRODUCTOS</h3>
+            <h3>TABLA DE LAS CATEGORÍAS</h3>
         </div>
         <div class="opciones-btn">
             <div class="btn-nuevo-producto btn">
-                <a href="registrar_producto.php">Nuevo producto</a>
-            </div>
-        </div>
-        <div class="opciones-btn">
-            <div class="btn-nuevo-producto btn">
-                <a href="mostrar_categoria.php">Categoría</a>
+                <a href="registrar_categoria.php">Nueva categoria</a>
             </div>
         </div>
         <table>
             <tr>
                 <th>ID</th>
-                <th>NOMBRE</th>
-                <!-- <th>CATEGORIA</th> -->
-                <th>PRECIO</th>
-                <th>DESCRIPCIÓN</th>
-                <!-- <th>STOCK</th>
-                <th>PROVEEDOR</th> -->
+                <th>NOMBRE CATEGORIA</th>
                 <th>VER</th>
                 <th>EDITAR</th>
                 <th>ELIMINAR</th>
             </tr>
-            <!-- Producto de ejemplo -->
+            <!-- Categoria de ejemplo -->
             <tr>
                 <td>1</td>
-                <td>Producto Ejemplo</td>
-                <td>$99.99</td>
-                <td>Descripción del producto de ejemplo.</td>
+                <td>Armazón</td>
+     
                 
-                <td class="btn-ver"> <a href="../paginas/ver_producto.php?id=1"><img src="../imagenes/ojo.png" alt=""></a></td>
-                <td class="btn-editar"> <a href="../paginas/editar_productos.php?id=1"><img src="../imagenes/edit.png" alt=""></a></td>
+                <td class="btn-ver"> <a href="ver_categoria.php"><img src="../imagenes/ojo.png" alt=""></a></td>
+                <td class="btn-editar"> <a href="editar_categoria.php"><img src="../imagenes/edit.png" alt=""></a></td>
                 <td class="btn-eliminar">
-                    <a href="#" onClick="validar('.../php/delete_producto.php?id=1');">
+                    <a href="#" onClick="eliminar.php">
                         <img src="../imagenes/borrar.png" alt="">
                     </a>
                 </td>
