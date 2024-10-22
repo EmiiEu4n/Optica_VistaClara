@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php include "menu_panel.php";
+     if($_SESSION['rol'] != 'Administrador'){
+        header("Location: ../paginas/dashboard.php");
+     }
+    ?>
 
     <div class="usuarios-content main-content">
         <div class="titulo">

@@ -9,6 +9,9 @@
 
 <body>
     <?php include "menu_panel.php";
+    if ($_SESSION['rol'] != 'Administrador') {
+        header("Location: ../paginas/dashboard.php");
+    }
     require "../php/conexion.php";
     $id = $_GET['id'];
 
