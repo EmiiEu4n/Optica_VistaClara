@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Enlace al normalize: Nos servira para que la consistencia entre navegadores sea ideal y exista minimos cambios en cuanto a que navegador vayamos abriendo el sitio web -->
-    <link rel="preload" href="/css/normalize.css" as="styles">
+    <link rel="preload" href="../css/normalize.css" as="styles">
     <!-- vincula los archivos -->
-    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="../css/normalize.css">
 
     <!--Enlace al css: El primero ayuda con la carga del archivo css para que se cargue anticipadamente en la cache-->
-    <link rel="preload" href="/css/style.css" as="styles" />
+    <link rel="preload" href="../css/style.css" as="styles" />
     <!-- vincula los archivos -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <title>Inicio de sesión</title>
 </head>
 
