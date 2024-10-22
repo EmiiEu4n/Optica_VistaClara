@@ -19,8 +19,6 @@
             <div class="btn-nuevo-producto btn">
                 <a href="registrar_producto.php">Nuevo producto</a>
             </div>
-        </div>
-        <div class="opciones-btn">
             <div class="btn-nuevo-producto btn">
                 <a href="mostrar_categoria.php">Categoría</a>
             </div>

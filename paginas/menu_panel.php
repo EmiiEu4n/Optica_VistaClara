@@ -10,8 +10,10 @@ $resultado_empleado = $consulta_empleado->get_result();
 $info_empleado = $resultado_empleado->fetch_assoc();
 $_SESSION['rol'] = $info_empleado['rol'];
 
-if ($_SESSION['rol'] == 'Administrador') {
-    $options = '
+if($resultado_empleado->num_rows > 0){
+
+    if ($_SESSION['rol'] == 'Administrador') {
+        $options = '
         <!-- admin -->
         <a href="./mostrar_empleados.php">Empleados</a>
         <!-- admin -->
@@ -29,7 +31,7 @@ if ($_SESSION['rol'] == 'Administrador') {
     ';
 } else if ($_SESSION['rol'] == 'Empleado') {
     $options = '
-        <!-- empleado -->
+    <!-- empleado -->
         <a href="#">Citas</a>
         <!-- empleado -->
         <a href="./mostrar_clientes.php">Clientes</a>
@@ -39,7 +41,10 @@ if ($_SESSION['rol'] == 'Administrador') {
         <a href="./mostrar_proveedores.php">Proveedores</a>
         <!-- empleado -->
         <a href="#">Historial de citas</a>
-    ';
+        ';
+    }
+}else{
+    require "../php/salir.php";
 }
 ?>
 <!DOCTYPE html>
@@ -55,6 +60,9 @@ if ($_SESSION['rol'] == 'Administrador') {
     <!-- vincula los archivos -->
     <link rel="stylesheet" href="../css/style.css" />
     <!-- <script> src = "../javascript/javascript.js" </script> -->
+    <!-- Notificaciones -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
     <title>Dashboard</title>
 </head>
 

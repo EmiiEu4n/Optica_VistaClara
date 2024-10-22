@@ -37,7 +37,7 @@
             <?php
             require "../php/conexion.php";
 
-            $datos_usuario = "SELECT * FROM empleados ORDER BY id_empleado ASC";
+            $datos_usuario = "SELECT * FROM empleados where id_empleado >= '2' AND id_empleado != '1' ORDER BY id_empleado ASC";
             $resultado = mysqli_query($conectar, $datos_usuario);
 
             while ($fila = mysqli_fetch_assoc($resultado)) { ?>

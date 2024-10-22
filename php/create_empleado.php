@@ -1,4 +1,4 @@
-<?php 
+<?php
 // require './seguridad.php';
 include "conexion.php";
 
@@ -27,11 +27,11 @@ $contrasena = addslashes($_POST['contrasena']);
 //Verificar el correo
 $verificar_correo = mysqli_query($conectar, "SELECT * FROM empleados WHERE correo = '$correo'");
 
-if(mysqli_num_rows($verificar_correo)){
+if (mysqli_num_rows($verificar_correo)) {
     echo '
     <script>
-    alert("Este correo [ '.$correo.' ] ya esta en uso.")
-    location.href="../paginas/registrar_empleado.php";
+    alert("Este correo [ ' . $correo . ' ] ya esta en uso.")
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -40,11 +40,11 @@ if(mysqli_num_rows($verificar_correo)){
 //Verificar el correo en tabla clientes
 $verificar_correo = mysqli_query($conectar, "SELECT * FROM clientes WHERE correo = '$correo'");
 
-if(mysqli_num_rows($verificar_correo)){
+if (mysqli_num_rows($verificar_correo)) {
     echo '
     <script>
-    alert("Este correo [ '.$correo.' ] ya esta en uso por un cliente.")
-    location.href="../paginas/registrar_empleado.php";
+    alert("Este correo [ ' . $correo . ' ] ya esta en uso por un cliente.");
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -53,11 +53,11 @@ if(mysqli_num_rows($verificar_correo)){
 //verificar el username
 $verificar_username = mysqli_query($conectar, "SELECT * FROM empleados WHERE usuario = '$username'");
 
-if(mysqli_num_rows($verificar_username)){
+if (mysqli_num_rows($verificar_username)) {
     echo '
     <script>
-    alert("Este username [ '.$username.' ] ya esta en uso.")
-    location.href="../paginas/registrar_empleado.php";
+    alert("Este username [ ' . $username . ' ] ya esta en uso.")
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -71,18 +71,16 @@ $insert  = "INSERT INTO  empleados (nombres, apellidos,telefono, correo, direcci
 
 $query = mysqli_query($conectar, $insert);
 
-if($query){
+if ($query) {
     echo '<script>
     alert("Los datos se registraron correctamente")
     location.href="../paginas/mostrar_empleados.php";
     </script>';
-}else{
-    echo'
+} else {
+    echo '
     <script>
     alert("ERROR: Fallo el resgitro de los datos en la base de datos");
-    location.href="../paginas/registrar_empleado.php";
+    window.history.go(-1);
     </script>
     ';
 }
-
-?>

@@ -20,8 +20,8 @@ $verificar_empresa = mysqli_query($conectar, "SELECT * FROM proveedores WHERE no
 if(mysqli_num_rows($verificar_empresa)){
     echo '
     <script>
-    alert("Esta empresa [ '.$nombre.' ] ya esta registrada.")
-    location.href="../paginas/registrar_proveedor.php";
+    alert("Esta empresa [ '.$nombre.' ] ya esta registrada.");
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -42,7 +42,7 @@ if($query){
     echo'
     <script>
     alert("ERROR: Fallo el resgitro de los datos en la base de datos");
-    location.href="../paginas/registrar_proveedores.php";
+    window.history.go(-1);
     </script>
     ';
 }

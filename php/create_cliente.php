@@ -26,7 +26,7 @@ if(mysqli_num_rows($verificar_correo)){
     echo '
     <script>
     alert("Este correo [ '.$correo.' ] ya esta en uso por un cliente.")
-    location.href="../paginas/registrar_cliente.php";
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -39,7 +39,7 @@ if(mysqli_num_rows($verificar_correo)){
     echo '
     <script>
     alert("Este correo [ '.$correo.' ] ya esta en uso por un empleado.")
-    location.href="../paginas/registrar_cliente.php";
+    window.history.go(-1);
     </script>
     ';
     exit();
@@ -61,7 +61,7 @@ if($query){
     echo'
     <script>
     alert("ERROR: Fallo el resgitro de los datos en la base de datos");
-    location.href="../paginas/registrar_cliente.php";
+    window.history.go(-1);
     </script>
     ';
 }
