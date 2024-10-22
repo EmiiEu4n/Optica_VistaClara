@@ -2,7 +2,7 @@
 require "conexion.php";
 
 $nombre = $_POST['nombre'];
-$categoria = $_POST['categoria'];
+$categoria = $_POST['id_categoria'];
 $precio = $_POST['precio'];
 $descripcion = $_POST['descripcion'];
 $stock = $_POST['stock'];
