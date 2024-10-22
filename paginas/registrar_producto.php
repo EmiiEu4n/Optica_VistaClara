@@ -16,16 +16,29 @@
         </div>
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="#" method="post">
+                <form action="../php/create_producto.php" method="post">
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input required name="nombres" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
-                        <input required name="categoria" type="text" placeholder="Ingrese la categoría"><br><br>
+                        <select class="elementos" name="id_categoria" id="">
+                        <option value="">Escoger tu categoria</option>
+                        <?php
+                        include "../php/conexion.php";
+
+                        $resultado = $conectar->QUERY("SELECT * FROM categorias") ;
+                        while ($fila = $resultado->fetch_array()){
+                            ?>
+                            <option value="<?php echo $fila["id_categoria"]; ?>"> <?php echo $fila["nombre_categoria"]; ?> </option>
+                            <?php
+                        }
+                        mysqli_free_result($resultado)
+                        ?>
+                    </select><br><br>
 
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
@@ -44,12 +57,20 @@
 
                         <!-- Proveedor -->
                         <label for="proveedor">Proveedor<span>*</span></label><br>
-                        <select required name="proveedor" id="proveedor">
-                            <option value="">Seleccione un proveedor</option>
-                            <option value="proveedor1">Proveedor 1</option>
-                            <option value="proveedor2">Proveedor 2</option>
-                            <option value="proveedor3">Proveedor 3</option>
-                        </select><br><br>
+                        <select class="elementos" name="id_proveedor" id="">
+                        <option value="">Escoger un proveedor</option>
+                        <?php
+                        include "../php/conexion.php";
+
+                        $resultado = $conectar->QUERY("SELECT * FROM proveedores") ;
+                        while ($fila = $resultado->fetch_array()){
+                            ?>
+                            <option value="<?php echo $fila["id_proveedor"]; ?>"> <?php echo $fila["nombre"]; ?> </option>
+                            <?php
+                        }
+                        mysqli_free_result($resultado)
+                        ?>
+                    </select><br><br>
                     </fieldset>
 
                     <!-- Botones -->

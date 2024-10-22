@@ -14,38 +14,41 @@
         <div class="titulo">
             <h3>EDITAR PRODUCTO</h3>
         </div>
+        <!-- -----Para poder estrar de la BD ----- -->
+        <?php
+          require "../php/conexion.php";
+          $id = $_GET['id'];
+          $ver_usuario = "SELECT * FROM productos WHERE id_producto = '$id'";
+          $resultado = mysqli_query($conectar, $ver_usuario);
+
+          $fila = $resultado->fetch_array();
+        //   echo $fila ["nombre"];
+          ?>
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="#" method="post">
+                <form action="../php/update_producto.php" method="post">
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input required name="nombres" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
+                        <input required name="nombre" type="text" placeholder="Nombre" value="<?php echo "$fila[nombre]" ?>"><br><br>
                         
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
-                        <input required name="precio" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
+                        <input required name="precio" type="text" placeholder="" value="<?php echo "$fila[precio]" ?>"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea name="descripcion" rows="3" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"></textarea><br><br>
+                        <textarea name="descripcion" rows="3" placeholder="" value=""><?php echo "$fila[descripcion]" ?></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <label for="stock">Stock<span>*</span></label><br>
-                        <input required name="stock" type="number" min="0" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
+                        <input required name="stock" type="number" min="0" placeholder="" value="<?php echo "$fila[stock]" ?>"><br><br>
 
-                        <!-- Proveedor (ahora como select) -->
-                        <label for="proveedor">Proveedor<span>*</span></label><br>
-                        <select required name="proveedor" id="proveedor">
-                            <option value="">Seleccione un proveedor</option>
-                            <option value="proveedor1">Proveedor 1</option>
-                            <option value="proveedor2">Proveedor 2</option>
-                            <option value="proveedor3">Proveedor 3</option>
-                        </select><br><br>
+                     
                     </fieldset>
 
                     <!-- Botones -->
@@ -53,6 +56,7 @@
                         <div class="btn">
                             <a href="./mostrar_productos.php">Regresar</a>
                         </div>
+                        <input type="hidden" name="id_producto" value="<?php echo "$fila[id_producto]" ?>">
                         <button class="btn-form" type="submit">Guardar</button>
                     </div>
                 </form>
