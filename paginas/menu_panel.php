@@ -63,7 +63,7 @@ if($resultado_empleado->num_rows > 0){
     <!-- Notificaciones -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 
-    <title>Dashboard</title>
+    <title>Dashboard</title>    
 </head>
 
 <body>

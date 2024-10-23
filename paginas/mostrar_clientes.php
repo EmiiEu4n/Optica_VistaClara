@@ -16,7 +16,7 @@
         </div>
         <div class="opciones-btn">
             <div class="btn-nuevo-cliente btn">
-                <a href="registrar_cliente.php">Nuevo cliente</a>
+                <a href="./registrar_cliente.php">Nuevo cliente</a>
             </div>
         </div>
         <table>
@@ -42,11 +42,11 @@
                     <td> <?php echo "$fila[apellidos]" ?></td>
                     <td> <?php echo "$fila[telefono]" ?></td>
                     <!-- Ver usuario -->
-                    <td class="btn-ver"> <a href="/paginas/ver_cliente.php?id=<?php echo $fila['id_cliente']; ?>"><img src="/imagenes/ojo.png" alt=""></a></td>
+                    <td class="btn-ver"> <a href="./ver_cliente.php?id=<?php echo $fila['id_cliente']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
                     <!-- Editar usuario -->
-                    <td class="btn-editar"> <a href="/paginas/editar_cliente.php?id=<?php echo $fila['id_cliente']; ?>"><img src="/imagenes/edit.png" alt=""></a></td>
+                    <td class="btn-editar"> <a href="./editar_cliente.php?id=<?php echo $fila['id_cliente']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
-                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_cliente.php?id=<?php echo $fila['id_cliente']; ?>','<?php echo $fila['nombres']." ".$fila['apellidos']; ?>');"><img src="/imagenes/borrar.png" alt=""></a></td>
+                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_cliente.php?id=<?php echo $fila['id_cliente']; ?>','<?php echo $fila['nombres']." ".$fila['apellidos']; ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>
             <?php
             }

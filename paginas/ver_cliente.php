@@ -64,10 +64,10 @@
         </div>
         <div class="opciones-btn-ver opciones-btn">
             <div class="btn-regresar-ver-cliente btn">
-                <a href="/paginas/mostrar_clientes.php">Regresar</a>
+                <a href="./mostrar_clientes.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="/paginas/editar_cliente.php?id=<?php echo $id ?>">Editar</a>
+                <a href="./editar_cliente.php?id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 
