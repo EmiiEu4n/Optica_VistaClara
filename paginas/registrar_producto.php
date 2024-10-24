@@ -25,7 +25,7 @@
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
-                        <select class="elementos" name="id_categoria" id="">
+                        <select required class="elementos" name="id_categoria" id="">
                             <option value="">Escoger tu categoria</option>
                             <?php
                             include "../php/conexion.php";
@@ -42,14 +42,14 @@
 
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
-                        <label for="">$</label><input required name="precio" type="text" placeholder="Ingrese el precio"><br><br>
+                        <label for="">$</label><input required name="precio" type="number" placeholder="Ingrese el precio"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
+                        <textarea required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <label for="stock">Stock<span>*</span></label><br>
@@ -57,7 +57,7 @@
 
                         <!-- Proveedor -->
                         <label for="proveedor">Proveedor<span>*</span></label><br>
-                        <select class="elementos" name="id_proveedor" id="">
+                        <select required class="elementos" name="id_proveedor" id="">
                             <option value="">Escoger un proveedor</option>
                             <?php
                             include "../php/conexion.php";
@@ -73,7 +73,7 @@
 
                         </select><br><br>
                         <!-- Imagen del producto -->
-                        <label for="">Imagen del producto:</label><br>
+                        <label for="">Imagen del producto<span>*</span></label><br>
                         <input required type="file" name="imagen" id="">
                     </fieldset>
 

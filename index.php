@@ -53,7 +53,7 @@
                     <input required name="contrasena" type="password" placeholder="Ingresa tu contraseña">
                     <br><br>
                     <!-- Boton -->
-                    <button class="btn-form">Inicia Sesión</button>
+                    <button class="btn-form" style="background-color: black;">Inicia Sesión</button>
                 </form>
             </div>
         </div>

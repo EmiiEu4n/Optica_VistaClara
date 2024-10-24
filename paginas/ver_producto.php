@@ -30,6 +30,10 @@
             <div class="info formulario">
                 <!-- informacion del producto -->
                 <fieldset>
+                    <legend>Imagen del producto</legend>
+                    <img style="width: 350px;" src="<?php echo "$fila[img]"?>" alt="nada">
+                </fieldset>
+                <fieldset>
                     <legend>Información del producto</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
@@ -52,10 +56,7 @@
                     </br>
 
                 </fieldset>
-                <fieldset>
-                    <legend>Imagen del producto</legend>
-                    <img style="width: 350px;" src="<?php echo "$fila[img]"?>" alt="nada">
-                </fieldset>
+                
             </div>
 
         </div>

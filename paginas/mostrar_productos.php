@@ -50,9 +50,9 @@
               <td><?php echo "$fila[nombre]" . "<br>"; ?></td>
               <td><?php echo "$"."$fila[precio]" . "<br>"; ?></td>
               <td><?php echo "$fila[descripcion]" . "<br>"; ?></td>
-              <td> <a href="../paginas/ver_producto.php?id=<?php echo $fila['id_producto'];?>"><img src="../imagenes/ojo.png" alt=""></a></td>
-              <td> <a href="../paginas/editar_producto.php?id=<?php echo $fila['id_producto'];?>"><img src="../imagenes/edit.png" alt=""></a></td>
-              <td class="eliminar"><a href="#" onclick="validar('../php/delete_producto.php?id=<?php echo $fila['id_producto']; ?>')"> <img src="../imagenes/borrar.png" alt=""> </a>
+              <td class="btn-ver"> <a href="../paginas/ver_producto.php?id=<?php echo $fila['id_producto'];?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+              <td class="btn-editar"> <a href="../paginas/editar_producto.php?id=<?php echo $fila['id_producto'];?>"><img src="../imagenes/edit.png" alt=""></a></td>
+              <td class="btn-eliminar"><a href="#" onclick="validar('../php/delete_producto.php?id=<?php echo $fila['id_producto']; ?>')"> <img src="../imagenes/borrar.png" alt=""> </a>
             </td>
             </tr>
 

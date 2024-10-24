@@ -41,7 +41,7 @@
                 <a href="./mostrar_categoria.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="/paginas/editar_categoria.php?id=<?php echo $id ?>">Editar</a>
+                <a href="../paginas/editar_categoria.php?id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 

@@ -32,11 +32,11 @@
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
-                        <label for="">Nombre(s)<span>*</span></label><br>
+                        <label for="">Nombre<span>*</span></label><br>
                         <input required name="nombre" type="text" placeholder="Nombre" value="<?php echo $info_prod['producto'] ?>"><br><br>
                         <!-- Categoria -->
-                        <label for="">Categoría:</label><br>
-                        <select name="id_categoria">
+                        <label for="">Categoría<span>*</span></label><br>
+                        <select required name="id_categoria">
                             <!-- Opciones de CATEGORIA -->
                             <?php
                             $resultado = $conectar->QUERY("SELECT id_categoria, nombre_categoria FROM categorias");
@@ -60,22 +60,22 @@
 
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
-                        <input required name="precio" type="text" placeholder="" value="<?php echo $info_prod['precio'] ?>"><br><br>
+                        <label for="">$</label><input required min="0" name="precio" type="number" placeholder="" value="<?php echo $info_prod['precio'] ?>"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea name="descripcion" rows="3" placeholder="" value=""><?php echo $info_prod['descripcion'] ?></textarea><br><br>
+                        <textarea required name="descripcion" rows="3" placeholder="Escribe una breve descripción" value=""><?php echo $info_prod['descripcion'] ?></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <label for="stock">Stock<span>*</span></label><br>
-                        <input required name="stock" type="number" min="0" placeholder="" value="<?php echo $info_prod['stock'] ?>"><br><br>
+                        <input required name="stock" type="number" min="0" placeholder="Escribe el stock disponible" value="<?php echo $info_prod['stock'] ?>"><br><br>
 
                         <!-- proveedor -->
-                        <label for="">Proveedor:</label><br>
-                        <select name="id_proveedor">
+                        <label for="">Proveedor<span>*</span></label><br>
+                        <select required name="id_proveedor">
                             <!-- Opciones de proveedor -->
                             <?php
                             $resultado = $conectar->QUERY("SELECT id_proveedor, nombre AS proveedor FROM proveedores");
@@ -97,7 +97,7 @@
                         </select><br><br>
 
                         <!-- Imagen del producto -->
-                        <label for="">Imagen del producto:</label><br>
+                        <label for="">Imagen del producto</label><br>
                         <input type="file" name="imagen" id="">
                     </fieldset>
 
