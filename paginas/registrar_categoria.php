@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php 
+    include "menu_panel.php" ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -16,7 +17,7 @@
         </div>
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="#" method="post">
+                <form action="../php/create_categorias.php" method="post">
                     <fieldset>
                         <legend>Información de la categoria</legend>
                         <!-- Nombre -->

@@ -8,20 +8,35 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php"; ?>
+    <?php 
+    include "menu_panel.php"; 
+    ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">
             <h3>EDITAR CATEGORIA</h3>
         </div>
+
+        <?php
+          require "../php/conexion.php";
+          $id = $_GET['id'];
+          $ver_producto = "SELECT * FROM categorias WHERE id_categoria = '$id'";
+          $resultado = mysqli_query($conectar, $ver_producto);
+
+          $fila = $resultado->fetch_array();
+        //   echo $fila ["nombre"];
+          ?>
+
+
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="#" method="post">
+                <form action="../php/update_categoria.php" method="post">
                     <fieldset>
                         <legend>Información de la categoria</legend>
                         <!-- Nombre -->
                         <label for="">Nombre:<span>*</span></label><br>
-                        <input required name="nombre_categoria" type="text" placeholder="AQUI VA UN ECHO LLAMANDO LOS DATOS YA ALMACENADOS"><br><br>
+                        <input required name="nombre_categoria" type="text" placeholder="Categoria" value="<?php echo "$fila[nombre_categoria]" ?>"><br><br>
+                        <input name="id_categoria" type="hidden" value="<?php echo $id?>">
                     </fieldset>
                         
 

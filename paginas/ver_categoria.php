@@ -4,25 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ver categoría</title>
+    <title>ver categoria</title>
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php 
+    include "menu_panel.php";
+    require "../php/conexion.php";
+    $id = $_GET['id'];
+    $categoria = "SELECT * FROM categorias WHERE id_categoria = '$id'";
+    $query = mysqli_query($conectar, $categoria); 
+    $info = $query -> fetch_array();
+    ?>
 
+    
     <div class="ver-producto-content main-content">
         <div class="titulo">
-            <h3>Categoría: <span></h3>
+            <h3>Categoria </h3>
         </div>
 
 
         <div class="content-info">
             <div class="info formulario">
-                <!-- informacion del producto -->
+                <!-- informacion del cliente -->
                 <fieldset>
-                    <legend>Información de la categoría</legend>
+                    <legend>Información de la categoria</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
+                    <p><?php echo $info['nombre_categoria'] ?></p>
                 </fieldset>
             </div>
 
@@ -32,7 +41,7 @@
                 <a href="./mostrar_categoria.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="./editar_categoria.php?id=<?php echo $id ?>">Editar</a>
+                <a href="/paginas/editar_categoria.php?id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 
