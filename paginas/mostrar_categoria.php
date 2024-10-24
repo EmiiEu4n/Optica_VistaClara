@@ -15,6 +15,9 @@
             <h3>TABLA DE CATEGORÍAS</h3>
         </div>
         <div class="opciones-btn">
+            <div class="btn">
+                <a href="./mostrar_productos.php">Regresar</a>
+            </div>
             <div class="btn-nuevo-cliente btn">
                 <a href="registrar_categoria.php">Nueva categoria</a>
             </div>
