@@ -58,7 +58,7 @@
 
             <script>
               function validar(url) {
-                var eliminar = confirm("Realmente desea eliminar al Usuario ??");
+                var eliminar = confirm("¿Realmente desea eliminar el producto?");
                 if (eliminar == true) {
                   window.location = url;
                 }
