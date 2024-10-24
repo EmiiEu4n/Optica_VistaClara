@@ -16,33 +16,33 @@
         </div>
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="../php/create_producto.php" method="post">
+                <form action="../php/create_producto.php" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
-                        <label for="">Nombre(s)<span>*</span></label><br>
+                        <label for="">Nombre<span>*</span></label><br>
                         <input required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
                         <select class="elementos" name="id_categoria" id="">
-                        <option value="">Escoger tu categoria</option>
-                        <?php
-                        include "../php/conexion.php";
-
-                        $resultado = $conectar->QUERY("SELECT * FROM categorias") ;
-                        while ($fila = $resultado->fetch_array()){
-                            ?>
-                            <option value="<?php echo $fila["id_categoria"]; ?>"> <?php echo $fila["nombre_categoria"]; ?> </option>
+                            <option value="">Escoger tu categoria</option>
                             <?php
-                        }
-                        mysqli_free_result($resultado)
-                        ?>
-                    </select><br><br>
+                            include "../php/conexion.php";
+
+                            $resultado = $conectar->QUERY("SELECT * FROM categorias");
+                            while ($fila = $resultado->fetch_array()) {
+                            ?>
+                                <option value="<?php echo $fila["id_categoria"]; ?>"> <?php echo $fila["nombre_categoria"]; ?> </option>
+                            <?php
+                            }
+                            mysqli_free_result($resultado)
+                            ?>
+                        </select><br><br>
 
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
-                        <input required name="precio" type="text" placeholder="Ingrese el precio"><br><br>
+                        <label for="">$</label><input required name="precio" type="text" placeholder="Ingrese el precio"><br><br>
                     </fieldset>
 
                     <fieldset>
@@ -58,19 +58,23 @@
                         <!-- Proveedor -->
                         <label for="proveedor">Proveedor<span>*</span></label><br>
                         <select class="elementos" name="id_proveedor" id="">
-                        <option value="">Escoger un proveedor</option>
-                        <?php
-                        include "../php/conexion.php";
-
-                        $resultado = $conectar->QUERY("SELECT * FROM proveedores") ;
-                        while ($fila = $resultado->fetch_array()){
-                            ?>
-                            <option value="<?php echo $fila["id_proveedor"]; ?>"> <?php echo $fila["nombre"]; ?> </option>
+                            <option value="">Escoger un proveedor</option>
                             <?php
-                        }
-                        mysqli_free_result($resultado)
-                        ?>
-                    </select><br><br>
+                            include "../php/conexion.php";
+
+                            $resultado = $conectar->QUERY("SELECT * FROM proveedores");
+                            while ($fila = $resultado->fetch_array()) {
+                            ?>
+                                <option value="<?php echo $fila["id_proveedor"]; ?>"> <?php echo $fila["nombre"]; ?> </option>
+                            <?php
+                            }
+                            mysqli_free_result($resultado)
+                            ?>
+
+                        </select><br><br>
+                        <!-- Imagen del producto -->
+                        <label for="">Imagen del producto:</label><br>
+                        <input required type="file" name="imagen" id="">
                     </fieldset>
 
                     <!-- Botones -->
