@@ -21,7 +21,7 @@
              <?php
             require "../php/conexion.php";
           $id = $_GET['id'];
-          $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
+          $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor, productos.img  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
           $resultado = mysqli_query($conectar, $ver_usuario);
 
           $fila = $resultado->fetch_array();
@@ -51,6 +51,10 @@
                     <p class="letra"><?php echo "$fila[proveedor]"."&nbsp"?></p>
                     </br>
 
+                </fieldset>
+                <fieldset>
+                    <legend>Imagen del producto</legend>
+                    <img style="width: 350px;" src="<?php echo "$fila[img]"?>" alt="nada">
                 </fieldset>
             </div>
 
