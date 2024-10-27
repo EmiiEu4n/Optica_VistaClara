@@ -30,19 +30,8 @@
 <body>
 
     <!-- Encabezado -->
-    <div class="contenedor1">
-        <div class="caja tamaño">
-            <img src="../imagenes/logo2.png" alt="Logo Óptica Vista Clara">
-        </div>
-        <h2>Óptica Vista Clara</h2>
-        <div class="caja1">
-            <a href="#aqui1">Inicio</a>
-            <a href="#aqui2">Servicios</a>
-            <a href="#aqui3">Productos</a>
-            <a href="#aqui4">Conócenos</a>
-            <a href="#aqui5">Contacto</a>
-        </div>
-    </div>
+
+    <?php include "Encabezado.php"; ?>
 
     <!-- Bienvenida -->
     <div class="contenedor2 tamaño1" id="aqui1">
@@ -120,10 +109,7 @@
     </div>
 
     <!-- Pie de página -->
-    <div class="contenedor7">
-        <br><br>
-        <h4>© 2024 Óptica Vista Clara. Todos los derechos reservados.</h4>
-    </div>
+    <?php include "Piedepagina.php"; ?>
 
 </body>
 </html>

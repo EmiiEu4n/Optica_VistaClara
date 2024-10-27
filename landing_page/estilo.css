@@ -209,3 +209,15 @@
     background-color: var(--azul);
     color: white;
 }
+/* ------------------ */
+/* Ver solo un producto */
+.contenedor8{
+  border:  1px red solid;
+  height: 410px;
+  display: flex;
+}
+.caja8{
+  border:  1px blue solid;
+  height: 410px;
+  width: 500px;
+}
