@@ -52,7 +52,7 @@
                     <!-- Editar usuario -->
                     <td class="btn-editar"> <a href="../paginas/editar_empleado.php?id=<?php echo $fila['id_empleado']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
-                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_empleado.php?id=<?php echo $fila['id_empleado']; ?>','<?php echo $fila['nombres']." ".$fila['apellidos']; ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
+                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_empleado.php?id=<?php echo $fila['id_empleado']; ?>','<?php echo addslashes($fila['nombres'])." ".addslashes($fila['apellidos']); ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>
             <?php
             }

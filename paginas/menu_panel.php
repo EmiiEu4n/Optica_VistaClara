@@ -21,7 +21,7 @@ if($resultado_empleado->num_rows > 0){
         <!-- admin -->
         <a href="#">Usuarios</a>
         <!-- empleado -->
-        <a href="#">Citas</a>
+        <a href="./mostrar_citas.php">Citas</a>
         <!-- empleado -->
         <a href="./mostrar_productos.php">Productos</a>
         <!-- empleado -->

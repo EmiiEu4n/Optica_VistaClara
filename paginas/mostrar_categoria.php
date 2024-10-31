@@ -46,7 +46,7 @@
                     <!-- Editar usuario -->
                     <td class="btn-editar"> <a href="../paginas/editar_categoria.php?id=<?php echo $fila['id_categoria']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
-                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_categoria.php?id=<?php echo $fila['id_categoria']; ?>','<?php echo $fila['nombre_categoria'] ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
+                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_categoria.php?id=<?php echo $fila['id_categoria']; ?>','<?php echo addslashes($fila['nombre_categoria']) ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>
             <?php
             }

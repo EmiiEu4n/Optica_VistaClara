@@ -50,7 +50,7 @@
                     <!-- Editar usuario -->
                     <td class="btn-editar"> <a href="../paginas/editar_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
-                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>','<?php echo $fila['nombre']; ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
+                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>','<?php echo addslashes($fila['nombre']); ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>
             <?php
             }
