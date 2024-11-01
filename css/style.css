@@ -558,3 +558,59 @@ span {
 .btn-nuevo-producto {
   width: 150px;
 } 
+
+.Buscador input{
+  width: 90%;
+  padding: 5px;
+}
+
+.btn-form{
+border-radius: 4px;
+}
+
+/* paginacion */
+.nav{
+  display: flex;
+  margin: 10px 0;
+}
+.paginacion{
+  display: flex;
+  gap: 2px;
+  list-style: none;
+  padding: 0px;
+   justify-content: center;
+}
+.items{
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.items a{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 3px 9px;
+  font-size: 16px;
+  color: var(--color2);
+  background-color: var(--color1);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.items a:hover{
+  background-color: var(--color2);
+  color: var(--color0);
+}
+
+.items.active a{
+  background-color: var(--color3);
+  color: var(--negro);
+  font-weight: bold;
+  cursor: default;
+}
+
+.disable a{
+  pointer-events: none;
+  background-color: #ccc;
+}
