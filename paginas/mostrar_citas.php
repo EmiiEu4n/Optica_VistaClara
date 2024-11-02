@@ -16,29 +16,52 @@
         </div>
         <div class="opciones-btn">
             <div class="btn-nuevo-cliente btn">
-                <a href="#">Agendar cita</a>
+                <a href="./registrar_cita.php">Agendar cita</a>
             </div>
-        </div>
+            <div class="btn-nuevo-cliente btn">
+                <a href="./registrar_cliente.php">Registrar cliente</a>
+            </div>
+        </div><br>
+
+        <nav class="pagination">
+            <ul class="pagination-list">
+                <!-- Anterior -->
+                <li class="pag-item ">
+                    <a href="#">Anterior</a>
+                </li>
+
+                <!-- Páginas -->
+
+                <li class="pag-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
+                    <a href="">
+                        1
+                    </a>
+                </li>
+
+                <!-- Siguiente -->
+                <li class="pag-item">
+                    <a href="">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Cliente</th>
-                <th>Empleado</th>
                 <th>Fecha</th>
                 <th>Hora</th>
                 <th>VER</th>
                 <th>EDITAR</th>
-                <th>ELIMINAR</th>
+                <th>CANCELAR</th>
             </tr>
 
             <td>1</td>
-            <td>jose</td>
-            <td>miguel</td>
+            <td>Jose</td>
             <td>12/09/2024</td>
             <td>13:00 hrs</td>
 
             <!-- Ver usuario -->
-            <td class="btn-ver"> <a href="#"><img src="../imagenes/ojo.png" alt=""></a></td>
+            <td class="btn-ver"> <a href="./ver_cita.php"><img src="../imagenes/ojo.png" alt=""></a></td>
             <!-- Editar usuario -->
             <td class="btn-editar"> <a href="#"><img src="../imagenes/edit.png" alt=""></a></td>
             <!-- Eliminar usuario -->
