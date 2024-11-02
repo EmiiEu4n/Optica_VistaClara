@@ -6,7 +6,6 @@
   --color2: #151e2d;
   --color3: #a7afb6;
   --color4: #53504a;
-  --obligatorio: rgb(255, 0, 0);
 }
 
 /* font */
@@ -342,16 +341,8 @@ td a {
   flex-direction: column;
   /* gap: 10px; */
 }
-
-.formulario label span {
-  color: red;
-  font-weight: bold;
-}
 .content-registrar textarea{
-  width: 100%;
-}
-.content-registrar label span{
-  color: red;
+  width: 400px;
 }
 
 .opciones-btn-registrar{
@@ -568,52 +559,4 @@ span {
   width: 150px;
 } 
 
-/* css citas */
-.pagination {
-  display: flex;
-  margin: 10px 0;
-}
-
-.pagination-list {
-  list-style: none;
-  display: flex;
-  gap: 2px;
-  padding: 0;
-}
-
-.pag-item {
-  /* padding: 0; */
-  border-radius: 5px;
-  overflow: hidden;/* Asegura que el borde redondeado se aplique al <a> */
-}
-
-.pag-item a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 3px 9px; /* Aplicar padding en <a> en lugar de <li> */
-  font-size: 16px;
-  color: var(--color2);
-  background-color: var(--color3);
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-
-.pag-item a:hover {
-  color: var(--color0);background-color: var(--color2);
-}
-
-.pag-item.active a{
-  background-color: var(--color2);
-  color: var(--color0);
-  font-weight: bold;
-  cursor: default;
-}
-
-/* Deshabilitar boton */
-.disable a{
-  pointer-events: none;
-  background-color: #ccc;
-}
+/* Css agendar cita */
