@@ -20,14 +20,14 @@
     </div>
     <div class="content-info">
       <div class="content-registrar formulario">
-        <form action="">
+        <form action="../php/create_cita.php" method="POST">
 
           <fieldset>
             <legend>Información de cita</legend>
             <label for="">Fecha: <span>*</span></label>
             <input class="flatpickr" id="fecha" name="fecha" min="" max="" type="date"><br><br>
             <label for="">Hora: <span>*</span></label>
-            <select id="hora" disabled>
+            <select id="hora" name="hora">
               <option value="">Selecciona la hora de la cita</option>
               <option value="10:00">10:00 AM</option>
               <option value="11:00">11:00 AM</option>
@@ -39,13 +39,13 @@
               <option value="05:00">05:00 PM</option>
             </select><br><br>
             <label for="">Motivo: <span>*</span></label><br>
-            <textarea name="" id=""></textarea>
+            <textarea name="motivo" id=""></textarea>
           </fieldset>
 
           <fieldset>
             <legend>Información del cliente</legend>
             <label for="buscar-cliente">Nombre:</label>
-            <input type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc">
+            <input type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc" name="nombre_cliente">
 
             <!-- Lista de sugerencias para mostrar coincidencias -->
             <ul id="sugerencias-clientes" class="sugerencias" style="display: none;">
@@ -54,9 +54,9 @@
           </fieldset>
           <div class="opciones-btn opciones-btn-registrar">
             <div style="width: 190px;" class="btn">
-              <a href="./mostrar_citas.php">Regresar</a>
+              <a href="mostrar_citas.php">Regresar</a>
             </div>
-            <button style="width: 190px;" class="btn-form" type="submit">Agendar cita</button>
+            <button style="width: 190px;" class="btn-form" type="submit">Agendar</button>
           </div>
 
         </form>

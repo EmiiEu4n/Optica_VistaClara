@@ -52,21 +52,28 @@
                 <th>Hora</th>
                 <th>VER</th>
                 <th>EDITAR</th>
-                <th>CANCELAR</th>
+                <th>ELIMINAR</th>
             </tr>
 
-            <td>1</td>
-            <td>Jose</td>
-            <td>12/09/2024</td>
-            <td>13:00 hrs</td>
+            <?php
+                require "../php/conexion.php";
+                $todos_datos = "SELECT * FROM citas ORDER BY id_cita ASC";
+                $resultado = mysqli_query($conectar, $todos_datos);
 
-            <!-- Ver usuario -->
-            <td class="btn-ver"> <a href="./ver_cita.php"><img src="../imagenes/ojo.png" alt=""></a></td>
-            <!-- Editar usuario -->
-            <td class="btn-editar"> <a href="#"><img src="../imagenes/edit.png" alt=""></a></td>
-            <!-- Eliminar usuario -->
-            <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_categoria.php?id=<?php echo $fila['id_categoria']; ?>','<?php echo addslashes($fila['nombre_categoria']) ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
+                while ($fila = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <tr>
+                        <td><?php echo $fila['id_cita']; ?></td>
+                        <td><?php echo $fila['nombre_cliente']; ?></td>
+                        <td><?php echo $fila['fecha']; ?></td>
+                        <td><?php echo $fila['hora']; ?></td>
+                        <td class="btn-ver"> <a href="../paginas/ver_cita.php?id=<?php echo $fila['id_cita'];?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+              <td class="btn-editar"> <a href="../paginas/editar_cita.php?id=<?php echo $fila['id_cita'];?>"><img src="../imagenes/edit.png" alt=""></a></td>
+              <td class="btn-eliminar"><a href="#" onclick="validar('../php/delete_cita.php?id=<?php echo $fila['id_cita']; ?>')"> <img src="../imagenes/borrar.png" alt=""> </a>
             </tr>
+            <?php
+                }
+                ?>
 
         </table>
 

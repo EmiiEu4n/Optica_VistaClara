@@ -4,51 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ver categoria</title>
+    <title>ver producto</title>
 </head>
 
 <body>
-    <?php 
-    include "menu_panel.php";
+
+    <?php include "menu_panel.php";
+    require "../php/conexion.php";
+    $id = $_GET['id'];
+
+    // instruccion
+    $producto = "SELECT * FROM citas WHERE id_cita = '$id'";
+    // consulta
+    $query = mysqli_query($conectar, $producto);
+
+    $info = $query->fetch_array();
     ?>
     <div class="ver-producto-content main-content">
-    <div class="titulo">
-      <h3>CITA</h3>
-    </div>
-    <div class="content-info">
-      <div class="content-registrar formulario">
-        <form action="">
 
-          <fieldset disabled="disabled">
-            <legend>Información de cita</legend>
-            <label for="">Fecha: <span>*</span></label>
-            <input value="2024-11-8"><br><br>
-            <label for="">Hora: <span>*</span></label>
-            <select id="hora">
-              <option value="#">10:00</option>
-            </select><br><br>
-            <label for="">Motivo: <span>*</span></label><br>
-            <textarea name="" id="">Reparacion de unos lentes</textarea>
-          </fieldset>
-          <fieldset disabled="disabled">
-            <legend>Información del cliente</legend>
-            <label >Nombre:</label>
-            <input value="Jose Miguel"><br><br>
-            <label >Apellido:</label>
-            <input value="Cauich Cocom"><br><br>
-            <label >Teléfono:</label>
-            <input value="9990236472"><br><br>
-            <label >Preescripcion:</label><br>
-            <textarea name="" id="">Lentes azules de graduacion -1.25 con astigmatismo</textarea>
-          </fieldset>
-          <div class="opciones-btn opciones-btn-registrar">
-            <div style="width: 190px;" class="btn">
-              <a href="./mostrar_citas.php">Regresar</a>
+
+
+        <div class="content-info">
+            <div class="info formulario">
+                <!-- informacion del cliente -->
+                <fieldset>
+                    <legend>Información de la cita</legend>
+
+                    <label for="">Nombre del cliente</label>
+                    <p><?php echo $info['nombre_cliente'] ?></p>
+
+                    <label for="">Día de la cita:</label>
+                    <p><?php echo $info['fecha'] ?></p>
+
+                    <label for="">Hora de la cita:</label>
+                    <p><?php echo $info['hora'] ?></p>
+
+                    <label for="">Motivo:</label>
+                    <p><?php echo $info['motivo'] ?></p>
+                </fieldset>
+
             </div>
-          </div>
 
-        </form>
-
+        </div>
+        <div class="opciones-btn-ver opciones-btn">
+            <div class="btn-regresar-ver-cliente btn">
+                <a href="./mostrar_citas.php">Regresar</a>
+            </div>
+            <div class="btn">
+                <a href="./editar_cita.php?id=<?php echo $id ?>">Editar</a>
+            </div>
+        </div>
 
     </div>
 </body>

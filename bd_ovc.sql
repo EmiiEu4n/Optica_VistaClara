@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2024 a las 05:20:03
+-- Tiempo de generación: 03-11-2024 a las 06:27:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,6 +33,16 @@ CREATE TABLE `categorias` (
   `libre` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `libre`) VALUES
+(1, 'Lentes', NULL),
+(3, 'Lentes de contacto', NULL),
+(7, 'carcasa', NULL),
+(9, 'Pa\' Lap ', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -41,13 +51,19 @@ CREATE TABLE `categorias` (
 
 CREATE TABLE `citas` (
   `id_cita` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `id_empleado` int(11) NOT NULL,
-  `fecha_cita` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
-  `motivo` text DEFAULT NULL,
-  `libre` int(11) DEFAULT NULL
+  `fecha` date NOT NULL,
+  `hora` varchar(100) NOT NULL,
+  `nombre_cliente` varchar(100) NOT NULL,
+  `motivo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id_cita`, `fecha`, `hora`, `nombre_cliente`, `motivo`) VALUES
+(3, '2024-11-14', '05:00', 'Alfi Avila', 'Me estoy quedando calvo'),
+(6, '2024-11-12', '12:00', 'Gaspar Emiliano Euan Puc', 'MOTIVO XD');
 
 -- --------------------------------------------------------
 
@@ -76,7 +92,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`id_cliente`, `nombres`, `apellidos`, `correo`, `telefono`, `direccion`, `preescripcion`, `contrasena`, `verificado`, `rol`, `libre`, `libre2`) VALUES
 (1, 'Emiliano', 'Euan', 'emii@sd.com', '9999999999', '5000 Harbour Lake Drive', 'receta', NULL, 'False', 'Cliente', NULL, NULL),
-(2, 'cliente ', 'prueba', 'cuenta@gmail.com', '9997379384', 'av calle ', 'earexchvj', NULL, 'False', 'Cliente', NULL, NULL);
+(2, 'cliente ', 'prueba', 'cuenta@gmail.com', '9997379384', 'av calle ', 'earexchvj', NULL, 'False', 'Cliente', NULL, NULL),
+(3, 'Emiliano', 'Euan', 'emii@euan1.com', '1234567890', '5000 Harbour Lake Drive', 'grande', NULL, 'False', 'Cliente', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,9 +120,11 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id_empleado`, `nombres`, `apellidos`, `correo`, `telefono`, `direccion`, `rol`, `fecha_contratacion`, `usuario`, `contrasena`, `libre`) VALUES
-(1, 'Joel Santiago', 'Cauich Peraza', 'administrador@gmail.com', '9999999999', '5000 Harbour Lake Drive', 'Empleado', '2024-10-13', 'gay', '$2y$10$x3CdFm3ZqbTGRuhEeR/xMeRH.C2xx.uEu1HhTDi2L8480a5Y5UWpm', NULL),
-(5, 'Maria Jose', 'Ceh Can', 'mari@gmail.com', '9999999999', '5000 Harbour Lake Drive', 'Empleado', '2024-10-15', 'majito', '$2y$10$SlAkw/RmP83UEg9UPaMf6urHxinIzC15YC11WEg3QT13tS2w02Ab.', NULL),
-(6, 'Frankie', 'Segura', '1@er', '9997379384', 'Conocido', 'Administrador', '2024-10-05', '1ñ', '$2y$10$xdYarg2um5RqA2IuKFDg9uyRuMai6O3uPkbkUIsE.g2ppmrig5.wC', NULL);
+(1, NULL, NULL, 'emilianoeuan155@gmail.com', NULL, NULL, 'Administrador', NULL, 'DevSociety', '$2y$10$SCaDE9Wcaj3nsGFle7kq1e9UCgJIwfoYeyPfaED4kZ74K.50c/prW', NULL),
+(22, 'Maria Jose', 'Euan', 'mari@gmail.com', '1234567890', '5000 Harbour Lake Drive', 'Empleado', '2024-10-22', 'majo', '$2y$10$EbWZtGYToHBRagV41.KxleUl8udEWsrmDRpubZSfPmjyoEpHUuCsm', NULL),
+(25, 'Joel ', 'trazo ', 'joel@gmail.com', '9991823723', 'tec', 'Administrador', '2024-10-24', 'Joel', '$2y$10$d3j4TwtSdohWV/KgXv8Yauk45fPILVlmziq3zljdbxObIFUQCy6bu', NULL),
+(26, 'Alfonso ', 'avila', 'alfonsoavilag30@gmail.com', '9991787092', 'tec', 'Administrador', '2024-10-24', 'Alfonso', '$2y$10$KHtrIwnk0QFKKEsaHlIaneq46iGxcu6DFMPTgwfXnNu2DZO2jA6em', NULL),
+(27, '', '', '', '', '', '', '0000-00-00', '', '$2y$10$uNReklho2p0CwMNkZ1VTDuZDVjKVXcXVuUIjuE975pN58s/wrOs8a', NULL);
 
 -- --------------------------------------------------------
 
@@ -138,8 +157,16 @@ CREATE TABLE `productos` (
   `descripcion` text DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `id_proveedor` int(11) DEFAULT NULL,
-  `libre` int(11) DEFAULT NULL
+  `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_producto`, `nombre`, `id_categoria`, `precio`, `descripcion`, `stock`, `id_proveedor`, `img`) VALUES
+(10, 'lentes juel ', 1, 1, 'de tu color ideal ', 1, 4, '../productos/2024-10-24-06-51-52-4161HYLkB3L._AC_SY580_.jpg'),
+(12, 'lente1', 3, 20, 'Contacto ', 4, 4, '../productos/2024-10-24-06-54-49-4161HYLkB3L._AC_SY580_.jpg');
 
 -- --------------------------------------------------------
 
@@ -163,7 +190,8 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`id_proveedor`, `nombre`, `contacto`, `correo`, `telefono`, `direccion`, `suministro`, `libre`) VALUES
-(1, 'ClaraVision', 'Jose Manuel', 'productos@claravista.com', '12312313', 'Colonia centro entre amadero y san juan cp 56890', 'Carcasa', NULL);
+(4, 'Proveedor A', 'Luis Manuel', 'luis@proveedorz.com', '1234567890', 'Calle 789, Ciudad C', NULL, NULL),
+(14, 'Cinepolis', 'Alfonso', 'alfonsoavilag30@gmail.com', '9991787092', 'direccion', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -179,9 +207,7 @@ ALTER TABLE `categorias`
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`id_cita`),
-  ADD KEY `citas-cliente` (`id_cliente`),
-  ADD KEY `citas-empleado` (`id_empleado`);
+  ADD PRIMARY KEY (`id_cita`);
 
 --
 -- Indices de la tabla `clientes`
@@ -209,8 +235,8 @@ ALTER TABLE `historial_citas`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`id_producto`),
-  ADD KEY `producto-proveedor` (`id_proveedor`),
-  ADD KEY `producto-categoria` (`id_categoria`);
+  ADD KEY `producto-categoria` (`id_categoria`),
+  ADD KEY `producto-proveedor` (`id_proveedor`);
 
 --
 -- Indices de la tabla `proveedores`
@@ -226,25 +252,25 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cliente` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id_empleado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_empleado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_citas`
@@ -256,24 +282,17 @@ ALTER TABLE `historial_citas`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `citas`
---
-ALTER TABLE `citas`
-  ADD CONSTRAINT `citas-cliente` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `citas-empleado` FOREIGN KEY (`id_empleado`) REFERENCES `empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `historial_citas`
