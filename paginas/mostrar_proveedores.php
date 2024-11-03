@@ -46,9 +46,9 @@
                     <!-- Telefono -->
                     <td> <?php echo "$fila[telefono]" ?></td>
                     <!-- Ver usuario -->
-                    <td class="btn-ver"> <a href="../paginas/ver_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+                    <td class="btn-ver"> <a href="../paginas/ver_proveedor.php?origen=proveedores&id=<?php echo $fila['id_proveedor']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
                     <!-- Editar usuario -->
-                    <td class="btn-editar"> <a href="../paginas/editar_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
+                    <td class="btn-editar"> <a href="../paginas/editar_proveedor.php?origen=proveedores&id=<?php echo $fila['id_proveedor']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
                     <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_proveedor.php?id=<?php echo $fila['id_proveedor']; ?>','<?php echo addslashes($fila['nombre']); ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>

@@ -11,6 +11,8 @@
     <?php 
     include "menu_panel.php";
     require "../php/conexion.php";
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     $id = $_GET['id'];
     $categoria = "SELECT * FROM categorias WHERE id_categoria = '$id'";
     $query = mysqli_query($conectar, $categoria); 
@@ -41,7 +43,7 @@
                 <a href="./mostrar_categoria.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="../paginas/editar_categoria.php?id=<?php echo $id ?>">Editar</a>
+                <a href="../paginas/editar_categoria.php?origen=<?php echo $origen ?>ver&id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 

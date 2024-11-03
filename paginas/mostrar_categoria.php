@@ -42,9 +42,9 @@
                     <td> <?php echo "$fila[nombre_categoria]" ?></td>
 
                     <!-- Ver usuario -->
-                    <td class="btn-ver"> <a href="ver_categoria.php?id=<?php echo $fila['id_categoria']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+                    <td class="btn-ver"> <a href="ver_categoria.php?origen=categorias&id=<?php echo $fila['id_categoria']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
                     <!-- Editar usuario -->
-                    <td class="btn-editar"> <a href="../paginas/editar_categoria.php?id=<?php echo $fila['id_categoria']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
+                    <td class="btn-editar"> <a href="../paginas/editar_categoria.php?origen=categorias&id=<?php echo $fila['id_categoria']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
                     <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_categoria.php?id=<?php echo $fila['id_categoria']; ?>','<?php echo addslashes($fila['nombre_categoria']) ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>

@@ -12,6 +12,8 @@
     include "menu_panel.php";
     require "../php/conexion.php";
     $id = $_GET['id'];
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
 
         $query = "SELECT * FROM proveedores WHERE id_proveedor = '$id'";
         $resultado = mysqli_query($conectar, $query);
@@ -56,7 +58,7 @@
                 <a href="./mostrar_proveedores.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="../paginas/editar_proveedor.php?id=<?php echo $id; ?>">Editar</a>
+                <a href="../paginas/editar_proveedor.php?origen=<?php echo $origen ?>ver&id=<?php echo $id; ?>">Editar</a>
             </div>
         </div>
 

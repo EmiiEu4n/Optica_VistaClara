@@ -17,6 +17,7 @@
         <div class="content-info">
             <div class="content-registrar formulario">
                 <form action="../php/create_producto.php" method="post" enctype="multipart/form-data">
+                <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->

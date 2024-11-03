@@ -18,45 +18,47 @@
 
         <div class="content-info">
             <!-- ---Lo usamos para extraer la información de la BD----- -->
-             <?php
+            <?php
             require "../php/conexion.php";
-          $id = $_GET['id'];
-          $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor, productos.img  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
-          $resultado = mysqli_query($conectar, $ver_usuario);
+            //get de origen
+            $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
+            $id = $_GET['id'];
+            $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor, productos.img  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
+            $resultado = mysqli_query($conectar, $ver_usuario);
 
-          $fila = $resultado->fetch_array();
-        //   echo $fila ["nombre"];
-          ?>
+            $fila = $resultado->fetch_array();
+            //   echo $fila ["nombre"];
+            ?>
             <div class="info formulario">
                 <!-- informacion del producto -->
                 <fieldset>
                     <legend>Imagen del producto</legend>
-                    <img style="width: 350px;" src="<?php echo "$fila[img]"?>" alt="nada">
+                    <img style="width: 350px;" src="<?php echo "$fila[img]" ?>" alt="nada">
                 </fieldset>
                 <fieldset>
                     <legend>Información del producto</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
-                    <p class="letra"><?php echo "$fila[producto]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$fila[producto]" . "&nbsp" ?></p>
                     <!-- Categoria -->
                     <label for="">Categoría:</label>
-                    <p class="letra"><?php echo "$fila[nombre_categoria]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$fila[nombre_categoria]" . "&nbsp" ?></p>
                     <!-- Precio -->
                     <label for="">Precio:</label>
-                    <p class="letra"><?php echo "$"."$fila[precio]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$" . "$fila[precio]" . "&nbsp" ?></p>
                     <!-- Descripción -->
                     <label for="">Descripción:</label>
-                    <p class="letra"><?php echo "$fila[descripcion]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$fila[descripcion]" . "&nbsp" ?></p>
                     <!-- Nombres -->
                     <label for="">Stock:</label>
-                    <p class="letra"><?php echo "$fila[stock]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$fila[stock]" . "&nbsp" ?></p>
                     <!-- Proveedor -->
                     <label for="">Proveedor:</label>
-                    <p class="letra"><?php echo "$fila[proveedor]"."&nbsp"?></p>
+                    <p class="letra"><?php echo "$fila[proveedor]" . "&nbsp" ?></p>
                     </br>
 
                 </fieldset>
-                
+
             </div>
 
         </div>
@@ -65,7 +67,7 @@
                 <a href="./mostrar_productos.php">Regresar</a>
             </div>
             <div class="btn">
-                <a href="./editar_producto.php?id=<?php echo $id ?>">Editar</a>
+                <a href="./editar_producto.php?origen=<?php echo $origen ?>ver&id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 

@@ -13,8 +13,13 @@
     if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
     }
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     require "../php/conexion.php";
     $id = $_GET['id'];
+    if($id == 1){
+        header("Location: ../paginas/mostrar_empleados.php"); 
+    }
 
     // instruccion
     $usuario = "SELECT * FROM empleados WHERE id_empleado = '$id'";
@@ -37,7 +42,7 @@
 
         <div class="content-info">
             <div class="content-edit formulario">
-                <form action="/php/update_empleado.php" method="post">
+                <form action="../php/update_empleado.php?origen=<?php echo $origen ?>" method="post">
 
                     <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
@@ -112,7 +117,17 @@
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="./mostrar_empleados.php">Regresar</a>
+                            <a href="<?php
+                                        if ($origen == 'usuarios') {
+                                            echo './mostrar_usuarios.php';
+                                        } elseif ($origen == 'empleados') {
+                                            echo './mostrar_empleados.php';
+                                        } elseif ($origen == 'usuariosver') {
+                                            echo './ver_empleado.php?origen=usuarios&id=' . $id;
+                                        } elseif ($origen == 'empleadosver') {
+                                            echo './ver_empleado.php?origen=empleados&id=' . $id;
+                                        }
+                                        ?>">Regresar</a>
                         </div>
                         <button class="btn-form">Guardar</button>
                     </div><br><br>

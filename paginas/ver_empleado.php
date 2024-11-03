@@ -12,8 +12,13 @@
     if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
     }
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     require "../php/conexion.php";
     $id = $_GET['id'];
+    if($id == 1){
+        header("Location: ../paginas/mostrar_empleados.php"); 
+    }
 
     // instruccion
     $producto = "SELECT * FROM empleados WHERE id_empleado = '$id'";
@@ -65,17 +70,14 @@
                     <label for="">Fecha de contrato:</label>
                     <p><?php echo $info['fecha_contratacion'] ?></p>
                 </fieldset>
-
-
             </div>
-
         </div>
         <div class="opciones-btn-ver opciones-btn">
             <div class="btn-regresar-ver-cliente btn">
-                <a href="./mostrar_empleados.php">Regresar</a>
+                <a href="<?php echo ($origen =='usuarios')?'./mostrar_usuarios.php' : './mostrar_empleados.php'?>">Regresar</a>
             </div>
             <div class="btn">
-                <a href="./editar_empleado.php?id=<?php echo $id ?>">Editar</a>
+                <a href="./editar_empleado.php?origen=<?php echo $origen ?>ver&id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 

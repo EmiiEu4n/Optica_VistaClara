@@ -12,7 +12,8 @@
     <?php include "menu_panel.php";
     require "../php/conexion.php";
     $id = $_GET['id'];
-
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     // instruccion
     $producto = "SELECT * FROM clientes WHERE id_cliente = '$id'";
     // consulta
@@ -64,10 +65,10 @@
         </div>
         <div class="opciones-btn-ver opciones-btn">
             <div class="btn-regresar-ver-cliente btn">
-                <a href="./mostrar_clientes.php">Regresar</a>
+                <a href="<?php echo ($origen =='usuarios')?'./mostrar_usuarios.php' : './mostrar_clientes.php'?>">Regresar</a>
             </div>
             <div class="btn">
-                <a href="./editar_cliente.php?id=<?php echo $id ?>">Editar</a>
+                <a href="./editar_cliente.php?origen=<?php echo $origen ?>ver&id=<?php echo $id ?>">Editar</a>
             </div>
         </div>
 

@@ -1,4 +1,16 @@
 <?php
+$id = addslashes($_POST['id']);
+$origen = $_GET['origen'];
+if ($origen == 'usuarios') {
+    header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
+} elseif ($origen == 'empleados') {
+    header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
+} elseif ($origen == 'usuariosver') {
+    header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
+} elseif ($origen == 'empleadosver') {
+    header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
+}
+exit();
 // require './seguridad.php';
 require "conexion.php";
 
@@ -7,7 +19,7 @@ $antiguo_correo = addslashes($_POST['a_correo']);
 $antigua_username = addslashes($_POST['a_username']);
 
 // informacion nueva
-$id = addslashes($_POST['id']);
+
 $nombres = addslashes($_POST['nombres']);
 $apellidos = addslashes($_POST['apellidos']);
 $telefono = addslashes($_POST['telefono']);
@@ -49,7 +61,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
             <script>
             alert("Este correo [ ' . $correo . ' ] ya esta en uso.")
-            location.href="../paginas/editar_empleado.php?id=' . $id . '";
+            window.history.go(-1);
             </script>
         ';
         exit();
@@ -62,7 +74,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
             <script>
             alert("Este correo [ ' . $correo . ' ] ya esta en uso por un cliente.")
-            location.href="../paginas/editar_empleado.php?id=' . $id . '";
+            window.history.go(-1);
             </script>
         ';
         exit();
@@ -74,7 +86,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
             <script>
             alert("Este username [ ' . $username . ' ] ya esta en uso.")
-            location.href="../paginas/editar_empleado.php?id=' . $id . '";
+            window.history.go(-1);
             </script>
         ';
         exit();
@@ -96,7 +108,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
         <script>
         alert("Este correo [ ' . $correo . ' ] ya esta en uso.")
-        location.href="../paginas/editar_empleado.php?id=' . $id . '";
+        window.history.go(-1);
         </script>
         ';
         exit();
@@ -109,7 +121,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
             <script>
             alert("Este correo [ ' . $correo . ' ] ya esta en uso por un cliente.")
-            location.href="../paginas/editar_empleado.php?id=' . $id . '";
+            window.history.go(-1);
             </script>
         ';
         exit();
@@ -128,7 +140,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
         echo '
             <script>
             alert("Este username [ ' . $username . ' ] ya esta en uso.")
-            location.href="../paginas/editar_empleado.php?id=' . $id . '";
+            window.history.go(-1);
             </script>
         ';
         exit();

@@ -10,6 +10,8 @@
 <body>
     <?php 
     include "menu_panel.php"; 
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
@@ -43,7 +45,7 @@
                     <!-- Botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="./mostrar_categoria.php">Regresar</a>
+                        <a href="<?php echo ($origen == 'categorias')? './mostrar_categoria.php':'./ver_categoria.php?id=' . $id?>">Regresar</a>
                         </div>
                         <button class="btn-form" type="submit">Guardar</button>
                     </div>

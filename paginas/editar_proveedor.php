@@ -12,6 +12,8 @@
     include "menu_panel.php";
     require "../php/conexion.php";
     $id = $_GET['id'];
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
 
     // instruccion
     $proveedor = "SELECT * FROM proveedores WHERE id_proveedor = '$id'";
@@ -62,7 +64,7 @@
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="./mostrar_proveedores.php">Regresar</a>
+                            <a href="<?php echo ($origen == 'proveedores')? './mostrar_proveedores.php':'./ver_proveedor.php?id=' . $id?>">Regresar</a>
                         </div>
                         <button class="btn-form">Guardar</button>
                     </div><br><br>

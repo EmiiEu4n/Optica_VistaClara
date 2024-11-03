@@ -17,6 +17,8 @@
         <!-- -----Para poder estrar de la BD ----- -->
         <?php
         require "../php/conexion.php";
+        //get de origen
+        $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
         $id = $_GET['id'];
         $ver_producto = "SELECT productos.id_producto, productos.nombre AS producto, categorias.id_categoria, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock,proveedores.id_proveedor, proveedores.nombre AS proveedor, productos.img  
           FROM productos 
@@ -106,7 +108,7 @@
                     <!-- Botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="./mostrar_productos.php">Regresar</a>
+                            <a href="<?php echo ($origen == 'productos')? './mostrar_productos.php':'./ver_producto.php?id=' . $id?>">Regresar</a>
                         </div>
                         <input type="hidden" name="id_producto" value="<?php echo $info_prod['id_producto'] ?>">
                         <button class="btn-form" type="submit">Guardar</button>

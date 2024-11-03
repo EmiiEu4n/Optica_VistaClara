@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     include "menu_panel.php" ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
@@ -18,6 +18,7 @@
         <div class="content-info">
             <div class="content-registrar formulario">
                 <form action="../php/create_categorias.php" method="post">
+                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información de la categoria</legend>
                         <!-- Nombre -->
@@ -26,7 +27,7 @@
 
                     </fieldset>
 
-                   
+
                     <!-- Botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">

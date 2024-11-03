@@ -1,7 +1,8 @@
 <?php 
 // require './seguridad.php';
 require "conexion.php";
-
+//get de origen
+$origen = isset($_GET['origen']) ? $_GET['origen'] : "";
 $id = $_GET['id'];
 if($id != "1"){
 
@@ -9,7 +10,11 @@ if($id != "1"){
     $query  = mysqli_query($conectar, $delete);
     
     if($query){
-        header( "location: ../paginas/mostrar_empleados.php");
+        if($origen == "usuarios"){
+            header( "location: ../paginas/mostrar_usuarios.php");
+        }else{
+            header( "location: ../paginas/mostrar_empleados.php");
+        }
     }else{
         echo "ERROR: NO se pudo eliminar el usuario con id: [ ".$id." ]";
     }

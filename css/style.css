@@ -430,6 +430,9 @@ td a {
 span {
   color: var(--color4);
 }
+.formulario label span {
+  color: red;
+}
 
 /* css content_menu */
 

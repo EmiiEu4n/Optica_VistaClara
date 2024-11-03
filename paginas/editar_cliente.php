@@ -12,7 +12,8 @@
     include "menu_panel.php";
     require "../php/conexion.php";
     $id = $_GET['id'];
-
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     // instruccion
     $usuario = "SELECT * FROM clientes WHERE id_cliente = '$id'";
     // consulta
@@ -33,7 +34,7 @@
 
         <div class="content-info">
             <div class="content-edit formulario">
-                <form action="/php/update_cliente.php" method="post">
+                <form action="../php/update_cliente.php" method="post">
                     <fieldset>
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
@@ -87,7 +88,17 @@
                     <!-- botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="mostrar_clientes.php">Regresar</a>
+                                        <a href="<?php
+                                        if ($origen == 'usuarios') {
+                                            echo './mostrar_usuarios.php';
+                                        } elseif ($origen == 'clientes') {
+                                            echo './mostrar_clientes.php';
+                                        } elseif ($origen == 'usuariosver') {
+                                            echo './ver_cliente.php?origen=usuarios&id=' . $id;
+                                        } elseif ($origen == 'clientesver') {
+                                            echo './ver_cliente.php?origen=clientes&id=' . $id;
+                                        }
+                                        ?>">Regresar</a>
                         </div>
                         <button class="btn-form">Guardar</button>
                     </div>

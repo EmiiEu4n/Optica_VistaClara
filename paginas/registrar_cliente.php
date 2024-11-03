@@ -18,6 +18,7 @@
 
             <div class="content-registrar formulario">
                 <form action="/php/create_cliente.php" method="post">
+                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
