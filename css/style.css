@@ -102,6 +102,12 @@ body {
   border-bottom: var(--color1) solid 1px;
   outline: none;
   padding: 0 5px;
+  /* Motificado */
+  width: 700px;
+
+}
+
+fieldset{
   width: 400px;
 }
 .formulario select{
@@ -127,7 +133,7 @@ body {
 .formulario textarea {
   font-family: "Roboto";
   padding: 5px;
-  width: 350px;
+  width: 100%;
   height: 85px;
   resize: none;
 }

@@ -82,7 +82,7 @@
 
                         <!-- roles-->
                         <label for="">Rol<span>*</span></label><br>
-                        <select name="rol">
+                        <select style="width: 100%;" name="rol">
                             <!-- Opciones de rol -->
                             <!-- <option value="<?php echo $info['rol']; ?>"><?php echo $info['rol']; ?></option> -->
                             <option value="Administrador"

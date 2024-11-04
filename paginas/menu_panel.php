@@ -1,4 +1,13 @@
 <?php
+$showAlert = $_GET['showAlert'] ?? null;
+if ($showAlert === 'true') {
+    echo '
+    <script>
+        window.onload = function() {
+            showSwalAlert("Correo en uso", "Este correo ya está en uso.", "error");
+        }
+    </script>';
+}
 require '../php/seguridad.php';
 require '../php/conexion.php';
 // session_start();
@@ -10,7 +19,7 @@ $resultado_empleado = $consulta_empleado->get_result();
 $info_empleado = $resultado_empleado->fetch_assoc();
 $_SESSION['rol'] = $info_empleado['rol'];
 
-if($resultado_empleado->num_rows > 0){
+if ($resultado_empleado->num_rows > 0) {
 
     if ($_SESSION['rol'] == 'Administrador') {
         $options = '
@@ -21,18 +30,16 @@ if($resultado_empleado->num_rows > 0){
         <!-- admin -->
         <a href="./mostrar_usuarios.php">Usuarios</a>
         <!-- empleado -->
-        <a href="./mostrar_citas.php">Citas</a>
-        <!-- empleado -->
         <a href="./mostrar_productos.php">Productos</a>
         <!-- empleado -->
         <a href="./mostrar_proveedores.php">Proveedores</a>
         <!-- empleado -->
-        <a href="#">Historial de citas</a>
+        <a href="./mostrar_citas.php">Gestion de citas</a>
+        <!-- empleado -->
+        <!--<a href="#">Historial de citas</a>-->
     ';
-} else if ($_SESSION['rol'] == 'Empleado') {
-    $options = '
-    <!-- empleado -->
-        <a href="#">Citas</a>
+    } else if ($_SESSION['rol'] == 'Empleado') {
+        $options = '
         <!-- empleado -->
         <a href="./mostrar_clientes.php">Clientes</a>
         <!-- empleado -->
@@ -40,10 +47,12 @@ if($resultado_empleado->num_rows > 0){
         <!-- empleado -->
         <a href="./mostrar_proveedores.php">Proveedores</a>
         <!-- empleado -->
-        <a href="#">Historial de citas</a>
+        <a href="#">Gestión de citas</a>
+        <!-- empleado -->
+        <!--<a href="#">Historial de citas</a>-->
         ';
     }
-}else{
+} else {
     require "../php/salir.php";
 }
 ?>
@@ -59,11 +68,10 @@ if($resultado_empleado->num_rows > 0){
     <link rel="preload" href="../css/style.css" as="styles" />
     <!-- vincula los archivos -->
     <link rel="stylesheet" href="../css/style.css" />
-    <!-- <script> src = "../javascript/javascript.js" </script> -->
     <!-- Notificaciones -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-
-    <title>Dashboard</title>    
+    <script src="../javascript/notificaciones.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -78,7 +86,7 @@ if($resultado_empleado->num_rows > 0){
             <h3>Username: <span><?php echo $info_empleado['usuario'] ?></span></h3>
             <hr>
             <div class="btn-sidebar">
-                <?php echo $options?>
+                <?php echo $options ?>
             </div>
 
         </div>

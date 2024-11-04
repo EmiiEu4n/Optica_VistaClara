@@ -30,35 +30,41 @@
         <div class="content-info">
             <div class="info formulario">
                 <!-- informacion del cliente -->
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información de personal</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
-                    <p><?php echo $info['nombres'] ?></p>
+                    <input value="<?php echo $info['nombres'] ?>" type="text">
+
                     <!-- apellidos -->
                     <label for="">Apellidos:</label>
-                    <p><?php echo $info['apellidos'] ?></p>
+                    <input value="<?php echo $info['apellidos'] ?>" type="text">
+
                     <!-- domicilio -->
                     <label for="">Domicilio:</label>
-                    <p><?php echo $info['direccion'] ?></p>
+                    <input value="<?php echo $info['direccion'] ?>" type="text">
+
                 </fieldset>
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información de contacto</legend>
                     <!-- telefono -->
                     <label for="">Telefono:</label>
-                    <p><?php echo $info['telefono'] ?></p>
+                    <input value="<?php echo $info['telefono'] ?>" type="text">
+
                     <!-- correo -->
                     <label for="">Correo:</label>
-                    <p><?php echo $info['correo'] ?></p>
+                    <input value="<?php echo $info['correo'] ?>" type="text">
+
                 </fieldset>
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información médica</legend>
                     <!-- preescripcion -->
                     <label for="">Preescripcion:</label><br>
                     <textarea disabled><?php echo $info['preescripcion'] ?></textarea><br>
                     <!-- Dar de alta -->
                     <label for="">Verificado:</label>
-                    <p><?php echo $info['verificado'] ?></p>
+                    <input value="<?php echo $info['verificado'] ?>" type="text">
+
                 </fieldset>
             </div>
 

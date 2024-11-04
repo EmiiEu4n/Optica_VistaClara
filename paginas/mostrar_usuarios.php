@@ -78,6 +78,7 @@
         <button class="btn-form" type="submit" name="buscar">Buscar </button>
       </form>
     </div>
+    
     <div class="opciones-btn">
       <div class=" btn">
         <a href="./mostrar_usuarios.php">Ver todos</a>

@@ -36,39 +36,44 @@
         <div class="content-info">
             <div class="info formulario">
                 <!-- informacion del cliente -->
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información personal</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
-                    <p><?php echo $info['nombres'] ?></p>
+                    <input value="<?php echo $info['nombres'] ?>" type="text">
                     <!-- apellidos -->
                     <label for="">Apellidos:</label>
-                    <p><?php echo $info['apellidos'] ?></p>
+                    <input value="<?php echo $info['apellidos'] ?>" type="text">
                     <!-- domicilio -->
                     <label for="">Domicilio:</label><br>
                     <textarea disabled><?php echo $info['direccion'] ?></textarea>
                 </fieldset>
 
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información de contacto</legend>
                     <!-- correo -->
                     <label for="">Correo:</label>
-                    <p><?php echo $info['correo'] ?></p>
+                    <input value="<?php echo $info['correo'] ?>" type="text">
+
                     <!-- telefono -->
                     <label for="">Telefono:</label>
-                    <p><?php echo $info['telefono'] ?></p>
+                    <input value="<?php echo $info['telefono'] ?>" type="text">
+
                 </fieldset>
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información de empleo</legend>
                     <!-- username-->
                     <label for="">Username:</label>
-                    <p><?php echo $info['usuario'] ?></p>
+                    <input value="<?php echo $info['usuario'] ?>" type="text">
+
                     <!-- Rol-->
                     <label for="">Rol:</label>
-                    <p><?php echo $info['rol'] ?></p>
+                    <input value="<?php echo $info['rol'] ?>" type="text">
+
                     <!-- Fecha de contratacion-->
                     <label for="">Fecha de contrato:</label>
-                    <p><?php echo $info['fecha_contratacion'] ?></p>
+                    <input value="<?php echo $info['fecha_contratacion'] ?>" type="text">
+
                 </fieldset>
             </div>
         </div>

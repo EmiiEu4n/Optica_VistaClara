@@ -46,7 +46,7 @@
                         <legend>Información Médica</legend>
                         <!-- preescripcion -->
                         <label for="">Preescripcion<span>*</span></label><br>
-                        <textarea required placeholder="Ingresa información sobre la receta Ej.Medida de la graduación" name="preescripcion"></textarea>
+                        <textarea style="width: 700px;" required placeholder="Ingresa información sobre la receta Ej.Medida de la graduación" name="preescripcion"></textarea>
                         <br>
                     </fieldset>
 

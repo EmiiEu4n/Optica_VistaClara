@@ -1,16 +1,22 @@
 <?php
-$id = addslashes($_POST['id']);
-$origen = $_GET['origen'];
-if ($origen == 'usuarios') {
-    header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
-} elseif ($origen == 'empleados') {
-    header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
-} elseif ($origen == 'usuariosver') {
-    header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
-} elseif ($origen == 'empleadosver') {
-    header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
-}
-exit();
+// $origen = $_GET['origen'];
+
+// if ($origen == 'usuarios') {
+//     echo '
+//     <script>
+//         window.onload = function() {
+//             location.href="../paginas/ver_empleado.php?origen=usuarios&id=' . $id . '&showAlert=true";
+//         }
+//     </script>';
+// }
+//  elseif ($origen == 'empleados') {
+//     header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
+// } elseif ($origen == 'usuariosver') {
+//     header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
+// } elseif ($origen == 'empleadosver') {
+//     header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
+// }
+// exit();
 // require './seguridad.php';
 require "conexion.php";
 
@@ -19,7 +25,7 @@ $antiguo_correo = addslashes($_POST['a_correo']);
 $antigua_username = addslashes($_POST['a_username']);
 
 // informacion nueva
-
+$id = addslashes($_POST['id']);
 $nombres = addslashes($_POST['nombres']);
 $apellidos = addslashes($_POST['apellidos']);
 $telefono = addslashes($_POST['telefono']);

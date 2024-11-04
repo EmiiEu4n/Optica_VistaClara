@@ -12,7 +12,35 @@
 
 <body>
   <?php
-  include "menu_panel.php" ?>
+  include "menu_panel.php";
+  require "../php/conexion.php";
+  // Consulta para obtener los clientes
+  $sql = "SELECT id_cliente, nombres, apellidos FROM clientes";
+  $result = $conectar->query($sql);
+
+  // Arreglo para almacenar los datos de los clientes
+  $clientes = [];
+
+  // Verificar si hay resultados
+  if ($result->num_rows > 0) {
+    // Recorrer los resultados y agregarlos al arreglo
+    while ($row = $result->fetch_assoc()) {
+      $clientes[] = [
+        'id' => $row['id_cliente'],
+        'nombre' => $row['nombres'] . " " . $row['apellidos'],
+      ];
+    }
+
+    // Cerrar la conexión
+    $conectar->close();
+
+    // Convertir los datos a formato JSON
+    $clientes_json = json_encode($clientes);
+  } else {
+    echo "No se encontraron resultados";
+  }
+
+  ?>
   <!-- Manteniendo el menú si es necesario -->
   <div class="nuevo-usuario main-content">
     <div class="titulo">
@@ -24,34 +52,50 @@
 
           <fieldset>
             <legend>Información de cita</legend>
+
             <label for="">Fecha: <span>*</span></label>
-            <input class="flatpickr" id="fecha" name="fecha" min="" max="" type="date"><br><br>
-            <label for="">Hora: <span>*</span></label>
-            <select id="hora" name="hora">
+            <input required class="flatpickr" id="fecha" name="fecha" min="" max="" type="date"><br><br>
+
+            <label for="">Horario: <span>*</span></label>
+            <select style="width: 100%;" required id="hora" name="hora" disabled>
               <option value="">Selecciona la hora de la cita</option>
-              <option value="10:00">10:00 AM</option>
-              <option value="11:00">11:00 AM</option>
-              <option value="12:00">12:00 PM</option>
-              <option value="01:00">01:00 PM</option>
-              <option value="02:00">02:00 PM</option>
-              <option value="03:00">03:00 PM</option>
-              <option value="04:00">04:00 PM</option>
-              <option value="05:00">05:00 PM</option>
+              <option value="10:00:00">10:00 AM</option>
+              <option value="10:30:00">10:30 AM</option>
+              <option value="11:00:00">11:00 AM</option>
+              <option value="11:30:00">11:30 AM</option>
+              <option value="12:00:00">12:00 PM</option>
+              <option value="12:30:00">12:30 PM</option>
+              <option value="13:00:00">01:00 PM</option>
+              <option value="13:30:00">01:30 PM</option>
+              <option value="14:00:00">02:00 PM</option>
+              <option value="14:30:00">02:30 PM</option>
+              <option value="15:00:00">03:00 PM</option>
+              <option value="15:30:00">03:30 PM</option>
+              <option value="16:00:00">04:00 PM</option>
+              <option value="16:30:00">04:30 PM</option>
+              <option value="17:00:00">05:00 PM</option>
             </select><br><br>
+            <!-- Motivo -->
             <label for="">Motivo: <span>*</span></label><br>
-            <textarea name="motivo" id=""></textarea>
+            <textarea style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
           </fieldset>
 
           <fieldset>
             <legend>Información del cliente</legend>
             <label for="buscar-cliente">Nombre:</label>
-            <input type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc" name="nombre_cliente">
+            <input required type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc" name="nombre_cliente" autocomplete="off">
 
             <!-- Lista de sugerencias para mostrar coincidencias -->
             <ul id="sugerencias-clientes" class="sugerencias" style="display: none;">
               <!-- Aquí se agregarán las opciones filtradas -->
             </ul>
+            <!-- Envio del id escondido -->
+            <input required type="hidden" id="id-cliente" name="id-cliente">
+            <p id="error-msg" style="color: red; display: none;">Debes seleccionar un cliente válido.</p>
           </fieldset>
+
+
+          <!-- Botones -->
           <div class="opciones-btn opciones-btn-registrar">
             <div style="width: 190px;" class="btn">
               <a href="mostrar_citas.php">Regresar</a>
@@ -67,56 +111,221 @@
   <!-- JavaScript -->
   <script>
     //javascript de fecha y hora
-    flatpickr("#fecha", {
-      onDayCreate: function(dObj, dStr, fp, dayElem) {
-        // Fecha específica que deseas resaltar: 5 de diciembre de 2024
-        const highlightDate = new Date(2024, 11, 5); // Mes es 11 porque en JS los meses empiezan desde 0
+    // Función para obtener los días festivos obligatorios de México (año dinámico)
+    function obtenerDiasFestivos(year) {
+      return [
+        new Date(year, 0, 1), // Año Nuevo (1 de enero)
+        obtenerPrimerLunesDeFebrero(year), // Día de la Constitución (primer lunes de febrero)
+        obtenerTercerLunesDeMarzo(year), // Natalicio de Benito Juárez (tercer lunes de marzo)
+        new Date(year, 4, 1), // Día del Trabajo (1 de mayo)
+        new Date(year, 8, 16), // Día de la Independencia (16 de septiembre)
+        obtenerTercerLunesDeNoviembre(year), // Revolución Mexicana (tercer lunes de noviembre)
+        new Date(year, 11, 25) // Navidad (25 de diciembre)
+      ];
+    }
 
-        // Comparar la fecha del día actual del calendario con la fecha específica
-        if (
-          dayElem.dateObj.getFullYear() === highlightDate.getFullYear() &&
-          dayElem.dateObj.getMonth() === highlightDate.getMonth() &&
-          dayElem.dateObj.getDate() === highlightDate.getDate()
-        ) {
-          // Añadir clase personalizada para pintar esa fecha específica
-          dayElem.classList.add("highlight-day");
+    // Función para obtener el primer lunes de febrero
+    function obtenerPrimerLunesDeFebrero(year) {
+      let date = new Date(year, 1, 1); // 1 de febrero
+      while (date.getDay() !== 1) { // 1 es lunes
+        date.setDate(date.getDate() + 1);
+      }
+      return date;
+    }
+
+    // Función para obtener el tercer lunes de marzo
+    function obtenerTercerLunesDeMarzo(year) {
+      let date = new Date(year, 2, 1); // 1 de marzo
+      let count = 0;
+      while (count < 3) {
+        if (date.getDay() === 1) { // 1 es lunes
+          count++;
         }
-      },
-      // Configuración para limitar fechas
-      minDate: "today",
-      maxDate: new Date().fp_incr(60) // Próximos 60 días
+        date.setDate(date.getDate() + 1);
+      }
+      return new Date(year, 2, date.getDate() - 1);
+    }
+
+    // Función para obtener el tercer lunes de noviembre
+    function obtenerTercerLunesDeNoviembre(year) {
+      let date = new Date(year, 10, 1); // 1 de noviembre
+      let count = 0;
+      while (count < 3) {
+        if (date.getDay() === 1) { // 1 es lunes
+          count++;
+        }
+        date.setDate(date.getDate() + 1);
+      }
+      return new Date(year, 10, date.getDate() - 1);
+    }
+
+    // Función para verificar si una fecha es domingo o día festivo
+    function esDiaDeshabilitado(date, festivos) {
+      const esDomingo = date.getDay() === 0; // Verifica si es domingo
+      const esFestivo = festivos.some(
+        festivo =>
+        festivo.getDate() === date.getDate() &&
+        festivo.getMonth() === date.getMonth() &&
+        festivo.getFullYear() === date.getFullYear()
+      );
+      return esDomingo || esFestivo;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('../php/consulta_fechas.php')
+        .then(response => response.json())
+        .then(data => {
+          // console.log('Fechas llenas recibidas:', data.fechasLlenas); // Depuración
+
+          const fechasLlenas = data.fechasLlenas.map(fecha => new Date(fecha + 'T00:00:00'));
+
+          // console.log('Fechas llenas convertidas a Date:', fechasLlenas); // Depuración
+
+          // Configuración de Flatpickr
+          flatpickr("#fecha", {
+            disable: [
+              function(date) {
+                const year = date.getFullYear();
+                const diasFestivos = obtenerDiasFestivos(year); // Obtener días festivos dinámicamente
+                return esDiaDeshabilitado(date, diasFestivos) || fechasLlenas.some(
+                  fechaLlena => fechaLlena.getTime() === date.setHours(0, 0, 0, 0)
+                ); // Deshabilitar domingos, festivos y fechas llenas
+              }
+            ],
+            minDate: "today",
+            maxDate: new Date().fp_incr(60), // Próximos 60 días
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr, instance) {
+              // Aquí puedes manejar la fecha seleccionada
+            },
+            onDayCreate: function(dObj, dStr, fp, dayElem) {
+              const date = new Date(dayElem.dateObj);
+              date.setHours(0, 0, 0, 0);
+              if (fechasLlenas.some(fechaLlena => fechaLlena.getTime() === date.getTime())) {
+                dayElem.style.backgroundColor = "grey";
+                dayElem.style.color = "white";
+              }
+
+            }
+          });
+        })
+        .catch(error => console.error('Error al obtener las fechas:', error));
     });
+
+
+
+
+
+
+
 
 
     // Deshabilitar el selector de hora hasta que se seleccione una fecha
     const fechaInput = document.getElementById('fecha');
     const horaSelect = document.getElementById('hora');
 
+
+
     fechaInput.addEventListener('change', function() {
+      // Habilitar el selector de hora y restablecer el estado de las opciones
+      horaSelect.disabled = true; // Mantenerlo deshabilitado inicialmente
+      horaSelect.querySelectorAll('option').forEach(option => {
+        option.disabled = false; // Habilitar todas las opciones
+        option.classList.remove('option-disabled'); // Remover clase de estilo
+      });
+
+      // Restablecer la selección de la hora
+      horaSelect.value = ""; // Restablecer la selección a la opción predeterminada
+      
       if (fechaInput.value) {
-        // Si hay una fecha seleccionada, habilitar el selector de hora
-        horaSelect.disabled = false;
+        const fechaSeleccionada = this.value;
+        console.log(fechaSeleccionada);
+
+        // Realiza la solicitud a PHP para obtener los horarios
+        fetch('../php/consulta_horarios.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              fecha: fechaSeleccionada
+            }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Crea un arreglo para las horas a deshabilitar
+            const horasADeshabilitar = [];
+
+            if (data.length < 15) {
+              // Llena el arreglo con las horas devueltas
+              data.forEach(horario => {
+                horasADeshabilitar.push(horario.hora); // Agrega la hora al arreglo
+              });
+
+              // Habilitar el select de horas
+              horaSelect.disabled = false;
+
+              // Iterar sobre cada hora y deshabilitar la opción correspondiente
+              horasADeshabilitar.forEach(hora => {
+                const optionToDisable = horaSelect.querySelector(`option[value="${hora}"]`);
+                if (optionToDisable) {
+                  optionToDisable.disabled = true; // Deshabilitar la opción en el select
+                  optionToDisable.classList.add('option-disabled'); // Agregar clase para cambiar el color
+                }
+              });
+            }
+            //  else {
+            //   horaSelect.disabled = true; // Si no hay horarios, deshabilitar el select
+            //   alert('No hay horarios disponibles para esta fecha.');
+            // }
+
+            console.log(horasADeshabilitar); // Verifica el contenido del arreglo
+          })
+          .catch(error => console.error('Error:', error));
       } else {
         // Si no hay fecha seleccionada, mantenerlo deshabilitado
         horaSelect.disabled = true;
       }
     });
-    // Deshabilitar la opción con valor "03:00"
-    const optionToDisable = horaSelect.querySelector('option[value="03:00"]');
-    optionToDisable.disabled = true;
+
+    // Verificación de campos
+    // Evitar el envío del formulario si los campos son inválidos
+    document.querySelector('form').addEventListener('submit', function(e) {
+      if (!fechaInput.value || !horaSelect.value) {
+        e.preventDefault();
+        alert('Por favor selecciona una fecha y una hora.');
+      }
+    });
+
+
+
 
 
     //javascript de clientes
     // Datos simulados de clientes (estos deberían venir de la base de datos)
-    const clientes = [
-      "Alfi Avila",
-      "Joel Cauich",
-      "Gaspar Emiliano Euan Puc",
-    ];
+    const clientes = <?php echo $clientes_json; ?>;
+
+    // // Guardar y restaurar el ID del cliente usando localStorage
+    // const idClienteInput = document.getElementById('id-cliente');
+
+    // // Intentar restaurar el valor del ID si está almacenado
+    // if (localStorage.getItem('id-cliente')) {
+    //   idClienteInput.value = localStorage.getItem('id-cliente');
+    // }
 
     // Obtener elementos del DOM
     const inputBuscar = document.getElementById('buscar-cliente');
     const listaSugerencias = document.getElementById('sugerencias-clientes');
+    const inputIdCliente = document.getElementById('id-cliente'); // Campo oculto para el ID
+    const inputMotivo = document.getElementById('input-motivo');
+    // Limpiar el campo de nombre al cargar la página
+    window.addEventListener('load', function() {
+      inputBuscar.value = ''; // Limpiar el campo de nombre
+    });
+    // Limpiar el campo de motivo al cargar la página
+    window.addEventListener('load', function() {
+      inputMotivo.value = ''; // Limpiar el campo de nombre
+    });
 
     // Función para filtrar las coincidencias
     inputBuscar.addEventListener('input', () => {
@@ -125,15 +334,17 @@
 
       if (query) {
         // Filtrar las coincidencias basadas en la entrada del usuario
-        const coincidencias = clientes.filter(cliente => cliente.toLowerCase().includes(query));
+        const coincidencias = clientes.filter(cliente => cliente.nombre.toLowerCase().includes(query));
 
         // Mostrar las coincidencias en la lista
         coincidencias.forEach(coincidencia => {
           const item = document.createElement('li');
-          item.textContent = coincidencia;
+          item.textContent = coincidencia.nombre;
           item.addEventListener('click', () => {
-            // Asignar el valor seleccionado al input
-            inputBuscar.value = coincidencia;
+            // Asignar el valor seleccionado al input de búsqueda
+            inputBuscar.value = coincidencia.nombre;
+            // Asignar el ID del cliente al campo oculto
+            inputIdCliente.value = coincidencia.id;
             listaSugerencias.style.display = 'none'; // Ocultar la lista después de seleccionar
           });
           listaSugerencias.appendChild(item);
@@ -143,6 +354,22 @@
         listaSugerencias.style.display = coincidencias.length ? 'block' : 'none';
       } else {
         listaSugerencias.style.display = 'none'; // Ocultar la lista si no hay entrada
+      }
+    });
+
+    // Verificación de campos
+    document.querySelector('form').addEventListener('submit', function(event) {
+      let idCliente = document.getElementById('id-cliente').value;
+      let errorMsg = document.getElementById('error-msg');
+
+      // Verifica si el campo id-cliente está vacío
+      if (!idCliente) {
+        // Si el id del cliente no está asignado, muestra el mensaje de error y cancela el envío
+        errorMsg.style.display = 'block';
+        event.preventDefault(); // Evita el envío del formulario
+      } else {
+        // Si el id-cliente tiene valor, se permite el envío del formulario
+        errorMsg.style.display = 'none';
       }
     });
   </script>
@@ -181,6 +408,11 @@
 
     .sugerencias li:hover {
       background-color: #f0f0f0;
+    }
+
+    .option-disabled {
+      color: #ff4040;
+      /* Cambia el color a rojo */
     }
   </style>
 </body>

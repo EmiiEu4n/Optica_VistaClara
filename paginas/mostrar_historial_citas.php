@@ -10,7 +10,7 @@
 <body>
     <?php include "menu_panel.php";
     require "../php/conexion.php";
-    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado FROM citas ci INNER JOIN clientes cl on ci.id_cliente = cl.id_cliente";
+    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado FROM citas ci INNER JOIN clientes cl on ci.id_cliente = cl.id_cliente WHERE (ci.estado = 'Cancelado' OR ci.estado = 'Terminado')";
     // [Busqueda]
     // Inicializar variables
     $filtro = "";
@@ -18,7 +18,7 @@
 
     // Verificar si se hizo una búsqueda
     if (isset($nombre) && strlen($nombre) > 1) {
-        $filtro = " WHERE cl.nombres LIKE '%$nombre%' ORDER BY cl.nombres ASC";
+        $filtro = "AND cl.nombres LIKE '%$nombre%' ORDER BY cl.nombres ASC";
         $datos .= $filtro;
     }
 
@@ -58,23 +58,18 @@
             <h3>TABLA DE CITAS</h3>
         </div>
 
+        
         <div class="opciones-btn">
             <div class="btn-nuevo-cliente btn">
-                <a href="./registrar_cita.php">Agendar cita</a>
+                <a href="./mostrar_citas.php">Regresar</a>
             </div>
             <div class="btn-nuevo-cliente btn">
-                <a href="./registrar_cliente.php">Registrar cliente</a>
-            </div>
-            <!-- <div class="btn-nuevo-cliente btn">
-                <a href="./mostrar_historial_citas.php">Historial</a>
-            </div> -->
-            <div class="btn-nuevo-cliente btn">
-                <a href="./mostrar_citas.php">Tabla completa</a>
+                <a href="./mostrar_historial_citas.php">Ver todos</a>
             </div>
         </div><br>
         <!-- Buscador -->
         <div class="buscador-titulo">
-            <form action="./mostrar_citas.php">
+            <form action="./mostrar_historial_citas.php">
                 <input type="text" name="busca_nombre" value="<?php echo $nombre ?>" placeholder="Buscar por nombre del cliente">
                 <button class="btn-form" type="submit" name="buscar">Buscar </button>
             </form>
@@ -85,14 +80,14 @@
             <ul class="pagination-list">
                 <!-- Anterior -->
                 <li class="pag-item <?php echo ($pagina <= 1) ? 'disable' : ''; ?>">
-                    <a href="./mostrar_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
+                    <a href="./mostrar_historial_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
                                                         echo $concatparams; ?>">Anterior</a>
                 </li>
 
                 <!-- Páginas -->
                 <?php for ($i = 1; $i <= $paginas; $i++): ?>
                     <li class="pag-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
-                        <a href="./mostrar_citas.php?pagina=<?php echo $i . $concatparams; ?>">
+                        <a href="./mostrar_historial_citas.php?pagina=<?php echo $i . $concatparams; ?>">
                             <?php echo $i; ?>
                         </a>
                     </li>
@@ -100,7 +95,7 @@
 
                 <!-- Siguiente -->
                 <li class="pag-item <?php echo ($pagina >= $paginas) ? 'disable' : ''; ?>">
-                    <a href="./mostrar_citas.php?pagina=<?php echo ($pagina < $paginas) ? $pagina + 1 : $paginas;
+                    <a href="./mostrar_historial_citas.php?pagina=<?php echo ($pagina < $paginas) ? $pagina + 1 : $paginas;
                                                         echo $concatparams; ?>">Siguiente</a>
                 </li>
             </ul>
@@ -118,10 +113,7 @@
             </tr>
 
             <?php
-            if ($total_filas == 0) {
-                // Si no hay resultados, mostrar mensaje dentro de una fila y celda de la tabla
-                echo '<tr><td colspan="8">No hay resultados...</td></tr>';
-            }
+
 
             while ($fila = mysqli_fetch_assoc($resultado)) {
             ?>
@@ -150,7 +142,7 @@
                         ?></td>
                     <td><?php echo $fila['estado']; ?></td>
                     <!-- Ver -->
-                    <td class="btn-ver"> <a href="../paginas/ver_cita.php?origen=citas&id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+                    <td class="btn-ver"> <a href="../paginas/ver_cita.php?id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
                     <!-- Editar -->
                     <!-- <td class="btn-editar"> <a href="../paginas/editar_cita.php?id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/edit.png" alt=""></a></td> -->
                     <!-- Eliminar -->

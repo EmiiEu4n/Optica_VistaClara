@@ -14,6 +14,7 @@
     $id = $_GET['id'];
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
+    $id_cita = isset($_GET['id_cita']) ? $_GET['id_cita'] : "";
     // instruccion
     $usuario = "SELECT * FROM clientes WHERE id_cliente = '$id'";
     // consulta
@@ -69,7 +70,7 @@
 
                         <!-- Preescripcion -->
                         <label for="">Preescripcion:</label><br>
-                        <textarea placeholder="Ingresa información sobre la receta Ej. Medida de la graduación" required name="preescripcion"><?php echo $info['preescripcion'] ?></textarea><br>
+                        <textarea style="width: 700px;" placeholder="Ingresa información sobre la receta Ej. Medida de la graduación" required name="preescripcion"><?php echo $info['preescripcion'] ?></textarea><br>
                     </fieldset>
                     <!-- Verificación oculta para empleado -->
                     <!-- <fieldset>
@@ -97,6 +98,8 @@
                                             echo './ver_cliente.php?origen=usuarios&id=' . $id;
                                         } elseif ($origen == 'clientesver') {
                                             echo './ver_cliente.php?origen=clientes&id=' . $id;
+                                        } elseif ($origen == 'citasver') {
+                                            echo './ver_cita.php?origen=citas&id=' . $id_cita;
                                         }
                                         ?>">Regresar</a>
                         </div>
