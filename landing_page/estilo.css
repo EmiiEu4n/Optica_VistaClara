@@ -131,7 +131,7 @@
 .Btn3{
     border: 1px var(--gris1) solid;
     border-radius: 5px;
-    padding: 5px 80px;
+    padding: 5px 100px;
     text-decoration: none;
     color: var(--negro);
     font-weight: bold;
@@ -220,4 +220,8 @@
   border:  1px blue solid;
   height: 410px;
   width: 500px;
+}
+.fotopromo{
+  border: 0px red solid;
+  width: 230px;
 }

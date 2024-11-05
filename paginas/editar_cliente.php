@@ -40,16 +40,16 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s):</label><br>
-                        <input pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Ingrese el nombre Ej. José Miguel" value="<?php echo $info['nombres'] ?>"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Ingrese el nombre Ej. José Miguel" value="<?php echo $info['nombres'] ?>" class="validar-espacios"><br><br>
 
 
                         <!-- apellidos -->
                         <label for="">Apellidos:</label><br>
-                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Ingresa los apellidos Ej. Perez González" value="<?php echo $info['apellidos'] ?>"><br><br>
+                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Ingresa los apellidos Ej. Perez González" value="<?php echo $info['apellidos'] ?>" class="validar-espacios"><br><br>
 
                         <!-- direccion -->
                         <label for="">Domicilio</label><br>
-                        <input placeholder="Escribe la direccion del domicilio" required name="direccion" type="text" value="<?php echo $info['direccion'] ?>"><br><br>
+                        <input placeholder="Escribe la direccion del domicilio" required name="direccion" type="text" value="<?php echo $info['direccion'] ?>" class="validar-espacios"><br><br>
 
 
                     </fieldset>
@@ -58,11 +58,11 @@
 
                         <!-- correo -->
                         <label for="">correo:</label><br>
-                        <input required name="correo" type="email" placeholder="Escribe el correo electronico EJ. cuenta@cuenta.com" value="<?php echo $info['correo'] ?>"><br><br>
+                        <input required name="correo" type="email" placeholder="Escribe el correo electronico EJ. cuenta@cuenta.com" value="<?php echo $info['correo'] ?>" class="validar-espacios"><br><br>
 
                         <!-- telefono -->
                         <label for="">Telefono:</label><br>
-                        <input pattern="[0-9]{10}" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456" title="Ejemplo: 9999123456" value="<?php echo $info['telefono'] ?>"><br><br>
+                        <input pattern="[0-9]{10}" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular ej. 9999123456" title="Ejemplo: 9999123456" value="<?php echo $info['telefono'] ?>" class="validar-espacios"><br><br>
 
                     </fieldset>
                     <fieldset>
@@ -70,7 +70,7 @@
 
                         <!-- Preescripcion -->
                         <label for="">Preescripcion:</label><br>
-                        <textarea style="width: 700px;" placeholder="Ingresa información sobre la receta Ej. Medida de la graduación" required name="preescripcion"><?php echo $info['preescripcion'] ?></textarea><br>
+                        <textarea style="width: 700px;" placeholder="Ingresa información sobre la receta Ej. Medida de la graduación" required name="preescripcion" class="validar-espacios"><?php echo $info['preescripcion'] ?></textarea><br>
                     </fieldset>
                     <!-- Verificación oculta para empleado -->
                     <!-- <fieldset>
