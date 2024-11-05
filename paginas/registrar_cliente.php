@@ -26,11 +26,11 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input pattern="^[a-zA-Z]+(?:\s[a-zA-Z]+)*$" class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel">
+                        <input required pattern="[a-zA-Z\s]{3,254}"class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel">
 
                         <!-- apellidos -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input pattern="^[a-zA-Z]+(?:\s[a-zA-Z]+)*$" class="validar-espacios" required  name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González"><br><br>
+                        <input pattern="[a-zA-Z\s]{4,254}" class="validar-espacios" required  name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González"><br><br>
 
                         <!-- direccion -->
                         <label for="">Domicilio<span>*</span></label><br>
@@ -52,7 +52,7 @@
                         <legend>Información Médica</legend>
                         <!-- preescripcion -->
                         <label for="">Preescripcion<span>*</span></label><br>
-                        <textarea class="validar-espacios" style="width: 700px;" required placeholder="Ingresa información sobre la receta Ej.Medida de la graduación" name="preescripcion"></textarea>
+                        <textarea class="validar-espacios" style="width: 700px;" required placeholder="Ingresa información sobre la receta Ej.Medida de la graduación máximo 150 caracteres" name="preescripcion" maxlength="150"></textarea>
                         <br>
                     </fieldset>
 
