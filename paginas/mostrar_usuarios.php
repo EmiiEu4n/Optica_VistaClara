@@ -75,7 +75,7 @@
     <div class="buscador-titulo">
       <form action="mostrar_usuarios.php">
         <input type="text" name="busca_nombre" value="<?php echo $nombre ?>" placeholder="Buscar por nombre del usuario">
-        <button class="btn-form" type="submit" name="buscar">Buscar </button>
+        <button class="btn-form" type="submit" >Buscar </button>
       </form>
     </div>
     

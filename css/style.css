@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 /* Colores */
 :root {
   --color0: #ffffff;
@@ -104,14 +104,13 @@ body {
   padding: 0 5px;
   /* Motificado */
   width: 700px;
-
 }
 
-fieldset{
+fieldset {
   width: 400px;
 }
-.formulario select{
-    border: none;
+.formulario select {
+  border: none;
   border-bottom: var(--color1) solid 1px;
   outline: none;
   padding: 0 5px;
@@ -154,14 +153,13 @@ fieldset{
   border-radius: 5px;
 }
 
-
-.content-inicio-sesion{
+.content-inicio-sesion {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.box-sesion{
+.box-sesion {
   height: 400px;
 }
 
@@ -227,7 +225,7 @@ fieldset{
   background-color: var(--color1);
   color: var(--color0);
 }
-.sidebar h3{
+.sidebar h3 {
   color: var(--color2);
 }
 
@@ -322,7 +320,6 @@ td a {
 .btn-editar {
   width: 70px;
   transition: 0.3s ease-out;
-
 }
 .btn-editar:hover {
   background-color: var(--color2);
@@ -330,7 +327,6 @@ td a {
 .btn-ver {
   width: 40px;
   transition: 0.3s ease-out;
-
 }
 .btn-ver:hover {
   background-color: var(--color2);
@@ -347,11 +343,11 @@ td a {
   flex-direction: column;
   /* gap: 10px; */
 }
-.content-registrar textarea{
+.content-registrar textarea {
   width: 400px;
 }
 
-.opciones-btn-registrar{
+.opciones-btn-registrar {
   justify-content: center;
   width: 400px;
   margin: auto;
@@ -360,7 +356,7 @@ td a {
 }
 
 /* css de ver_cliente*/
-.opciones-btn-ver{
+.opciones-btn-ver {
   margin: auto;
   justify-content: center;
   width: 350px;
@@ -371,7 +367,7 @@ td a {
 }
 
 /* css editar_cliente */
-.content-edit textarea{
+.content-edit textarea {
   width: 400px;
 }
 
@@ -379,7 +375,6 @@ td a {
 
 .btn-nuevo-producto {
   width: 150px;
-  
 }
 .columna-id {
   width: 30px;
@@ -417,12 +412,12 @@ td a {
   justify-content: center;
 }
 
-.imagen-prod{
+.imagen-prod {
   display: flex;
   justify-content: center;
 }
 
-.imagen-prod img{
+.imagen-prod img {
   width: 250px;
 }
 
@@ -564,18 +559,18 @@ span {
 
 /* css editar_empleado */
 
-.btn-resetear-contrasena a{
+.btn-resetear-contrasena a {
   color: var(--color4);
   text-decoration: none;
 }
-.btn-resetear-contrasena a:hover{
+.btn-resetear-contrasena a:hover {
   color: var(--color2);
 }
 
 /* css boton nuevo producto */
 .btn-nuevo-producto {
   width: 150px;
-} 
+}
 
 /* Css agendar cita*/
 
@@ -616,7 +611,7 @@ span {
 .pag-item {
   /* padding: 0; */
   border-radius: 5px;
-  overflow: hidden;/* Asegura que el borde redondeado se aplique al <a> */
+  overflow: hidden; /* Asegura que el borde redondeado se aplique al <a> */
 }
 
 .pag-item a {
@@ -632,12 +627,12 @@ span {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
 .pag-item a:hover {
-  color: var(--color0);background-color: var(--color2);
+  color: var(--color0);
+  background-color: var(--color2);
 }
 
-.pag-item.active a{
+.pag-item.active a {
   background-color: var(--color2);
   color: var(--color0);
   font-weight: bold;
@@ -645,9 +640,35 @@ span {
 }
 
 /* Deshabilitar boton */
-.disable a{
+.disable a {
   pointer-events: none;
   background-color: #ccc;
 }
 
+/* Css de sweetAlert */
+/* SweetAlert2 Custom Styles */
+/* .swal2-title-custom {
+  font-size: 90px !important;
+}
 
+.swal2-popup-custom {
+  font-size: 18px !important;
+}
+
+.swal2-confirm-custom {
+  font-size: 16px !important;
+}
+
+.swal2-cancel-custom {
+  font-size: 16px !important;
+} */
+
+/* Estilos personalizados para SweetAlert2 */
+.swal2-popup .swal2-confirm:hover {
+  background-color: #4caf50 !important; /* Color de fondo verde al hacer focus */
+  color: white !important; /* Color de texto blanco */
+}
+.swal2-popup .swal2-cancel:hover {
+  background-color: #ff5733 !important; /* Color de fondo rojo al hacer focus */
+  color: white !important; /* Color de texto blanco */
+}

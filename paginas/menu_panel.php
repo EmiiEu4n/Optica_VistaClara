@@ -1,13 +1,4 @@
 <?php
-$showAlert = $_GET['showAlert'] ?? null;
-if ($showAlert === 'true') {
-    echo '
-    <script>
-        window.onload = function() {
-            showSwalAlert("Correo en uso", "Este correo ya está en uso.", "error");
-        }
-    </script>';
-}
 require '../php/seguridad.php';
 require '../php/conexion.php';
 // session_start();
@@ -63,16 +54,18 @@ if ($resultado_empleado->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="../css/normalize.css" as="styles">
-    <!-- vincula los archivos -->
+    <!-- Preload archivos CSS críticos -->
+    <link rel="preload" href="../css/normalize.css" as="style">
+    <link rel="preload" href="../css/style.css" as="style">
+
+    <!-- Vincular archivos CSS -->
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="preload" href="../css/style.css" as="styles" />
-    <!-- vincula los archivos -->
-    <link rel="stylesheet" href="../css/style.css" />
-    <!-- Notificaciones -->
-    <script src="../javascript/notificaciones.js"></script>
-    <script src="../javascript/validacion.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- SweetAlert2 CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> -->
+</head>
+<title>Dashboard</title>
 </head>
 
 <body>
@@ -98,6 +91,13 @@ if ($resultado_empleado->num_rows > 0) {
             <div class="btn-cerrar-sesion btn"><a href="../php/salir.php">Cerra sesión</a></div>
         </header>
     </div>
+
+    <!-- Scripts al final del body para optimización de carga -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <script src="../javascript/sweetalert2.js"></script>
+
+    <script src="../javascript/notificaciones.js" defer></script>
+    <script src="../javascript/validacion.js" defer></script>
 </body>
 
 </html>

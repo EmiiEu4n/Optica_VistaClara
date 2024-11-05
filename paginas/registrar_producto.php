@@ -16,13 +16,13 @@
         </div>
         <div class="content-info">
             <div class="content-registrar formulario">
-                <form action="../php/create_producto.php" method="post" enctype="multipart/form-data">
+                <form id="miFormulario" action="../php/create_producto.php" method="post" enctype="multipart/form-data">
                 <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
@@ -50,7 +50,7 @@
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea style="width: 100%;" required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
+                        <textarea class="validar-espacios" style="width: 100%;" required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <!-- <label for="stock">Stock<span>*</span></label><br> -->

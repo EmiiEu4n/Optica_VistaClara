@@ -14,6 +14,47 @@
   <?php
   include "menu_panel.php";
   require "../php/conexion.php";
+  
+  //Notificaciones
+  if (isset($_SESSION["icon"])) {
+    if ($_SESSION['icon'] == 'success') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'error') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'warning') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'info') {
+      echo '<script>
+          document.addEventListener("DOMContentLoaded", function() {
+          notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+          });
+          </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+  }
+  }
   // Consulta para obtener los clientes
   $sql = "SELECT id_cliente, nombres, apellidos FROM clientes";
   $result = $conectar->query($sql);
@@ -77,7 +118,7 @@
             </select><br><br>
             <!-- Motivo -->
             <label for="">Motivo: <span>*</span></label><br>
-            <textarea style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
+            <textarea class="validar-espacios" style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
           </fieldset>
 
           <fieldset>
@@ -91,7 +132,7 @@
             </ul>
             <!-- Envio del id escondido -->
             <input required type="hidden" id="id-cliente" name="id-cliente">
-            <p id="error-msg" style="color: red; display: none;">Debes seleccionar un cliente válido.</p>
+            <p id="error-msg" style="color: #ff4040; display: none;">Debes seleccionar un cliente válido.</p>
           </fieldset>
 
 
@@ -214,80 +255,89 @@
 
 
 
-
-
-
-
-
-
     // Deshabilitar el selector de hora hasta que se seleccione una fecha
-    const fechaInput = document.getElementById('fecha');
-    const horaSelect = document.getElementById('hora');
+    document.addEventListener('DOMContentLoaded', function() {
+      const fechaInput = document.getElementById('fecha');
+      const horaSelect = document.getElementById('hora');
 
+      fechaInput.addEventListener('change', function() {
+        // Habilitar el selector de hora y restablecer el estado de las opciones
+        horaSelect.disabled = true; // Mantenerlo deshabilitado inicialmente
+        horaSelect.querySelectorAll('option').forEach(option => {
+          option.disabled = false; // Habilitar todas las opciones
+          option.classList.remove('option-disabled'); // Remover clase de estilo
+        });
 
+        // Restablecer la selección de la hora
+        horaSelect.value = ""; // Restablecer la selección a la opción predeterminada
 
-    fechaInput.addEventListener('change', function() {
-      // Habilitar el selector de hora y restablecer el estado de las opciones
-      horaSelect.disabled = true; // Mantenerlo deshabilitado inicialmente
-      horaSelect.querySelectorAll('option').forEach(option => {
-        option.disabled = false; // Habilitar todas las opciones
-        option.classList.remove('option-disabled'); // Remover clase de estilo
+        if (fechaInput.value) {
+          const fechaSeleccionada = new Date(fechaInput.value + "T00:00:00");
+          const hoy = new Date();
+          console.log(fechaSeleccionada);
+
+          // Filtrar las horas si la fecha seleccionada es hoy
+          if (fechaSeleccionada.toDateString() === hoy.toDateString()) {
+            const horaActualEnMinutos = hoy.getHours() * 60 + hoy.getMinutes();
+            console.log('Hora actual en minutos:', horaActualEnMinutos);
+
+            horaSelect.querySelectorAll('option').forEach(option => {
+              const [hora, minuto] = option.value.split(':').map(Number);
+              const valorHoraEnMinutos = hora * 60 + minuto;
+              console.log('valorHoraEnMinutos:', valorHoraEnMinutos);
+
+              if (valorHoraEnMinutos - horaActualEnMinutos < 30) { // Deshabilitar si faltan menos de 30 minutos
+                option.disabled = true;
+                option.classList.add('option-disabled');
+              }
+            });
+          }
+
+          // Realiza la solicitud a PHP para obtener los horarios
+          fetch('../php/consulta_horarios.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                fecha: fechaInput.value
+              }),
+            })
+            .then(response => response.json())
+            .then(data => {
+              const horasADeshabilitar = [];
+
+              if (data.length < 15) {
+                data.forEach(horario => {
+                  horasADeshabilitar.push(horario.hora);
+                });
+
+                horaSelect.disabled = false;
+
+                horasADeshabilitar.forEach(hora => {
+                  const optionToDisable = horaSelect.querySelector(`option[value="${hora}"]`);
+                  if (optionToDisable) {
+                    optionToDisable.disabled = true;
+                    optionToDisable.classList.add('option-disabled');
+                  }
+                });
+
+              }
+              console.log(horasADeshabilitar);
+            })
+            .catch(error => console.error('Error:', error));
+        } else {
+          horaSelect.disabled = true;
+        }
       });
 
-      // Restablecer la selección de la hora
-      horaSelect.value = ""; // Restablecer la selección a la opción predeterminada
-
-      if (fechaInput.value) {
-        const fechaSeleccionada = this.value;
-        console.log(fechaSeleccionada);
-
-        // Realiza la solicitud a PHP para obtener los horarios
-        fetch('../php/consulta_horarios.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              fecha: fechaSeleccionada
-            }),
-          })
-          .then(response => response.json())
-          .then(data => {
-            // Crea un arreglo para las horas a deshabilitar
-            const horasADeshabilitar = [];
-
-            if (data.length < 15) {
-              // Llena el arreglo con las horas devueltas
-              data.forEach(horario => {
-                horasADeshabilitar.push(horario.hora); // Agrega la hora al arreglo
-              });
-
-              // Habilitar el select de horas
-              horaSelect.disabled = false;
-
-              // Iterar sobre cada hora y deshabilitar la opción correspondiente
-              horasADeshabilitar.forEach(hora => {
-                const optionToDisable = horaSelect.querySelector(`option[value="${hora}"]`);
-                if (optionToDisable) {
-                  optionToDisable.disabled = true; // Deshabilitar la opción en el select
-                  optionToDisable.classList.add('option-disabled'); // Agregar clase para cambiar el color
-                }
-              });
-            }
-            //  else {
-            //   horaSelect.disabled = true; // Si no hay horarios, deshabilitar el select
-            //   alert('No hay horarios disponibles para esta fecha.');
-            // }
-
-            console.log(horasADeshabilitar); // Verifica el contenido del arreglo
-          })
-          .catch(error => console.error('Error:', error));
-      } else {
-        // Si no hay fecha seleccionada, mantenerlo deshabilitado
-        horaSelect.disabled = true;
-      }
+      document.querySelector('form').addEventListener('submit', function(e) {
+        if (!fechaInput.value || !horaSelect.value) {
+          e.preventDefault();
+          alert('Por favor selecciona una fecha y una hora.');
+        }
+      });
     });
-
     // Verificación de campos
     // Evitar el envío del formulario si los campos son inválidos
     document.querySelector('form').addEventListener('submit', function(e) {
@@ -411,7 +461,7 @@
     }
 
     .option-disabled {
-      color: #ff4040;
+      color: #ff7676;
       /* Cambia el color a rojo */
     }
   </style>
