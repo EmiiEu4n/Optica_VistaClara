@@ -70,6 +70,7 @@ if ($resultado_empleado->num_rows > 0) {
     <link rel="stylesheet" href="../css/style.css" />
     <!-- Notificaciones -->
     <script src="../javascript/notificaciones.js"></script>
+    <script src="../javascript/validacion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Dashboard</title>
 </head>

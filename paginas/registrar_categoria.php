@@ -23,7 +23,7 @@
                         <legend>Información de la categoria</legend>
                         <!-- Nombre -->
                         <label for="">Nombre de la categoria<span>*</span></label><br>
-                        <input required name="nombre_categoria" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre_categoria" type="text" placeholder="Ingrese el nombre"><br><br>
 
                     </fieldset>
 

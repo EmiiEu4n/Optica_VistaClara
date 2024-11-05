@@ -63,7 +63,7 @@
                 <a href="./registrar_cita.php">Agendar cita</a>
             </div>
             <div class="btn-nuevo-cliente btn">
-                <a href="./registrar_cliente.php">Registrar cliente</a>
+                <a href="./registrar_cliente.php?origen=citas">Registrar cliente</a>
             </div>
             <!-- <div class="btn-nuevo-cliente btn">
                 <a href="./mostrar_historial_citas.php">Historial</a>

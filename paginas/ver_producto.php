@@ -31,30 +31,33 @@
             ?>
             <div class="info formulario">
                 <!-- informacion del producto -->
-                <fieldset>
+                <fieldset  style="width: 730px;" disabled = "disable">
+                    <div class="imagen-prod">
+                        <img src="<?php echo "$fila[img]" ?>" alt="nada">
+                    </div>
                     <legend>Imagen del producto</legend>
-                    <img style="width: 350px;" src="<?php echo "$fila[img]" ?>" alt="nada">
+                    
                 </fieldset>
-                <fieldset>
+                <fieldset disabled = "disable">
                     <legend>Información del producto</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
-                    <p class="letra"><?php echo "$fila[producto]" . "&nbsp" ?></p>
+                    <input value="<?php echo "$fila[producto]" . "&nbsp" ?>" type="text">
                     <!-- Categoria -->
                     <label for="">Categoría:</label>
-                    <p class="letra"><?php echo "$fila[nombre_categoria]" . "&nbsp" ?></p>
+                    <input type="text" value="<?php echo "$fila[nombre_categoria]" . "&nbsp" ?>">
                     <!-- Precio -->
                     <label for="">Precio:</label>
-                    <p class="letra"><?php echo "$" . "$fila[precio]" . "&nbsp" ?></p>
+                    <input type="text" value="<?php echo "$" . "$fila[precio]" . "&nbsp" ?>">
                     <!-- Descripción -->
                     <label for="">Descripción:</label>
-                    <p class="letra"><?php echo "$fila[descripcion]" . "&nbsp" ?></p>
+                    <textarea style="width: 100%;" name="" id=""><?php echo "$fila[descripcion]" . "&nbsp" ?></textarea>
                     <!-- Nombres -->
-                    <label for="">Stock:</label>
-                    <p class="letra"><?php echo "$fila[stock]" . "&nbsp" ?></p>
+                    <!-- <label for="">Stock:</label>
+                    <p class="letra"></p> -->
                     <!-- Proveedor -->
                     <label for="">Proveedor:</label>
-                    <p class="letra"><?php echo "$fila[proveedor]" . "&nbsp" ?></p>
+                    <input value="<?php echo "$fila[proveedor]" . "&nbsp" ?>" type="text" name="" id="">
                     </br>
 
                 </fieldset>

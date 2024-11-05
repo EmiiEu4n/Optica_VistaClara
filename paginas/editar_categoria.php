@@ -37,7 +37,7 @@
                         <legend>Información de la categoria</legend>
                         <!-- Nombre -->
                         <label for="">Nombre:<span>*</span></label><br>
-                        <input required name="nombre_categoria" type="text" placeholder="Categoria" value="<?php echo "$fila[nombre_categoria]" ?>"><br><br>
+                        <input pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre_categoria" type="text" placeholder="Categoria" value="<?php echo "$fila[nombre_categoria]" ?>"><br><br>
                         <input name="id_categoria" type="hidden" value="<?php echo $id?>">
                     </fieldset>
                         

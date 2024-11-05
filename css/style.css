@@ -417,6 +417,15 @@ td a {
   justify-content: center;
 }
 
+.imagen-prod{
+  display: flex;
+  justify-content: center;
+}
+
+.imagen-prod img{
+  width: 250px;
+}
+
 /* css editar_producto */
 
 .content-editar-producto {
@@ -640,3 +649,5 @@ span {
   pointer-events: none;
   background-color: #ccc;
 }
+
+

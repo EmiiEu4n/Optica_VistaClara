@@ -49,7 +49,7 @@
     <div class="content-info">
       <div class="content-registrar formulario">
         <form action="../php/create_cita.php" method="POST">
-
+          <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
           <fieldset>
             <legend>Información de cita</legend>
 
@@ -236,7 +236,7 @@
 
       // Restablecer la selección de la hora
       horaSelect.value = ""; // Restablecer la selección a la opción predeterminada
-      
+
       if (fechaInput.value) {
         const fechaSeleccionada = this.value;
         console.log(fechaSeleccionada);

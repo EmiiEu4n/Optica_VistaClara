@@ -22,11 +22,11 @@
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
-                        <select required class="elementos" name="id_categoria" id="">
+                        <select style="width: 100%;" required class="elementos" name="id_categoria" id="">
                             <option value="">Escoger tu categoria</option>
                             <?php
                             include "../php/conexion.php";
@@ -43,22 +43,22 @@
 
                         <!-- Precio -->
                         <label for="">Precio<span>*</span></label><br>
-                        <label for="">$</label><input required name="precio" type="number" placeholder="Ingrese el precio"><br><br>
+                        <label for="">$</label><input style="width: 98%;" required name="precio" type="number" placeholder="Ingrese el precio"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
+                        <textarea style="width: 100%;" required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
-                        <label for="stock">Stock<span>*</span></label><br>
-                        <input required name="stock" type="number" min="0" placeholder="Ingrese la cantidad en stock"><br><br>
+                        <!-- <label for="stock">Stock<span>*</span></label><br> -->
+                        <input name="stock" type="hidden" value="0" min="0" placeholder="Ingrese la cantidad en stock">
 
                         <!-- Proveedor -->
                         <label for="proveedor">Proveedor<span>*</span></label><br>
-                        <select required class="elementos" name="id_proveedor" id="">
+                        <select style="width: 100%;" required class="elementos" name="id_proveedor" id="">
                             <option value="">Escoger un proveedor</option>
                             <?php
                             include "../php/conexion.php";
