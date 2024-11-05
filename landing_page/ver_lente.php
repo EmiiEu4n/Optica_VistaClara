@@ -23,7 +23,9 @@
         //   echo $fila ["nombre"];
           ?>
           <!-- Iiria la foto -->
-            <div class="caja8"></div>
+            <div class="caja8">
+            <a href="<?php echo $fila['img'] ?>" target="_blank"><img class="fotopromo" src="<?php echo $fila['img'] ?>" alt=""></a>
+            </div>
             <!-- Información del producto -->
             <div class="caja8">
           

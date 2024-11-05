@@ -10,10 +10,10 @@
 
       ?>
         <div class="cajaproducto">
-          <!-- <a href="<?php echo $fila['ruta'] ?>" target="_blank"><img class="fotopromo" src="<?php echo $fila['ruta'] ?>" alt=""></a> -->
+          <a href="<?php echo $fila['img'] ?>" target="_blank"><img class="fotopromo" src="<?php echo $fila['img'] ?>" alt=""></a>
           <p class="tex1"> <?php echo $fila['nombre'] ?> </p>
           <p> <?php echo $fila['descripcion'] ?> </p><br>
-          <a class="Btn3" href="ver_lente.php">Ver Lentes</a>
+          <a class="Btn3" href="ver_lente.php?id=<?php echo $fila['id_producto']; ?>">Ver Lente</a>
         </div>
         
       <?php
