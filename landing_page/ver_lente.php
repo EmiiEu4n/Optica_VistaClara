@@ -16,31 +16,25 @@
         <?php
           require "../php/conexion.php";
           $id = $_GET['id'];
-          $ver_usuario = "SELECT * FROM productos WHERE id_producto = '$id'";
+          $ver_usuario = "SELECT * FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria WHERE id_producto = '$id'";
           $resultado = mysqli_query($conectar, $ver_usuario);
 
           $fila = $resultado->fetch_array();
         //   echo $fila ["nombre"];
           ?>
           <!-- Iiria la foto -->
-            <div class="caja8">
-            <a href="<?php echo $fila['img'] ?>" target="_blank"><img class="fotopromo" src="<?php echo $fila['img'] ?>" alt=""></a>
+            <div class="caja8 espacio2">
+            <a href="<?php echo $fila['img'] ?>" target="_blank"><img class="fotoven" src="<?php echo $fila['img'] ?>" alt=""></a>
             </div>
             <!-- Información del producto -->
-            <div class="caja8">
+            <div class="caja8 espacio">
           
-                        <p class="letra"><?php echo "$fila[nombre]"."&nbsp" ?></p>
-                        <hr>
+                        <p class="letra text2"><?php echo "$fila[nombre_categoria]". " "."$fila[nombre]"."&nbsp" ?></p>
                         <br>
-                      
-                        <p class="letra"><?php echo "$fila[id_categoria]"."&nbsp" ?></p>
-                        <hr><br>
-                       
-                        <p class="letra"><?php echo "$fila[precio]"."&nbsp"?></p>
-                  
+                        <p class="letra text3"><?php echo "$"."$fila[precio]"."&nbsp"?></p>
+                        <br>
                         <p class="letra"><?php echo "$fila[descripcion]"."&nbsp"?></p>
-                        <hr>
-                        <hr>
+                        
             </div>
 
         </div>

@@ -51,11 +51,14 @@
     color: #242424;
     font-weight: bold;
     padding: 10px;
+    transition: transform 0.9s ease;
+
   }
   .caja1 a:hover{
     border: 1px var(--gris1) solid;
     background-color: var(--gris1);
-    color: var(--negro);
+    color: var(--negro); 
+    transform: scale(1.05);
   }
   .caja img{
     height: 70px;
@@ -109,7 +112,7 @@
 /* ---Producto--- */
 .contenedor4{
     border: 0px red solid;
-    height: 400px;
+    height: 500px;
     text-align: center;
 }
 .caja4{
@@ -161,18 +164,21 @@
   .contenedor6{
     border:  0px blue solid;
     padding: 10px;
-    height: 400px;
+    height: 500px;
   }
   .contenedor6 h1{
     text-align: center;
+    padding: 10px;
   }
   .caja6{
     border: 0px red solid;
-    display:inline-flex;
+    display: flex;
     height: 300px;
+    width: 1200px;
     padding: 10px;
+    margin-left: 80px;
   }
-  .caja6 input{
+  .caja7 input{
     border:  1px var(--gris1) solid;
     border-radius: 5px;
     height: 40px;
@@ -180,7 +186,10 @@
     margin: 5px;
     padding: 5px;
   }
-  .caja6 textarea{
+  .caja7{
+    border:  0px red solid;
+  }
+  .caja7 textarea{
     border:  1px var(--gris1) solid;
     border-radius: 5px;
     height: 60px;
@@ -193,6 +202,12 @@
     background-color: var(--negro);
     color: white;
   }
+  .contenedor9{
+    border: 0px red solid;
+    text-align: center;
+    background-color: var(--gris2);
+    padding: 10px;
+  }
   /* ------- */
   .caja6 img{
     height: 25px;
@@ -200,6 +215,15 @@
   .caja6 li{
     font-weight: bold;
     line-height: 2.6;
+  }
+  .maps {
+    border-radius: 10px;
+    width: 560px;
+    height: 350px;
+    margin: 20px;
+  }
+  .info{
+    margin: 30px;
   }
   /* ----La parte de abajo--- */
 .contenedor7{
@@ -212,16 +236,52 @@
 /* ------------------ */
 /* Ver solo un producto */
 .contenedor8{
-  border:  1px red solid;
+  border:  0px red solid;
   height: 410px;
   display: flex;
+  background-color: var(--gris1);
 }
 .caja8{
-  border:  1px blue solid;
+  border:  0px blue solid;
   height: 410px;
-  width: 500px;
+  width: 700px;
 }
 .fotopromo{
   border: 0px red solid;
   width: 230px;
+}
+.fotoven{
+  border: 0px red solid;
+  border-radius: 5px;
+  width: 330px;
+  height: 300px;
+}
+/* ---------- */
+.text2{
+  color: #242424;
+  font-size: 35px;
+  margin-top: 10px;
+  font-family:'Franklin Gothic Medium', ;
+}
+.text3{
+  color: var(--azul);
+}
+.espacio{
+  padding: 50px;
+}
+.espacio2{
+  padding-left: 100px;
+  padding-top: 60px;
+}
+/* ------------ */
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.9em 0.5em -0.4em #1f2937;
+  -webkit-transform: translateY(-0.25em);
+          transform: translateY(-0.25em);
+          transform: scale(1.05);
+}
+
+.raise {
+  --hover: #333;
 }
