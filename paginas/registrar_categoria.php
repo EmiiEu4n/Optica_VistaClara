@@ -9,7 +9,15 @@
 
 <body>
     <?php
-    include "menu_panel.php" ?>
+    include "menu_panel.php"; 
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">

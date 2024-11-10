@@ -6,8 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="display: flex; justify-content: 'center';">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftienda.semex.com.mx%2Fproducts%2Fsenal-de-hombre-trabajando&psig=AOvVaw07Haw5phdGpYkJMv6jO8s_&ust=1729567333335000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjdwdbCnokDFQAAAAAdAAAAABAE" alt="" style="width: 190px;">
+    <div style="margin: auto;">
+        <div style="width: 150px;">
+            <img src="https://www.senaleticaec.com/wp-content/uploads/2022/12/Sin-titulo-10.png" alt="NAda" style="width: 190px;"><br>
+            <a href="../php/salir.php">Salir</a>
+        </div>
+            
     </div>
 </body>
 </html>

@@ -55,7 +55,6 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     //Guardar datos en la base de datos
     $actualizar  = "UPDATE empleados SET nombres = '$nombres', apellidos = '$apellidos', telefono = '$telefono', direccion = '$direccion', rol = '$rol', fecha_contratacion = '$fecha' WHERE id_empleado = '$id'";
     $query = mysqli_query($conectar, $actualizar);
-
 } else if ($username != $antigua_username && $correo != $antiguo_correo) {
     //  El username y correo se cambia
     // exit();
@@ -64,12 +63,11 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     $verificar_correo = mysqli_query($conectar, "SELECT * FROM empleados WHERE correo = '$correo'");
 
     if (mysqli_num_rows($verificar_correo)) {
-        echo '
-            <script>
-            alert("Este correo [ ' . $correo . ' ] ya esta en uso.")
-            window.history.go(-1);
-            </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El correo ingresado ($correo) ya esta siendo ocupado por un empleado o administrador del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
@@ -77,24 +75,22 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     $verificar_correo = mysqli_query($conectar, "SELECT * FROM clientes WHERE correo = '$correo'");
 
     if (mysqli_num_rows($verificar_correo)) {
-        echo '
-            <script>
-            alert("Este correo [ ' . $correo . ' ] ya esta en uso por un cliente.")
-            window.history.go(-1);
-            </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El correo ingresado ($correo) ya esta siendo ocupado por un cliente del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
     //verificar el username
     $verificar_username = mysqli_query($conectar, "SELECT * FROM empleados WHERE usuario = '$username'");
     if (mysqli_num_rows($verificar_username)) {
-        echo '
-            <script>
-            alert("Este username [ ' . $username . ' ] ya esta en uso.")
-            window.history.go(-1);
-            </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El username ingresado ($username) ya esta siendo ocupado por un empleado o administrador del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
@@ -103,6 +99,7 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     //Guardar datos en la base de datos
     $actualizar  = "UPDATE empleados SET nombres = '$nombres', apellidos = '$apellidos', telefono = '$telefono', correo = '$correo', direccion = '$direccion', rol = '$rol', fecha_contratacion = '$fecha', usuario = '$username' WHERE id_empleado = '$id'";
     $query = mysqli_query($conectar, $actualizar);
+
 } else if ($username == $antigua_username && $correo != $antiguo_correo) {
     //  El username no se cambia solo el correo";
     // exit();
@@ -111,12 +108,11 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     $verificar_correo = mysqli_query($conectar, "SELECT * FROM empleados WHERE correo = '$correo'");
 
     if (mysqli_num_rows($verificar_correo)) {
-        echo '
-        <script>
-        alert("Este correo [ ' . $correo . ' ] ya esta en uso.")
-        window.history.go(-1);
-        </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El correo ingresado ($correo) ya esta siendo ocupado por un empleado o administrador del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
@@ -124,12 +120,11 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     $verificar_correo = mysqli_query($conectar, "SELECT * FROM clientes WHERE correo = '$correo'");
 
     if (mysqli_num_rows($verificar_correo)) {
-        echo '
-            <script>
-            alert("Este correo [ ' . $correo . ' ] ya esta en uso por un cliente.")
-            window.history.go(-1);
-            </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El correo ingresado ($correo) ya esta siendo ocupado por un cliente del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
@@ -143,12 +138,11 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
     //verificar el username
     $verificar_username = mysqli_query($conectar, "SELECT * FROM empleados WHERE usuario = '$username'");
     if (mysqli_num_rows($verificar_username)) {
-        echo '
-            <script>
-            alert("Este username [ ' . $username . ' ] ya esta en uso.")
-            window.history.go(-1);
-            </script>
-        ';
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se actualizo los datos del empleado!";
+        $_SESSION['sms'] = "El username ingresado ($username) ya esta siendo ocupado por un empleado o administrador del sistema.";
+        echo '<script> window.history.go(-1); </script>';
         exit();
     }
 
@@ -159,15 +153,19 @@ if ($username == $antigua_username && $correo == $antiguo_correo) {
 
 
 if ($query) {
-    echo '<script>
-    alert("Los datos se actualizaron correctamente")
-    location.href="../paginas/ver_empleado.php?id=' . $id . '";
-    </script>';
+    session_start();
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Actualizado!";
+    $_SESSION['sms'] = "Se actualizó los datos del $rol exitosamente";
+
+    // Construir la URL de redirección correctamente
+    $url = "../paginas/ver_empleado.php?id=" . $id;
+    header("Location: " . $url);
+    exit(); // Asegúrate de salir después de redirigir
 } else {
-    echo '
-    <script>
-    alert("ERROR: Fallo al actualizar los datos en la base de datos");
-    location.href="../paginas/editar_empleado.php?id=' . $id . '";
-    </script>
-    ';
+    session_start();
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se registro la empresa!";
+    $_SESSION['sms'] = "Error: ". mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
 }

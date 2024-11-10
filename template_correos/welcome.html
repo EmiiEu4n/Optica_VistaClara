@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <base target="_top" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            position: relative;
+            padding: 20px 0;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+            ), url('https://www.ocularium.es/wp-content/uploads/elementor/thumbs/Gafas-de-visión-en-óptica-ocularium-oqy8vy6vyhgc3tqyuqodam2uvhlt97kgiylr8kllbc.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h3 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 20px 0;
+        }
+
+        .content label, p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 10px 0;
+            text-align: justify;
+            text-decoration: none;
+        }
+
+        span {
+            color: #007bff;
+        }
+
+        .content .highlight {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <img src="https://drive.google.com/uc?export=view&id=1S9Ctg6HZAzOoNObK1iUw1ZrJXiHS5-E2" alt="Logo"/>
+        <h3>ÓPTICA VISTA CLARA,</h3>
+        <h3>TE DA LA <span>¡BIENVENIDA!</span></h3>
+    </div>
+    <div class="content">
+        <p>Hola <span>{{nombre}}</span>,</p>
+        <p>
+            Nos complace darte la bienvenida a la familia de Óptica Vista Clara.
+            Estamos emocionados de tenerte con nosotros y queremos asegurarnos de
+            que tu experiencia sea siempre excelente.
+        </p>
+        <label>Tu cuenta ha sido creada con el siguiente correo: </label>
+        <label class="highlight">{{correo}}</label><br/><br/>
+        <p>Gracias por confiar en nosotros. ✨</p>
+    </div>
+    <div class="footer">
+        <p>Contacto: optica.vc@gmail.com | Teléfono: (999) 123 4567</p>
+        <p>
+            Síguenos en:
+            <a href="https://facebook.com" style="color: #007bff; text-decoration: none">Facebook</a>
+            |
+            <a href="https://twitter.com" style="color: #007bff; text-decoration: none">Twitter</a>
+            |
+            <a href="https://instagram.com" style="color: #007bff; text-decoration: none">Instagram</a>
+        </p>
+        <p>
+            <a href="https://example.com/unsubscribe" style="color: #007bff; text-decoration: none">Darse de baja</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

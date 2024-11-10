@@ -5,53 +5,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agendar cita</title>
-  <link rel="stylesheet" href="../css/agendar.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Preload archivos CSS críticos -->
+  <link rel="preload" href="../css/normalize.css" as="style">
+  <link rel="preload" href="../css/style.css" as="style">
+
+  <!-- Vincular archivos CSS -->
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
   <?php
-  include "menu_panel.php";
   require "../php/conexion.php";
-  include "../php/notificaciones.php";
 
-  
   //Notificaciones
   if (isset($_SESSION["icon"])) {
-   notify();
+    if ($_SESSION['icon'] == 'success') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'error') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'warning') {
+      echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    } else if ($_SESSION['icon'] == 'info') {
+      echo '<script>
+          document.addEventListener("DOMContentLoaded", function() {
+          notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+          });
+          </script>';
+      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+    }
   }
-  //get de origen
-  $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
-  //prepara los datos
-  $id = $_GET['id'];
-  $horas = [
-    '10:00:00' => '10:00 AM',
-    '10:30:00' => '10:30 AM',
-    '11:00:00' => '11:00 AM',
-    '11:30:00' => '11:30 AM',
-    '12:00:00' => '12:00 PM',
-    '12:30:00' => '12:30 PM',
-    '13:00:00' => '01:00 PM',
-    '13:30:00' => '01:30 PM',
-    '14:00:00' => '02:00 PM',
-    '14:30:00' => '02:30 PM',
-    '15:00:00' => '03:00 PM',
-    '15:30:00' => '03:30 PM',
-    '16:00:00' => '04:00 PM',
-    '16:30:00' => '04:30 PM',
-    '17:00:00' => '05:00 PM',
-    // Agrega más horas si es necesario
-  ];
+  // Consulta para obtener los clientes
+  $sql = "SELECT id_cliente, nombres, apellidos FROM clientes";
+  $result = $conectar->query($sql);
 
-  $cita = "SELECT ci.id_cita, cl.id_cliente, cl.nombres, cl.apellidos, cl.correo, cl.telefono, cl.preescripcion, ci.fecha_cita, ci.hora, ci.estado, ci.motivo
-  FROM citas ci
-  INNER JOIN clientes cl ON ci.id_cliente = cl.id_cliente
-  WHERE ci.id_cita = '$id'";
-  // consulta
-  $query = mysqli_query($conectar, $cita);
+  // Arreglo para almacenar los datos de los clientes
+  $clientes = [];
 
-  $info = $query->fetch_array();
+  // Verificar si hay resultados
+  if ($result->num_rows > 0) {
+    // Recorrer los resultados y agregarlos al arreglo
+    while ($row = $result->fetch_assoc()) {
+      $clientes[] = [
+        'id' => $row['id_cliente'],
+        'nombre' => $row['nombres'] . " " . $row['apellidos'],
+      ];
+    }
+
+    // Cerrar la conexión
+    $conectar->close();
+
+    // Convertir los datos a formato JSON
+    $clientes_json = json_encode($clientes);
+  } else {
+    echo "No se encontraron resultados";
+  }
+
   ?>
   <!-- Manteniendo el menú si es necesario -->
   <div class="nuevo-usuario main-content">
@@ -60,44 +94,57 @@
     </div>
     <div class="content-info">
       <div class="content-registrar formulario">
-        <form action="../php/update_cita.php" method="POST">
-
+        <form action="../php/create_cita.php" method="POST">
+          <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
           <fieldset>
             <legend>Información de cita</legend>
-            <!-- Fecha -->
+
             <label for="">Fecha: <span>*</span></label>
-            <input value="<?php echo $info['fecha_cita'] ?>" required class="flatpickr" id="fecha" name="fecha" min="" max="" type="date"><br><br>
-            <!-- Hora -->
+            <input required class="flatpickr" id="fecha" name="fecha" min="" max="" type="date"><br><br>
+
             <label for="">Horario: <span>*</span></label>
             <select style="width: 100%;" required id="hora" name="hora" disabled>
               <option value="">Selecciona la hora de la cita</option>
-
-              <?php foreach ($horas as $valor => $texto): ?>
-                <option value="<?php echo $valor; ?>" <?php echo ($info['hora'] == $valor) ? 'selected' : ''; ?>>
-                  <?php echo $texto; ?>
-                </option>
-              <?php endforeach; ?>
-
+              <option value="10:00:00">10:00 AM</option>
+              <option value="10:30:00">10:30 AM</option>
+              <option value="11:00:00">11:00 AM</option>
+              <option value="11:30:00">11:30 AM</option>
+              <option value="12:00:00">12:00 PM</option>
+              <option value="12:30:00">12:30 PM</option>
+              <option value="13:00:00">01:00 PM</option>
+              <option value="13:30:00">01:30 PM</option>
+              <option value="14:00:00">02:00 PM</option>
+              <option value="14:30:00">02:30 PM</option>
+              <option value="15:00:00">03:00 PM</option>
+              <option value="15:30:00">03:30 PM</option>
+              <option value="16:00:00">04:00 PM</option>
+              <option value="16:30:00">04:30 PM</option>
+              <option value="17:00:00">05:00 PM</option>
             </select><br><br>
-
             <!-- Motivo -->
             <label for="">Motivo: <span>*</span></label><br>
-            <textarea class="validar-espacios" style="width: 100%;" required name="motivo" id="input-motivo"><?php echo $info['motivo'] ?></textarea>
-
-            <input type="hidden" name="id_cita" value="<?php echo $id ?>">
+            <textarea class="validar-espacios" style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
           </fieldset>
 
-          <fieldset disabled="disable">
+          <fieldset>
             <legend>Información del cliente</legend>
-            <label>Nombre:</label>
-            <input disabled value="<?php echo $info['nombres'] . " " . $info['apellidos'] ?>">
+            <label for="buscar-cliente">Nombre:</label>
+            <input required type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc" name="nombre_cliente" autocomplete="off">
+
+            <!-- Lista de sugerencias para mostrar coincidencias -->
+            <ul id="sugerencias-clientes" class="sugerencias" style="display: none;">
+              <!-- Aquí se agregarán las opciones filtradas -->
+            </ul>
+            <!-- Envio del id escondido -->
+            <input required type="hidden" id="id-cliente" name="id-cliente">
+            <p id="error-msg" style="color: #ff4040; display: none;">Debes seleccionar un cliente válido.</p>
           </fieldset>
 
 
           <!-- Botones -->
           <div class="opciones-btn opciones-btn-registrar">
             <div style="width: 190px;" class="btn">
-              <a href="<?php echo ($origen == 'citas') ? './mostrar_ver.php' : './ver_cita.php?origen=citas&id='. $id ?>">Regresar</a>
+              <a href="mostrar_citas.php">Regresar</a>
             </div>
             <button style="width: 190px;" class="btn-form" type="submit">Agendar</button>
           </div>
@@ -211,6 +258,8 @@
         .catch(error => console.error('Error al obtener las fechas:', error));
     });
 
+
+
     // Deshabilitar el selector de hora hasta que se seleccione una fecha
     document.addEventListener('DOMContentLoaded', function() {
       const fechaInput = document.getElementById('fecha');
@@ -277,6 +326,7 @@
                     optionToDisable.classList.add('option-disabled');
                   }
                 });
+
               }
               console.log(horasADeshabilitar);
             })
@@ -292,6 +342,90 @@
           alert('Por favor selecciona una fecha y una hora.');
         }
       });
+    });
+    // Verificación de campos
+    // Evitar el envío del formulario si los campos son inválidos
+    document.querySelector('form').addEventListener('submit', function(e) {
+      if (!fechaInput.value || !horaSelect.value) {
+        e.preventDefault();
+        alert('Por favor selecciona una fecha y una hora.');
+      }
+    });
+
+
+
+
+
+    //javascript de clientes
+    // Datos simulados de clientes (estos deberían venir de la base de datos)
+    const clientes = <?php echo $clientes_json; ?>;
+
+    // // Guardar y restaurar el ID del cliente usando localStorage
+    // const idClienteInput = document.getElementById('id-cliente');
+
+    // // Intentar restaurar el valor del ID si está almacenado
+    // if (localStorage.getItem('id-cliente')) {
+    //   idClienteInput.value = localStorage.getItem('id-cliente');
+    // }
+
+    // Obtener elementos del DOM
+    const inputBuscar = document.getElementById('buscar-cliente');
+    const listaSugerencias = document.getElementById('sugerencias-clientes');
+    const inputIdCliente = document.getElementById('id-cliente'); // Campo oculto para el ID
+    const inputMotivo = document.getElementById('input-motivo');
+    // Limpiar el campo de nombre al cargar la página
+    window.addEventListener('load', function() {
+      inputBuscar.value = ''; // Limpiar el campo de nombre
+    });
+    // Limpiar el campo de motivo al cargar la página
+    window.addEventListener('load', function() {
+      inputMotivo.value = ''; // Limpiar el campo de nombre
+    });
+
+    // Función para filtrar las coincidencias
+    inputBuscar.addEventListener('input', () => {
+      const query = inputBuscar.value.toLowerCase();
+      listaSugerencias.innerHTML = ''; // Limpiar la lista de sugerencias
+
+      if (query) {
+        // Filtrar las coincidencias basadas en la entrada del usuario
+        const coincidencias = clientes.filter(cliente => cliente.nombre.toLowerCase().includes(query));
+
+        // Mostrar las coincidencias en la lista
+        coincidencias.forEach(coincidencia => {
+          const item = document.createElement('li');
+          item.textContent = coincidencia.nombre;
+          item.addEventListener('click', () => {
+            // Asignar el valor seleccionado al input de búsqueda
+            inputBuscar.value = coincidencia.nombre;
+            // Asignar el ID del cliente al campo oculto
+            inputIdCliente.value = coincidencia.id;
+            listaSugerencias.style.display = 'none'; // Ocultar la lista después de seleccionar
+          });
+          listaSugerencias.appendChild(item);
+        });
+
+        // Mostrar la lista solo si hay coincidencias
+        listaSugerencias.style.display = coincidencias.length ? 'block' : 'none';
+      } else {
+        listaSugerencias.style.display = 'none'; // Ocultar la lista si no hay entrada
+      }
+    });
+
+    // Verificación de campos
+    document.querySelector('form').addEventListener('submit', function(event) {
+      let idCliente = document.getElementById('id-cliente').value;
+      let errorMsg = document.getElementById('error-msg');
+
+      // Verifica si el campo id-cliente está vacío
+      if (!idCliente) {
+        // Si el id del cliente no está asignado, muestra el mensaje de error y cancela el envío
+        errorMsg.style.display = 'block';
+        event.preventDefault(); // Evita el envío del formulario
+      } else {
+        // Si el id-cliente tiene valor, se permite el envío del formulario
+        errorMsg.style.display = 'none';
+      }
     });
   </script>
 
@@ -332,10 +466,16 @@
     }
 
     .option-disabled {
-      color: #ff4040;
+      color: #ff7676;
       /* Cambia el color a rojo */
     }
   </style>
+
+    <!-- Scripts al final del body para optimización de carga -->
+    <script src="../javascript/sweetalert2.js"></script>
+
+    <script src="../javascript/notificaciones.js" defer></script>
+    <script src="../javascript/validacion.js" defer></script>
 </body>
 
 </html>

@@ -10,6 +10,8 @@
 <body>
     <?php
     include "menu_panel.php";
+    include "../php/notificaciones.php";
+
     if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
     }
@@ -17,8 +19,8 @@
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     require "../php/conexion.php";
     $id = $_GET['id'];
-    if($id == 1){
-        header("Location: ../paginas/mostrar_empleados.php"); 
+    if ($id == 1) {
+        header("Location: ../paginas/mostrar_empleados.php");
     }
 
     // instruccion
@@ -32,6 +34,10 @@
     // recuperar informacion
     $antiguoCorreo = $info['correo'];
     $antiguoUsername = $info['usuario'];
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
     ?>
 
 

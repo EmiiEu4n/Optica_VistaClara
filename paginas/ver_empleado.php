@@ -12,12 +12,17 @@
     if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
     }
+    //Notificaciones
+    include "../php/notificaciones.php";
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     require "../php/conexion.php";
     $id = $_GET['id'];
-    if($id == 1){
-        header("Location: ../paginas/mostrar_empleados.php"); 
+    if ($id == 1) {
+        header("Location: ../paginas/mostrar_empleados.php");
     }
 
     // instruccion
@@ -36,7 +41,7 @@
         <div class="content-info">
             <div class="info formulario">
                 <!-- informacion del cliente -->
-                <fieldset disabled = "disable">
+                <fieldset disabled="disable">
                     <legend>Información personal</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>
@@ -49,7 +54,7 @@
                     <textarea disabled><?php echo $info['direccion'] ?></textarea>
                 </fieldset>
 
-                <fieldset disabled = "disable">
+                <fieldset disabled="disable">
                     <legend>Información de contacto</legend>
                     <!-- correo -->
                     <label for="">Correo:</label>
@@ -60,7 +65,7 @@
                     <input value="<?php echo $info['telefono'] ?>" type="text">
 
                 </fieldset>
-                <fieldset disabled = "disable">
+                <fieldset disabled="disable">
                     <legend>Información de empleo</legend>
                     <!-- username-->
                     <label for="">Username:</label>
@@ -79,7 +84,7 @@
         </div>
         <div class="opciones-btn-ver opciones-btn">
             <div class="btn-regresar-ver-cliente btn">
-                <a href="<?php echo ($origen =='usuarios')?'./mostrar_usuarios.php' : './mostrar_empleados.php'?>">Regresar</a>
+                <a href="<?php echo ($origen == 'usuarios') ? './mostrar_usuarios.php' : './mostrar_empleados.php' ?>">Regresar</a>
             </div>
             <div class="btn">
                 <a href="./editar_empleado.php?origen=<?php echo $origen ?>ver&id=<?php echo $id ?>">Editar</a>

@@ -28,13 +28,12 @@ if ($nombre != $empresa_antigua['nombre']) {
     $verificar_empresa = mysqli_query($conectar, "SELECT * FROM proveedores WHERE nombre = '$nombre'");
 
     if (mysqli_num_rows($verificar_empresa)) {
-        echo '
-    <script>
-    alert("Esta empresa [ ' . $nombre . ' ] ya esta registrada.")
-    location.href="../paginas/editar_proveedor.php?id=' . $id . '";
-    </script>
-    ';
-        exit();
+        session_start();
+        $_SESSION['icon'] = "error";
+        $_SESSION['titulo'] = "¡NO se registro la empresa!";
+        $_SESSION['sms'] = "La empresa ingresada ($nombre) ya esta dado de alta en el sistema.";
+        echo '<script> window.history.go(-1); </script>';
+        exit(); 
     }
 
 
@@ -52,15 +51,20 @@ if ($nombre != $empresa_antigua['nombre']) {
 
 
 if ($query) {
-    echo '<script>
-    alert("Los datos se actualizaron correctamente")
-    location.href="../paginas/ver_proveedor.php?id=' . $id . '";
-    </script>';
+    session_start();
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Actualizado!";
+    $_SESSION['sms'] = "Se actualizó los datos de la empresa $nombre exitosamente";
+
+    // Construir la URL de redirección correctamente
+    $url = "../paginas/ver_proveedor.php?id=" . $id;
+    header("Location: " . $url);
+    exit(); // Asegúrate de salir después de redirigir
+
 } else {
-    echo '
-    <script>
-    alert("ERROR: Fallo la actualizacion de los datos");
-    location.href="../paginas/editar_proveedor.php?id=' . $id . '";
-    </script>
-    ';
+    session_start();
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se actualizo los datos de la empresa!";
+    $_SESSION['sms'] = "Error: ". mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
 }

@@ -8,7 +8,14 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    } ?>
 
     <div class="usuarios-content main-content">
         <div class="titulo">
@@ -57,11 +64,21 @@
         <!-- fin -->
     </div>
     <script>
-        function validar(url, username) {
-            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR la categoría: " + username + "?");
-            if (eliminar == true) {
-                window.location = url;
-            }
+        function validar(url, categoria) {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¿Estás seguro que deseas ELIMINAR la categoría: " + categoria + "?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#c8c8c8",
+                cancelButtonColor: "#151e2d",
+                confirmButtonText: "Sí, eliminar categoría",
+                cancelButtonText: "No, mantener"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
         }
     </script>
 </body>

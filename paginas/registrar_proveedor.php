@@ -10,7 +10,13 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php"; ?>
+    <?php include "menu_panel.php";
+    //Notificaciones
+    include "../php/notificaciones.php";
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    ?>
     <div class="nuevo-usuario main-content">
         <div class="titulo">
             <h3>REGISTRAR NUEVO PROVEEDOR</h3>

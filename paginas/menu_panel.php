@@ -38,7 +38,7 @@ if ($resultado_empleado->num_rows > 0) {
         <!-- empleado -->
         <a href="./mostrar_proveedores.php">Proveedores</a>
         <!-- empleado -->
-        <a href="#">Gestión de citas</a>
+        <a href="./mostrar_citas.php">Gestión de citas</a>
         <!-- empleado -->
         <!--<a href="#">Historial de citas</a>-->
         ';
@@ -48,12 +48,11 @@ if ($resultado_empleado->num_rows > 0) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="../css/normalize.css" as="styles">
     <!-- Preload archivos CSS críticos -->
     <link rel="preload" href="../css/normalize.css" as="style">
     <link rel="preload" href="../css/style.css" as="style">

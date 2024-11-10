@@ -9,8 +9,14 @@
 
 <body>
     <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+         notify();
+    }
+
     ?>
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -26,11 +32,11 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input required pattern="[a-zA-Z\s]{3,254}"class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel">
+                        <input required pattern="[a-zA-Z\s]{3,254}" class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel">
 
                         <!-- apellidos -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input pattern="[a-zA-Z\s]{4,254}" class="validar-espacios" required  name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González"><br><br>
+                        <input pattern="[a-zA-Z\s]{4,254}" class="validar-espacios" required name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González"><br><br>
 
                         <!-- direccion -->
                         <label for="">Domicilio<span>*</span></label><br>
@@ -46,6 +52,8 @@
                         <!-- telefono -->
                         <label for="">Telefono<span>*</span></label><br>
                         <input class="validar-espacios" id="telefono" pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" required placeholder="Ingresa el numero celular ej.9999123456" name="telefono" type="tel"><br><br>
+
+                        <!-- <input type="password" name="contrasena" value=""><br><br> -->
 
                     </fieldset>
                     <fieldset>
