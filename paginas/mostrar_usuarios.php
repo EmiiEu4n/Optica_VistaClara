@@ -46,7 +46,7 @@
 
 
   // Limite de filas a mostrar
-  $limite = 10;
+  $limite = 5;
 
   // Páginas que tenemos para mostrar
   $paginas = ceil($total_filas / $limite);

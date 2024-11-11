@@ -93,6 +93,42 @@
 
     // Concatenar parámetros en get con & si hay búsqueda
     $concatparams = ($nombre != "") ? "&busca_nombre=" . $nombre : "";
+
+     // Notificaciones (código existente)
+     if (isset($_SESSION["icon"])) {
+        // Código de notificación
+    }
+
+
+
+    // Filtro de estado
+    $estadoSeleccionado = isset($_GET['filtro_estado']) ? $_GET['filtro_estado'] : "";
+
+    // Consulta inicial
+    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado 
+              FROM citas ci 
+              INNER JOIN clientes cl ON ci.id_cliente = cl.id_cliente 
+              WHERE 1=1";
+
+    // Filtro por nombre
+    if ($nombre) {
+        $datos .= " AND cl.nombres LIKE '%$nombre%'";
+    }
+
+    // Filtro por estado
+    if ($estadoSeleccionado) {
+        $datos .= " AND ci.estado = '$estadoSeleccionado'";
+    }
+
+    // Ordenamiento por fecha
+    $ordenFecha = isset($_GET['orden_fecha']) ? $_GET['orden_fecha'] : 'ASC';
+    $datos .= " ORDER BY ci.fecha_cita $ordenFecha";
+
+    // Paginación y resultado de la consulta
+    $resultado = mysqli_query($conectar, $datos);
+
+    // [Paginación] (código existente)
+
     ?>
 
     <div class="usuarios-content main-content">
@@ -118,6 +154,12 @@
         <div class="buscador-titulo">
             <form action="./mostrar_citas.php">
                 <input type="text" name="busca_nombre" value="<?php echo $nombre ?>" placeholder="Buscar por nombre del cliente">
+                <select name="filtro_estado">
+                    <option value="">Todos</option>
+                    <option value="Pendiente" <?php echo $estadoSeleccionado == "Pendiente" ? 'selected' : ''; ?>>Pendiente</option>
+                    <option value="Terminado" <?php echo $estadoSeleccionado == "Terminado" ? 'selected' : ''; ?>>Terminado</option>
+                    <option value="Cancelado" <?php echo $estadoSeleccionado == "Cancelado" ? 'selected' : ''; ?>>Cancelado</option>
+                </select>
                 <button class="btn-form" type="submit" >Buscar </button>
             </form>
         </div>
@@ -128,13 +170,13 @@
                 <!-- Anterior -->
                 <li class="pag-item <?php echo ($pagina <= 1) ? 'disable' : ''; ?>">
                     <a href="./mostrar_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
-                                                        echo $concatparams; ?>">Anterior</a>
+                                                    echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Anterior</a>
                 </li>
 
                 <!-- Páginas -->
                 <?php for ($i = 1; $i <= $paginas; $i++): ?>
                     <li class="pag-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
-                        <a href="./mostrar_citas.php?pagina=<?php echo $i . $concatparams; ?>">
+                        <a href="./mostrar_citas.php?pagina=<?php echo $i . $concatparams . '&orden_fecha=' . $ordenFecha; ?>">
                             <?php echo $i; ?>
                         </a>
                     </li>
@@ -143,15 +185,20 @@
                 <!-- Siguiente -->
                 <li class="pag-item <?php echo ($pagina >= $paginas) ? 'disable' : ''; ?>">
                     <a href="./mostrar_citas.php?pagina=<?php echo ($pagina < $paginas) ? $pagina + 1 : $paginas;
-                                                        echo $concatparams; ?>">Siguiente</a>
+                                                    echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Siguiente</a>
                 </li>
             </ul>
         </nav>
+
+        
         <table>
             <tr>
                 <th>ID</th>
                 <th>Cliente</th>
-                <th>Fecha</th>
+                <th>
+                    <a href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=ASC'; ?>">Fecha &#x2191;</a> |
+                    <a href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=DESC'; ?>">Fecha &#x2193;</a>
+                </th>
                 <th>Hora</th>
                 <th>Estado</th>
                 <th>Ver</th>
