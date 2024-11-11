@@ -155,13 +155,23 @@
     <!-- fin -->
   </div>
   <script>
-    function validar(url, username) {
-      var eliminar = confirm("¿Estás seguro que deseas ELIMINAR el usuario: " + username + "?");
-      if (eliminar == true) {
-        window.location = url;
-      }
-    }
-  </script>
+        function validar(url, username) {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¿Estás seguro que deseas ELIMINAR al usuario: " + username + "?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#c8c8c8",
+                cancelButtonColor: "#151e2d",
+                confirmButtonText: "Sí, eliminar usuario",
+                cancelButtonText: "No, mantener"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

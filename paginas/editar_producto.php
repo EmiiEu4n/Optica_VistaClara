@@ -8,7 +8,15 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php"; ?>
+    <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -61,7 +69,7 @@
 
 
                         <!-- Precio -->
-                        <label  for="">Precio<span>*</span></label><br>
+                        <label for="">Precio<span>*</span></label><br>
                         <label for="">$</label><input style="width: 98%;" required min="0" name="precio" type="number" placeholder="" value="<?php echo $info_prod['precio'] ?>"><br><br>
                     </fieldset>
 
@@ -108,7 +116,7 @@
                     <!-- Botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="<?php echo ($origen == 'productos')? './mostrar_productos.php':'./ver_producto.php?id=' . $id?>">Regresar</a>
+                            <a href="<?php echo ($origen == 'productos') ? './mostrar_productos.php' : './ver_producto.php?id=' . $id ?>">Regresar</a>
                         </div>
                         <input type="hidden" name="id_producto" value="<?php echo $info_prod['id_producto'] ?>">
                         <button class="btn-form" type="submit">Guardar</button>

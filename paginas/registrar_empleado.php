@@ -9,9 +9,16 @@
 
 <body>
     <?php include "menu_panel.php";
-    if($_SESSION['rol'] != 'Administrador'){
+    if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
-     }
+    }
+    
+    //Notificaciones
+    include "../php/notificaciones.php";
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    
     ?>
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -28,7 +35,9 @@
                         <legend>Información del empleado</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input class="validar-espacios" value="<?php if(isset($nombres)){ echo $nombres;} ?>" pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
+                        <input class="validar-espacios" value="<?php if (isset($nombres)) {
+                                                                    echo $nombres;
+                                                                } ?>" pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
@@ -53,7 +62,7 @@
                         <legend>Información de trabajo</legend>
 
                         <!-- usuario -->
-                        <label  for="">Username<span>*</span></label><br>
+                        <label for="">Username<span>*</span></label><br>
                         <input class="validar-espacios" pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.franco"><br><br>
 
                         <!-- roles-->
@@ -72,8 +81,8 @@
 
 
                         <!-- contraseña -->
-                        <label for="">Contraseña(Temporal)*</label><br>
-                        <input  class="validar-espacios" required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal del empleado"><br>
+                        <!-- <label for="">Contraseña(Temporal)*</label><br>
+                        <input class="validar-espacios" required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal del empleado"><br> -->
                     </fieldset>
 
 

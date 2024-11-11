@@ -30,12 +30,10 @@ if ($nombre != $antiguo_nombre) {
   $verificar_producto = mysqli_query($conectar, "SELECT * FROM productos WHERE nombre = '$nombre'");
 
   if (mysqli_num_rows($verificar_producto)) {
-    echo '
-    <script>
-     alert("Este producto ya ha sido registrado")
-     location.href="../paginas/editar_producto.php?id=' . $id . '";
-    </script>
- ';
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se registro el producto!";
+    $_SESSION['sms'] = "El producto ingresada ($nombre) ya esta dado de alta en el sistema.";
+    echo '<script> window.history.go(-1); </script>';
     exit();
   }
   //validar si se asigno una nueva imagen
@@ -56,12 +54,10 @@ if ($nombre != $antiguo_nombre) {
     $tipofoto = $_FILES['imagen']['type'];
 
     if ($pesofoto > 900000) {
-      echo '
-        <script>
-        alert("Es demasiado pesada la foto del producto");
-        window.history.go(-1);
-        </script>
-        ';
+      $_SESSION['icon'] = "info";
+      $_SESSION['titulo'] = "¡Excede el límite!";
+      $_SESSION['sms'] = "El tamaño de la imagen supera el límite permitido y no se puede guardar.";
+      echo '<script> window.history.go(-1); </script>';
       exit();
     }
 
@@ -80,12 +76,10 @@ if ($nombre != $antiguo_nombre) {
       $actualizar = "UPDATE productos SET nombre = '$nombre', id_categoria = '$id_categoria', precio = '$precio', descripcion = '$descripcion', stock = '$stock', id_proveedor = '$id_proveedor', img = '$rutaDestino' WHERE id_producto = '$id' ";
       $query = mysqli_query($conectar, $actualizar);
     } else {
-      echo '
-        <script>
-        alert("Error: Tipo de imagen no soportado");
-        window.history.go(-1);
-        </script>
-        ';
+      $_SESSION['icon'] = "info";
+      $_SESSION['titulo'] = "¡Formato no compatible!";
+      $_SESSION['sms'] = "El formato de la imagen no es valido, no se puede guardar.";
+      echo '<script> window.history.go(-1); </script>';
       exit();
     }
   } else {
@@ -95,17 +89,21 @@ if ($nombre != $antiguo_nombre) {
   }
   //Redireccionar
   if ($query) {
-    echo '<script>
-    alert("Se actualizaron los datos de manera correcta")
-    location.href="../paginas/ver_producto.php?id=' . $id . '";
-    </script>';
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Actualizado!";
+    $_SESSION['sms'] = "Se actualizó los datos del producto exitosamente";
+
+    // Construir la URL de redirección correctamente
+    $url = "../paginas/ver_producto.php?id=" . $id;
+    header("Location: " . $url);
+    exit(); // Asegúrate de salir después de redirigir
+
   } else {
-    echo '
-    <script>
-    alert("Error: NO se pudo actualizar la información de la base de datos");
-    location.href = "../paginas/mostrar_productos.php";
-    </script>
-    ';
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se actualizo los datos del producto";
+    $_SESSION['sms'] = "Error: " . mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
+    exit();
   }
 } else {
 
@@ -127,12 +125,11 @@ if ($nombre != $antiguo_nombre) {
     $tipofoto = $_FILES['imagen']['type'];
 
     if ($pesofoto > 900000) {
-      echo '
-        <script>
-        alert("Es demasiado pesada la foto del producto");
-        window.history.go(-1);
-        </script>
-        ';
+      $_SESSION['icon'] = "info";
+      $_SESSION['titulo'] = "¡Excede el límite!";
+      $_SESSION['sms'] = "El tamaño de la imagen supera el límite permitido y no se puede guardar.";
+      echo '<script> window.history.go(-1); </script>';
+      exit();
     }
 
     if ($tipofoto == "image/webp" or $tipofoto == "image/jpeg" or $tipofoto == "image/png" or $tipofoto == "image/gif" or $tipofoto == "image/jpg" or $nombreImagen == "") {
@@ -150,12 +147,10 @@ if ($nombre != $antiguo_nombre) {
       $actualizar = "UPDATE productos SET id_categoria = '$id_categoria', precio = '$precio', descripcion = '$descripcion', stock = '$stock', id_proveedor = '$id_proveedor', img = '$rutaDestino' WHERE id_producto = '$id' ";
       $query = mysqli_query($conectar, $actualizar);
     } else {
-      echo '
-        <script>
-        alert("Error: Tipo de imagen no soportado");
-        window.history.go(-1);
-        </script>
-        ';
+      $_SESSION['icon'] = "info";
+      $_SESSION['titulo'] = "¡Formato no compatible!";
+      $_SESSION['sms'] = "El formato de la imagen no es valido, no se puede guardar.";
+      echo '<script> window.history.go(-1); </script>';
       exit();
     }
   } else {
@@ -165,16 +160,20 @@ if ($nombre != $antiguo_nombre) {
   }
   //Redireccionar
   if ($query) {
-    echo '<script>
-    alert("Se actualizaron los datos de manera correcta")
-    location.href="../paginas/ver_producto.php?id=' . $id . '";
-    </script>';
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Actualizado!";
+    $_SESSION['sms'] = "Se actualizó los datos del producto exitosamente";
+
+    // Construir la URL de redirección correctamente
+    $url = "../paginas/ver_producto.php?id=" . $id;
+    header("Location: " . $url);
+    exit(); // Asegúrate de salir después de redirigir
+
   } else {
-    echo '
-    <script>
-    alert("Error: NO se pudo actualizar la información de la base de datos");
-    location.href = "../paginas/mostrar_productos.php";
-    </script>
-    ';
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se actualizo los datos del producto";
+    $_SESSION['sms'] = "Error: " . mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
+    exit();
   }
 }

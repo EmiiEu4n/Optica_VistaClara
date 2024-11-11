@@ -113,8 +113,6 @@
             </tr>
 
             <?php
-
-
             while ($fila = mysqli_fetch_assoc($resultado)) {
             ?>
                 <tr>

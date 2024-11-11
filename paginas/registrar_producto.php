@@ -8,7 +8,15 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php include "menu_panel.php";
+
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    } ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -17,7 +25,7 @@
         <div class="content-info">
             <div class="content-registrar formulario">
                 <form id="miFormulario" action="../php/create_producto.php" method="post" enctype="multipart/form-data">
-                <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
+                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
                     <fieldset>
                         <legend>Información del producto</legend>
                         <!-- Nombre -->

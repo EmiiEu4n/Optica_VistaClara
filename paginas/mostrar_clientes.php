@@ -8,7 +8,16 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+
+    ?>
 
     <div class="usuarios-content main-content">
         <div class="titulo">
@@ -46,7 +55,7 @@
                     <!-- Editar usuario -->
                     <td class="btn-editar"> <a href="./editar_cliente.php?origen=clientes&id=<?php echo $fila['id_cliente']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
                     <!-- Eliminar usuario -->
-                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_cliente.php?id=<?php echo $fila['id_cliente']; ?>','<?php echo  addslashes($fila['nombres'])." ".addslashes($fila['apellidos']); ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
+                    <td class="btn-eliminar"> <a href="#" onClick="validar('../php/delete_cliente.php?id=<?php echo $fila['id_cliente']; ?>','<?php echo  addslashes($fila['nombres']) . " " . addslashes($fila['apellidos']); ?>');"><img src="../imagenes/borrar.png" alt=""></a></td>
                 </tr>
             <?php
             }
@@ -58,10 +67,20 @@
     </div>
     <script>
         function validar(url, username) {
-            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR al cliente: " + username + "?");
-            if (eliminar == true) {
-                window.location = url;
-            }
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¿Estás seguro que deseas ELIMINAR al cliente: " + username + "?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#c8c8c8",
+                cancelButtonColor: "#151e2d",
+                confirmButtonText: "Sí, eliminar cliente",
+                cancelButtonText: "No, mantener"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
         }
     </script>
 </body>

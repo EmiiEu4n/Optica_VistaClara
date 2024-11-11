@@ -11,6 +11,7 @@
     <?php
     include "menu_panel.php";
     require "../php/conexion.php";
+    include "../php/notificaciones.php";
     $id = $_GET['id'];
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
@@ -25,6 +26,12 @@
     // recuperar informacion
     $antiguoCorreo = $info['correo'];
     $antiguoVerificado = $info['verificado'];
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+
     ?>
 
 
@@ -36,7 +43,7 @@
         <div class="content-info">
             <div class="content-edit formulario">
                 <form action="../php/update_cliente.php" method="post">
-                <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
+                    <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
 
                     <fieldset>
                         <legend>Información del cliente</legend>
@@ -91,7 +98,7 @@
                     <!-- botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                                        <a href="<?php
+                            <a href="<?php
                                         if ($origen == 'usuarios') {
                                             echo './mostrar_usuarios.php';
                                         } elseif ($origen == 'clientes') {
