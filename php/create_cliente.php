@@ -81,14 +81,14 @@ if ($query) {
         welcome($correo, $nombres);
         session_start();
         $_SESSION['icon'] = "success";
-        $_SESSION['titulo'] = "¡Registrado!";
+        $_SESSION['titulo'] = "¡Registrado! ";
         $_SESSION['sms'] = "Registro completado, puedes iniciar sesion.";
-        echo '<script> window.history.go(-1); </script>';
+        header("location:../index.php");
         // echo '<script>
         //     alert("Los datos se registraron correctamente")
         //     window.history.go(-1);
         // </script>';
-    }
+    } 
 } else {
     session_start();
     $_SESSION['icon'] = "error";

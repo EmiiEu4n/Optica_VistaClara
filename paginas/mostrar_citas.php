@@ -51,7 +51,7 @@
     $total_filas = $resultado->num_rows;
 
     // Paginación
-    $limite = 2;
+    $limite = 5;
     $paginas = ceil($total_filas / $limite);
     $pagina = (isset($_GET['pagina'])) ? $_GET['pagina'] : 1;
     $inicio = ($pagina - 1) * $limite;
@@ -128,8 +128,8 @@
                 <th>ID</th>
                 <th>Cliente</th>
                 <th>
-                    <a href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=ASC'; ?>">Fecha &#x2191;</a> |
-                    <a href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=DESC'; ?>">Fecha &#x2193;</a>
+                    <a style="text-decoration: none; color: white;" href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=ASC'; ?>">Fecha &#x2191;</a> |
+                    <a style="text-decoration: none; color: white;" href="./mostrar_citas.php?pagina=<?php echo $pagina . $concatparams . '&orden_fecha=DESC'; ?>">Fecha &#x2193;</a>
                 </th>
                 <th>Hora</th>
                 <th>Estado</th>

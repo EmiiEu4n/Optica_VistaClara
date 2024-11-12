@@ -93,8 +93,8 @@ if ($resultado_empleado->num_rows > 0) {
 
     <!-- Scripts al final del body para optimización de carga -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <script src="../javascript/sweetalert2.js"></script>
-
+    <!-- <script src="../javascript/sweetalert2.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../javascript/notificaciones.js" defer></script>
     <script src="../javascript/validacion.js" defer></script>
 </body>

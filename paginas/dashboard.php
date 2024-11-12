@@ -10,7 +10,7 @@
 
 <body>
     <?php include "./menu_panel.php"; include "../php/notificaciones.php";?>
-    <div class="content-dashboard main-content">
+    <!-- <div class="content-dashboard main-content">
         <img src="../imagenes/logo.png" alt="">
         <a href="./prueba.php">Pruebame</a>
         <?php  // No olvides iniciar la sesión donde la uses
@@ -20,7 +20,7 @@
             }
         }
         ?>
-    </div>
+    </div> -->
 </body>
 
 
