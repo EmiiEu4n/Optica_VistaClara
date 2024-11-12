@@ -23,18 +23,18 @@ if ($resultado_empleado->num_rows > 0) {
     $info_empleado = $resultado_empleado->fetch_assoc();
     if (password_verify($contrasena, $info_empleado['contrasena'])) {
         // iniciar sesion
-         session_start();
+        session_start();
         // tiempo de la cookie
-        $_SESSION['tiempo_expiracion'] = 60*10;
+        $_SESSION['tiempo_expiracion'] = 60 * 10;
 
         //Crear la cookie de sesion
         setcookie("sesion_iniciada", time() + $_SESSION['tiempo_expiracion'], time() + $_SESSION['tiempo_expiracion'], '/');
 
         //informacion del usuario
         $_SESSION['id'] = $info_empleado['id_empleado'];
-        $_SESSION['username'] = $info_empleado['usuario'];        
-        $_SESSION['rol'] = $info_empleado['rol'];               
-        $_SESSION['autentificado'] = 'SI';               
+        $_SESSION['username'] = $info_empleado['usuario'];
+        $_SESSION['rol'] = $info_empleado['rol'];
+        $_SESSION['autentificado'] = 'SI';
 
         //Redirigir a la pagina
         header("Location: ../paginas/dashboard.php");
@@ -52,10 +52,19 @@ if ($resultado_empleado->num_rows > 0) {
     if ($resultado_cliente->num_rows > 0) {
         // El usuario es un cliente
         $info_cliente = $resultado_cliente->fetch_assoc();
-        if (password_verify($contrasena, $info_cliente['contrasena']) AND $info_cliente['verificado'] == 'False') {
+        if (password_verify($contrasena, $info_cliente['contrasena']) and $info_cliente['verificado'] == 'False') {
+            // iniciar sesion
+            session_start();
+            //informacion del cliente
+            $_SESSION['id_cliente'] = $info_cliente['id_cliente'];
+            $_SESSION['nombre_cliente'] = $info_cliente['nombres'];
+            $_SESSION['verificado'] = $info_cliente['verificado'];
+            $_SESSION['rol_cliente'] = $info_cliente['rol'];
+            $_SESSION['cliente_autentificado'] = 'SI';
+
             header("Location: ../paginas/portal_cliente.php");
             // exit();
-        }else {
+        } else {
             header("Location: ../index.php?errorusuario=SI");
         }
     } else {
@@ -67,4 +76,3 @@ mysqli_free_result($resultado_cliente);
 mysqli_free_result($resultado_empleado);
 mysqli_close($conectar);
 exit();
-?>

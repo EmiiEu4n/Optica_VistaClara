@@ -9,7 +9,7 @@
 </head>
 <body>
   <!-- Botón para abrir el Modal -->
-  <button id="myBtn">Registrarse</button>
+  <!-- <button id="myBtn">Registrarse</button> -->
 
   <!-- El Modal -->
   <div id="myModal" class="modal">

@@ -120,7 +120,7 @@ function welcome($correo, $nombre)
     }
 }
 
-function confirm_cita($correo, $asunto, $nombre)
+function confirm_cita($correo,$nombre, $hora, $fecha, $motivo)
 {
     $mail = new PHPMailer(true);
 
@@ -140,13 +140,15 @@ function confirm_cita($correo, $asunto, $nombre)
 
         // Contenido
         $mail->isHTML(true);
-        $mail->Subject = $asunto;
+        $mail->Subject = mb_convert_encoding("Cita Creada con éxito", 'ISO-8859-1', 'UTF-8');
 
         // Leer la plantilla HTML desde el archivo
-        $plantilla = file_get_contents("ruta"); 
+        $plantilla = file_get_contents("../template_correos/confirm_cita.html"); 
         // Reemplaza las variables en la plantilla
-        $plantilla = str_replace('{{nombre}}', $nombre, $plantilla);
-        $plantilla = str_replace('{{correo}}', $correo, $plantilla);
+        $plantilla = str_replace('{{nombre_cliente}}', $nombre, $plantilla);
+        $plantilla = str_replace('{{fecha_cita}}', $fecha, $plantilla);
+        $plantilla = str_replace('{{hora_cita}}', $hora, $plantilla);
+        $plantilla = str_replace('{{motivo_cita}}', $motivo, $plantilla);
         // $plantilla = str_replace('{{contrasena}}', $contrasena, $plantilla);
 
         $mail->Body    = $plantilla;

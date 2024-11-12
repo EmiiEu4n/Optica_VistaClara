@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['id_cliente'])) {
+  header("Location:../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,69 +14,26 @@
   <title>Agendar cita</title>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <!-- Preload archivos CSS críticos -->
   <link rel="preload" href="../css/normalize.css" as="style">
-  <link rel="preload" href="../css/style.css" as="style">
-
-  <!-- Vincular archivos CSS -->
+  <link rel="preload" href="../css/style_clientes.css" as="style">
   <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style_clientes.css">
 </head>
 
 <body>
   <?php
   require "../php/conexion.php";
-
-  //Notificaciones
+  include "../php/notificaciones.php";
+  $id_cliente = $_SESSION['id_cliente'];
   if (isset($_SESSION["icon"])) {
-    if ($_SESSION['icon'] == 'success') {
-      echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
-                });
-                </script>';
-      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
-    } else if ($_SESSION['icon'] == 'error') {
-      echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
-                });
-                </script>';
-      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
-    } else if ($_SESSION['icon'] == 'warning') {
-      echo '<script>
-                document.addEventListener("DOMContentLoaded", function() {
-                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
-                });
-                </script>';
-      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
-    } else if ($_SESSION['icon'] == 'info') {
-      echo '<script>
-          document.addEventListener("DOMContentLoaded", function() {
-          notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
-          });
-          </script>';
-      unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
-      unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
-    }
+    notify();
   }
-  // Consulta para obtener los clientes
+
   $sql = "SELECT id_cliente, nombres, apellidos FROM clientes";
   $result = $conectar->query($sql);
-
-  // Arreglo para almacenar los datos de los clientes
   $clientes = [];
 
-  // Verificar si hay resultados
   if ($result->num_rows > 0) {
-    // Recorrer los resultados y agregarlos al arreglo
     while ($row = $result->fetch_assoc()) {
       $clientes[] = [
         'id' => $row['id_cliente'],
@@ -77,24 +41,19 @@
       ];
     }
 
-    // Cerrar la conexión
     $conectar->close();
-
-    // Convertir los datos a formato JSON
     $clientes_json = json_encode($clientes);
   } else {
     echo "No se encontraron resultados";
   }
-
   ?>
-  <!-- Manteniendo el menú si es necesario -->
   <div class="nuevo-usuario main-content">
     <div class="titulo">
       <h3>AGENDAR CITA</h3>
     </div>
     <div class="content-info">
       <div class="content-registrar formulario">
-        <form action="../php/create_cita.php" method="POST">
+        <form action="../php/create_cita.php?origen=clientes" method="POST">
           <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
           <fieldset>
             <legend>Información de cita</legend>
@@ -105,6 +64,7 @@
             <label for="">Horario: <span>*</span></label>
             <select style="width: 100%;" required id="hora" name="hora" disabled>
               <option value="">Selecciona la hora de la cita</option>
+              <!-- Horarios -->
               <option value="10:00:00">10:00 AM</option>
               <option value="10:30:00">10:30 AM</option>
               <option value="11:00:00">11:00 AM</option>
@@ -121,30 +81,17 @@
               <option value="16:30:00">04:30 PM</option>
               <option value="17:00:00">05:00 PM</option>
             </select><br><br>
-            <!-- Motivo -->
+            </select><br><br>
+
             <label for="">Motivo: <span>*</span></label><br>
-            <textarea class="validar-espacios" style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
+            <textarea maxlength="150" class="validar-espacios" style="width: 100%;" required name="motivo" id="input-motivo"></textarea>
           </fieldset>
 
-          <fieldset>
-            <legend>Información del cliente</legend>
-            <label for="buscar-cliente">Nombre:</label>
-            <input required type="text" id="buscar-cliente" placeholder="Nombre del cliente Ej. Emiliano Euan Puc" name="nombre_cliente" autocomplete="off">
+          <input type="hidden" name="id-cliente" value="<?php echo $id_cliente ?>">
 
-            <!-- Lista de sugerencias para mostrar coincidencias -->
-            <ul id="sugerencias-clientes" class="sugerencias" style="display: none;">
-              <!-- Aquí se agregarán las opciones filtradas -->
-            </ul>
-            <!-- Envio del id escondido -->
-            <input required type="hidden" id="id-cliente" name="id-cliente">
-            <p id="error-msg" style="color: #ff4040; display: none;">Debes seleccionar un cliente válido.</p>
-          </fieldset>
-
-
-          <!-- Botones -->
           <div class="opciones-btn opciones-btn-registrar">
             <div style="width: 190px;" class="btn">
-              <a href="mostrar_citas.php">Regresar</a>
+              <a href="./portal_cliente.php">Regresar</a>
             </div>
             <button style="width: 190px;" class="btn-form" type="submit">Agendar</button>
           </div>
@@ -154,6 +101,7 @@
     </div>
   </div>
 
+  <!-- Asegurarse de que el código JavaScript no se toque -->
   <!-- JavaScript -->
   <script>
     //javascript de fecha y hora
@@ -471,11 +419,9 @@
     }
   </style>
 
-    <!-- Scripts al final del body para optimización de carga -->
-    <script src="../javascript/sweetalert2.js"></script>
-
-    <script src="../javascript/notificaciones.js" defer></script>
-    <script src="../javascript/validacion.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../javascript/notificaciones.js" defer></script>
+  <script src="../javascript/validacion.js" defer></script>
 </body>
 
 </html>
