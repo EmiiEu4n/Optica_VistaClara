@@ -128,6 +128,8 @@
                                             echo './mostrar_usuarios.php';
                                         } elseif ($origen == 'empleados') {
                                             echo './mostrar_empleados.php';
+                                        } elseif ($origen == 'perfil') {
+                                            echo './perfil_empleado.php';
                                         } elseif ($origen == 'usuariosver') {
                                             echo './ver_empleado.php?origen=usuarios&id=' . $id;
                                         } elseif ($origen == 'empleadosver') {

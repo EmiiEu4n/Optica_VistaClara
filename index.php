@@ -280,7 +280,7 @@ if (isset($_SESSION["icon"])) {
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #151e2d;
             color: white;
             padding: 10px;
             border: none;
@@ -290,7 +290,7 @@ if (isset($_SESSION["icon"])) {
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #8577ED;
         }
 
         /* Estilos responsivos */
@@ -365,7 +365,7 @@ if (isset($_SESSION["icon"])) {
                         </span>
                     </div>
 
-                    <a href="">¿Olvidaste tu contraseña?</a><br>
+                    <a href="#" onclick="openModal('ModalContrasena')">¿Olvidaste tu contraseña?</a><br>
                     <br>
                     <!-- Boton -->
                     <button class="btn-form">Iniciar Sesión</button>
@@ -373,20 +373,20 @@ if (isset($_SESSION["icon"])) {
                 <hr>
                 <!-- Botón para abrir el modal -->
                 <div class="content-btn-modal">
-                    <button class="open-modal-btn" onclick="openModal()">Registrar Cliente</button>
+                    <button class="open-modal-btn" onclick="openModal('myModal')">Registrar Cliente</button>
                 </div>
                 <!-- <div class="button-container"><a id="myBtn" href="">Crear cuenta nueva</a></div> -->
             </div>
         </div>
     </div>
 
-    <!-- El modal -->
+    <!-- El modal registrarse -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" onclick="closeModal('myModal')">&times;</span>
             <h2>Registro de Cliente</h2>
             <form id="registerForm" method="post" action="./php/create_cliente.php?origen=index">
-                <label for="email">Correo Electrónico:¨<span>*</span></label>
+                <label for="email">Correo Electrónico: <span>*</span></label>
                 <input class="validar-espacios" type="email" id="email" name="correo" placeholder="Correo electrónico" required>
 
                 <label for="">Teléfono: <span>*</span></label>
@@ -433,6 +433,25 @@ if (isset($_SESSION["icon"])) {
         </div>
     </div>
 
+
+
+    
+    <!-- El modal recuperar contraseña -->
+    <div id="ModalContrasena" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('ModalContrasena')">&times;</span>
+            <h2>Restaurar contraseña</h2>
+            <form id="registerForm" action="./php/verify_correo.php"><br>
+                <!-- Campo de contraseña -->
+                <label for="">Correo electrónico<span>*</span></label>
+                <div class="password-container">
+                    <input required name="correo" type="email" placeholder="Correo electrónico registrado">
+                </div>
+
+                <button type="submit" id="submitButton">Enviar</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         //Validar espacios
@@ -487,13 +506,13 @@ if (isset($_SESSION["icon"])) {
 
         //Modal validar contraseña
         // Abre el modal
-        function openModal() {
-            document.getElementById('myModal').style.display = 'block';
+        function openModal(modal) {
+            document.getElementById(modal).style.display = 'block';
         }
 
         // Cierra el modal
-        function closeModal() {
-            document.getElementById('myModal').style.display = 'none';
+        function closeModal(modal) {
+            document.getElementById(modal).style.display = 'none';
         }
 
         // Valida la contraseña principal y verifica los requisitos

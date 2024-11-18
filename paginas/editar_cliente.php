@@ -79,7 +79,7 @@
 
                         <!-- Preescripcion -->
                         <label for="">Preescripcion <span>*</span></label><br>
-                        <textarea style="width: 700px;" placeholder="Ingresa información sobre la receta Ej. Medida de la graduación máximo 150 caracteres" required name="preescripcion" class="validar-espacios" maxlength="150"><?php echo $info['preescripcion'] ?></textarea><br>
+                        <textarea style="width: 700px;" placeholder="Ingresa información sobre la receta Ej. Medida de la graduación máximo 150 caracteres" required name="prescripcion" class="validar-espacios" maxlength="150"><?php echo $info['preescripcion'] ?></textarea><br>
                     </fieldset>
                     <!-- Verificación oculta para empleado -->
                     <!-- <fieldset>
@@ -93,7 +93,7 @@
                     </fieldset> -->
 
                     <!-- contraseña -->
-                    <label class="btn-resetear-contrasena" for="">¿El cliente NO recuerda su contraseña? <a href="#"> Cambiar contraseña</a></label><br>
+                    <!-- <label class="btn-resetear-contrasena" for="">¿El cliente NO recuerda su contraseña? <a href="#"> Cambiar contraseña</a></label><br> -->
 
                     <!-- botones -->
                     <div class="opciones-btn opciones-btn-registrar">

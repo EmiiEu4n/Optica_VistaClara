@@ -437,47 +437,46 @@ span {
 }
 
 /* css content_menu */
-
-.navbar {
-  background-color: var(--color1);
-  padding: 0 20px;
-}
-
-.navbar-container {
+.sidebar {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  height: 100vh; /* Altura completa de la ventana */
+  padding: 5px; /* Espacio alrededor del contenido */
+  background-color: var(--color1); /* Puedes ajustarlo según el diseño */
 }
 
-.navbar-logo {
-  margin-right: 20px;
-}
-
-.logo {
-  width: 60px;
+.sidebar-logo img {
+  width: 100px;
   height: auto;
 }
 
-/* Controlar posiscion */
-.navbar-menu {
-  list-style: none;
-  display: flex;
-  margin-left: auto;
+.btn-sidebar {
+  margin-bottom: 20px; /* Espacio antes del enlace "Perfil" */
 }
 
-.navbar-menu li {
-  margin-right: 20px;
+.icon-container {
+  margin-top: auto; /* Esto asegura que el enlace se quede en la parte inferior */
+  display: flex; /* Flexbox para alinear ícono y texto */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  gap: 10px; /* Espacio entre el ícono y el texto */
+  height: 50px; /* Altura del contenedor (ajusta según necesites) */
 }
 
-.navbar-menu li a {
-  color: var(--color0);
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.navbar-menu li a:hover {
+.icon-container i {
   color: var(--color2);
-  font-size: 19px;
+  font-size: 24px; /* Tamaño del ícono */
 }
+
+.icon-container a {
+  text-decoration: none; /* Quitar subrayado al enlace */
+  color: var(--color2); /* Color del texto */
+  font-size: 18px; /* Tamaño del texto */
+}
+
+
+/* Controlar la posición del enlace Perfil */
+/*  */
 
 .menu-productos {
   padding: 20px;

@@ -63,6 +63,8 @@ if ($resultado_empleado->num_rows > 0) {
 
     <!-- SweetAlert2 CSS -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <title>Dashboard</title>
 </head>
@@ -82,9 +84,14 @@ if ($resultado_empleado->num_rows > 0) {
                 <?php echo $options ?>
             </div>
 
-        </div>
+            <div class="icon-container">
+                <i class="material-icons">person</i> <!-- Ejemplo de ícono de Font Awesome -->
+                <a href="./perfil_empleado.php">Perfil</a>
+            </div>
 
+        </div>
     </div>
+
     <div class="main-content">
         <header class="header">
             <div class="btn-cerrar-sesion btn"><a href="../php/salir.php">Cerra sesión</a></div>
