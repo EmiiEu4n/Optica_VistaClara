@@ -9,6 +9,7 @@
     <!-- Material Icons para los iconos -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -51,7 +52,7 @@
                 <a href="./editar_perfil.php?origen=perfil&id=<?php echo $id; ?>" class="btn"><span class="material-icons">edit</span> Editar Perfil</a>
                 <a href="./actualizar_contrasena_cliente.php" class="btn"><span class="material-icons">password</span> Actualizar Contraseña</a>
                 <a href="../php/salir.php" class="btn"><span class="material-icons">logout</span> Cerrar Sesión</a>
-                <a href="../php/verify_correo.php?correo=<?php echo $info['correo'];?>" class="btn"><span class="material-icons">lock_reset</span> Restablecer contraseña</a>
+                <a href="../php/verify_correo.php?correo=<?php echo $info['correo']; ?>" class="btn"><span class="material-icons">lock_reset</span> Restablecer contraseña</a>
                 <a href="./portal_cliente.php" class="btn"><span class="material-icons">arrow_circle_left</span> Regresar al portal</a>
             </div>
         </div>
@@ -106,7 +107,12 @@
         }
     </script>
     <style>
+        
         body {
+
+            font-family: 'Roboto', sans-serif;
+
+
             background-image: url('https://images.pexels.com/photos/29348783/pexels-photo-29348783/free-photo-of-conjunto-de-gafas-minimalistas-sobre-fondo-blanco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
             /* Cambia esta URL por una imagen adecuada */
             background-size: cover;
@@ -200,7 +206,7 @@
         }
 
         .material-icons {
-            font-size: 16px;
+            font-size: 22px;
             color: white;
         }
 

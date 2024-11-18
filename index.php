@@ -266,7 +266,7 @@ if (isset($_SESSION["icon"])) {
             flex-direction: column;
         }
 
-        label {
+        label, p {
             margin-bottom: 5px;
             color: #333;
         }
@@ -309,7 +309,7 @@ if (isset($_SESSION["icon"])) {
         .validation-list {
             list-style: none;
             padding: 0;
-            color: red;
+            color: #F27474;
         }
 
         .validation-list li {
@@ -326,7 +326,7 @@ if (isset($_SESSION["icon"])) {
         }
 
         .invalid {
-            color: red;
+            color: #F27474;
         }
     </style>
 
@@ -373,7 +373,7 @@ if (isset($_SESSION["icon"])) {
                 <hr>
                 <!-- Botón para abrir el modal -->
                 <div class="content-btn-modal">
-                    <button class="open-modal-btn" onclick="openModal('myModal')">Registrar Cliente</button>
+                    <button class="open-modal-btn" onclick="openModal('myModal')">Registrarse</button>
                 </div>
                 <!-- <div class="button-container"><a id="myBtn" href="">Crear cuenta nueva</a></div> -->
             </div>
@@ -384,7 +384,7 @@ if (isset($_SESSION["icon"])) {
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('myModal')">&times;</span>
-            <h2>Registro de Cliente</h2>
+            <h2>Registrar nueva cuenta</h2>
             <form id="registerForm" method="post" action="./php/create_cliente.php?origen=index">
                 <label for="email">Correo Electrónico: <span>*</span></label>
                 <input class="validar-espacios" type="email" id="email" name="correo" placeholder="Correo electrónico" required>
@@ -441,11 +441,12 @@ if (isset($_SESSION["icon"])) {
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('ModalContrasena')">&times;</span>
             <h2>Restaurar contraseña</h2>
+            <p>Para poder restaurar la contraseña debes indicar el correo electrónico asociado a tu cuenta de usuario.</p>
             <form id="registerForm" action="./php/verify_correo.php"><br>
                 <!-- Campo de contraseña -->
                 <label for="">Correo electrónico<span>*</span></label>
                 <div class="password-container">
-                    <input required name="correo" type="email" placeholder="Correo electrónico registrado">
+                    <input required name="correo" type="email" placeholder="Introduce tu correo electrónico">
                 </div>
 
                 <button type="submit" id="submitButton">Enviar</button>
