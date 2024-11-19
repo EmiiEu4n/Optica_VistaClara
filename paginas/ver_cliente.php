@@ -11,6 +11,8 @@
 
     <?php include "menu_panel.php";
     require "../php/conexion.php";
+    include "../php/notificaciones.php";
+
     $id = $_GET['id'];
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
@@ -20,6 +22,13 @@
     $query = mysqli_query($conectar, $producto);
 
     $info = $query->fetch_array();
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+
     ?>
     <div class="ver-producto-content main-content">
         <div class="titulo">

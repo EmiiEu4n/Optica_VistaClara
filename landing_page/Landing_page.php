@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óptica Vista Clara</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilos_landing.css">
     <script type="text/javascript">
         function valida_enviar() {
             if (document.contenedorformulario.nombre.value.length == 0) {
@@ -87,9 +87,26 @@
 
     <!-- Contáctanos -->
     <div class="contenedor6" id="aqui5">
-        <h1>Contáctanos</h1>
+        <h1>Nuestra Ubicación</h1>
         <br>
         <div class="caja6">
+        <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29795.63750301002!2d-89.66632947276004!3d21.014485294122878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f56733863546b79%3A0xe6fc87d55bcb3859!2sBen%20%26%20Frank!5e0!3m2!1ses-419!2smx!4v1717285680631!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       
+        
+            <ul class="info">
+                <h2>Visítanos en nuestra tienda</h2><br>
+                <p>Estamos ubicados en el corazón de la ciudad,<br> fácilmente accesible por transporte público y <br> con estacionamiento cercano.</p><br>
+                <img src="../imagenes/telefono.png" alt=""><span>+34 123 456 789</span> <br>
+                <img src="../imagenes/mensaje.png" alt=""><span>info@opticavision.com </span><br>
+                <img src="../imagenes/ubicacion.png" alt=""><span>Calle Principal 123, Ciudad</span> <br>
+                <img src="../imagenes/reloj.png" alt=""><span>Lun - Vie: 9:00 - 20:00, Sáb: 10:00 - 14:00</span>
+            </ul>
+        </div>
+    </div>
+    <div class="contenedor9" id="aqui5">
+        <h1>Contáctanos</h1>
+        <br>
+        <div class="caja7">
             <form action="#" name="contenedorformulario" method="post">
                 <input type="text" name="nombre" placeholder="Nombre Completo"><br>
                 <input type="email" name="email" placeholder="Correo Electrónico"><br>
@@ -98,14 +115,7 @@
                 <input type="button"  class="Btn raise" value="Enviar" onclick="valida_enviar()">
             </form>
         </div>
-        <div class="caja6">
-            <ul>
-                <li><img src="../imagenes/telefono.png" alt="">+34 123 456 789</li>
-                <li><img src="../imagenes/mensaje.png" alt="">info@opticavision.com</li>
-                <li><img src="../imagenes/ubicacion.png" alt="">Calle Principal 123, Ciudad</li>
-                <li><img src="../imagenes/reloj.png" alt="">Lun - Vie: 9:00 - 20:00, Sáb: 10:00 - 14:00</li>
-            </ul>
-        </div>
+       
     </div>
 
     <!-- Pie de página -->

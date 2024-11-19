@@ -46,7 +46,7 @@
 
 
   // Limite de filas a mostrar
-  $limite = 10;
+  $limite = 5;
 
   // Páginas que tenemos para mostrar
   $paginas = ceil($total_filas / $limite);
@@ -75,7 +75,7 @@
     <div class="buscador-titulo">
       <form action="mostrar_usuarios.php">
         <input type="text" name="busca_nombre" value="<?php echo $nombre ?>" placeholder="Buscar por nombre del usuario">
-        <button class="btn-form" type="submit" name="buscar">Buscar </button>
+        <button class="btn-form" type="submit" >Buscar </button>
       </form>
     </div>
     
@@ -155,13 +155,23 @@
     <!-- fin -->
   </div>
   <script>
-    function validar(url, username) {
-      var eliminar = confirm("¿Estás seguro que deseas ELIMINAR el usuario: " + username + "?");
-      if (eliminar == true) {
-        window.location = url;
-      }
-    }
-  </script>
+        function validar(url, username) {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¿Estás seguro que deseas ELIMINAR al usuario: " + username + "?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#c8c8c8",
+                cancelButtonColor: "#151e2d",
+                confirmButtonText: "Sí, eliminar usuario",
+                cancelButtonText: "No, mantener"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

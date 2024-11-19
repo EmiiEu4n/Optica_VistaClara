@@ -2,20 +2,23 @@
 require './seguridad.php';
 require "./conexion.php";
 $id = addslashes($_GET['id']);
+$id_empleado = addslashes($_GET['empleado']);
 
 // Eliminar la cita en lugar de actualizar su estado
-$eliminar = "DELETE FROM citas WHERE id_cita = '$id'";
-$query = mysqli_query($conectar, $eliminar);
+$cancelar = "UPDATE citas SET estado = 'Cancelado', id_empleado = '$id_empleado', hora = null WHERE id_cita = '$id' ";
+$query = mysqli_query($conectar, $cancelar);
 
 if ($query) {
-    echo '<script>
-        alert("Cita cancelada y eliminada");
-        location.href="../paginas/mostrar_citas.php";
-    </script>';
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Cancelado!";
+    $_SESSION['sms'] = "Cita cancelada, el horario quedo libre.";
+    header("location:../paginas/mostrar_citas.php");
+    exit();
 } else {
-    echo '<script>
-        alert("Error al eliminar la cita");
-        window.history.go(-1);
-    </script>';
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se cancelo la cita!";
+    $_SESSION['sms'] = "Error: ". mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
+    exit();
 }
 ?>

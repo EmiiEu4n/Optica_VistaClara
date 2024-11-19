@@ -11,6 +11,13 @@
     <?php 
     include "menu_panel.php";
     require "../php/conexion.php";
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
     $id = $_GET['id'];

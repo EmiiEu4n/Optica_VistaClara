@@ -8,9 +8,14 @@
 </head>
 
 <body>
-<?php
+    <?php
     include "menu_panel.php";
     require "../php/conexion.php";
+    //Notificaciones
+    include "../php/notificaciones.php";
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
     $id = $_GET['id'];
     //get de origen
     $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
@@ -26,7 +31,7 @@
 
     <div class="nuevo-usuario main-content">
         <div class="titulo">
-            <h3>Proveedor: <?php echo $info['nombre']?></h3>
+            <h3>Proveedor: <?php echo $info['nombre'] ?></h3>
         </div>
 
         <div class="content-info">
@@ -47,17 +52,17 @@
 
                     </fieldset>
                     <br>
-                    
+
                     <fieldset>
                         <legend>Información del trabajador</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
                         <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['contacto'] ?>" required name="contacto" type="text" placeholder="Nombre del trabajador"><br><br>
-                        
+
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>
                         <input class="validar-espacios" pattern="[0-9]{10}" maxlength="10" title="Ejemplo: 9999123456" value="<?php echo $info['telefono'] ?>" required name="telefono" type="tel" placeholder="Número de celular (Ej. 9999123456)"><br><br>
-                        
+
                         <!-- Correo -->
                         <label for="">Correo electronico<span>*</span></label><br>
                         <input class="validar-espacios" value="<?php echo $info['correo'] ?>" required name="correo" type="email" placeholder="Correo electrónico del trabajador"><br><br>
@@ -66,7 +71,7 @@
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="<?php echo ($origen == 'proveedores')? './mostrar_proveedores.php':'./ver_proveedor.php?id=' . $id?>">Regresar</a>
+                            <a href="<?php echo ($origen == 'proveedores') ? './mostrar_proveedores.php' : './ver_proveedor.php?id=' . $id ?>">Regresar</a>
                         </div>
                         <button class="btn-form">Guardar</button>
                     </div><br><br>

@@ -18,13 +18,12 @@ $direccion = addslashes($_POST['direccion']);
 $verificar_empresa = mysqli_query($conectar, "SELECT * FROM proveedores WHERE nombre = '$nombre'");
 
 if(mysqli_num_rows($verificar_empresa)){
-    echo '
-    <script>
-    alert("Esta empresa [ '.$nombre.' ] ya esta registrada.");
-    window.history.go(-1);
-    </script>
-    ';
-    exit();
+    session_start();
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se registro la empresa!";
+    $_SESSION['sms'] = "La empresa ingresada ($nombre) ya esta dado de alta en el sistema.";
+    echo '<script> window.history.go(-1); </script>';
+    exit(); 
 }
 
 
@@ -34,17 +33,18 @@ $insert  = "INSERT INTO  proveedores (nombre, contacto, correo, telefono, direcc
 $query = mysqli_query($conectar, $insert);
 
 if($query){
-    echo '<script>
-    alert("Los datos se registraron correctamente")
-    location.href="../paginas/mostrar_proveedores.php";
-    </script>';
+    session_start();
+    $_SESSION['icon'] = "success";
+    $_SESSION['titulo'] = "¡Empresa registrada!";
+    $_SESSION['sms'] = "Se registro una nueva empresa en el sistema.";
+    header("location:../paginas/mostrar_proveedores.php");
+    exit();
 }else{
-    echo'
-    <script>
-    alert("ERROR: Fallo el resgitro de los datos en la base de datos");
-    window.history.go(-1);
-    </script>
-    ';
+    session_start();
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se registro los datos de la empresa!";
+    $_SESSION['sms'] = "Error: ". mysqli_error($conectar);
+    echo '<script> window.history.go(-1); </script>';
 }
 
 ?>

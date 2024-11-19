@@ -9,9 +9,16 @@
 
 <body>
     <?php include "menu_panel.php";
-    if($_SESSION['rol'] != 'Administrador'){
+    if ($_SESSION['rol'] != 'Administrador') {
         header("Location: ../paginas/dashboard.php");
-     }
+    }
+    
+    //Notificaciones
+    include "../php/notificaciones.php";
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    
     ?>
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -28,33 +35,35 @@
                         <legend>Información del empleado</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input value="<?php if(isset($nombres)){ echo $nombres;} ?>" pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
+                        <input class="validar-espacios" value="<?php if (isset($nombres)) {
+                                                                    echo $nombres;
+                                                                } ?>" pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos del empleado Ej.Escamilla Gonzalez"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos del empleado Ej.Escamilla Gonzalez"><br><br>
 
                         <!-- Domicilio-->
                         <label for="">Domicilio<span>*</span></label><br>
-                        <input required name="direccion" type="text" placeholder="Ingrese la dirección del empleado"><br><br>
+                        <input class="validar-espacios" required name="direccion" type="text" placeholder="Ingrese la dirección del empleado"><br><br>
                     </fieldset>
                     <fieldset>
                         <legend>Contactos del empleado</legend>
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>
-                        <input pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular Ej.9999123456"><br><br>
+                        <input class="validar-espacios" pattern="[0-9]{10}" title="Ejemplo: 9999123456" maxlength="10" required name="telefono" type="tel" placeholder="Ingresa el numero celular Ej.9999123456"><br><br>
 
                         <!-- Correo -->
                         <label for="">Correo<span>*</span></label><br>
-                        <input required name="correo" type="text" placeholder="Escribe el correo electronico Ej.empleado@empresa.com"><br><br>
+                        <input class="validar-espacios" required name="correo" type="text" placeholder="Escribe el correo electronico Ej.empleado@empresa.com"><br><br>
                     </fieldset>
 
                     <fieldset>
                         <legend>Información de trabajo</legend>
 
                         <!-- usuario -->
-                        <label  for="">Username<span>*</span></label><br>
-                        <input pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.franco"><br><br>
+                        <label for="">Username<span>*</span></label><br>
+                        <input class="validar-espacios" pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.franco"><br><br>
 
                         <!-- roles-->
                         <label for="">Rol<span>*</span></label><br>
@@ -68,12 +77,12 @@
 
                         <!-- fecha de contratacion -->
                         <label for="">Fecha de contratación<span>*</span></label><br>
-                        <input required name="fecha" type="date"><br><br>
+                        <input class="validar-espacios" required name="fecha" type="date"><br><br>
 
 
                         <!-- contraseña -->
-                        <label for="">Contraseña(Temporal)*</label><br>
-                        <input required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal del empleado"><br>
+                        <!-- <label for="">Contraseña(Temporal)*</label><br>
+                        <input class="validar-espacios" required name="contrasena" type="password" placeholder="Ingrese la contraseña temporal del empleado"><br> -->
                     </fieldset>
 
 

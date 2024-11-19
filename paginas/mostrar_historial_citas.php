@@ -10,7 +10,49 @@
 <body>
     <?php include "menu_panel.php";
     require "../php/conexion.php";
-    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado FROM citas ci INNER JOIN clientes cl on ci.id_cliente = cl.id_cliente WHERE (ci.estado = 'Cancelado' OR ci.estado = 'Terminado')";
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        if ($_SESSION['icon'] == 'success') {
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+            unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+        } else if ($_SESSION['icon'] == 'error') {
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+            unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+        } else if ($_SESSION['icon'] == 'warning') {
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+            unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+        } else if ($_SESSION['icon'] == 'info') {
+            echo '<script>
+                document.addEventListener("DOMContentLoaded", function() {
+                notificacion("' . $_SESSION['titulo'] . '", "' . $_SESSION['sms'] . '", "' . $_SESSION['icon'] . '");
+                });
+                </script>';
+            unset($_SESSION['icon']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['titulo']); // Elimina la variable de sesión después de usarla
+            unset($_SESSION['sms']); // Elimina la variable de sesión después de usarla
+        }
+    }
+
+    //Consulta de datos
+    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado FROM citas ci INNER JOIN clientes cl on ci.id_cliente = cl.id_cliente WHERE (ci.estado = 'Terminado' OR ci.estado = 'Cancelado')";
     // [Busqueda]
     // Inicializar variables
     $filtro = "";
@@ -18,7 +60,7 @@
 
     // Verificar si se hizo una búsqueda
     if (isset($nombre) && strlen($nombre) > 1) {
-        $filtro = "AND cl.nombres LIKE '%$nombre%' ORDER BY cl.nombres ASC";
+        $filtro = " AND cl.nombres LIKE '%$nombre%' ORDER BY cl.nombres ASC";
         $datos .= $filtro;
     }
 
@@ -55,16 +97,15 @@
 
     <div class="usuarios-content main-content">
         <div class="titulo">
-            <h3>TABLA DE CITAS</h3>
+            <h3>HISTORIAL DE CITAS</h3>
         </div>
 
-        
         <div class="opciones-btn">
             <div class="btn-nuevo-cliente btn">
                 <a href="./mostrar_citas.php">Regresar</a>
             </div>
             <div class="btn-nuevo-cliente btn">
-                <a href="./mostrar_historial_citas.php">Ver todos</a>
+                <a href="./mostrar_historial_citas.php">Tabla completa</a>
             </div>
         </div><br>
         <!-- Buscador -->
@@ -80,8 +121,7 @@
             <ul class="pagination-list">
                 <!-- Anterior -->
                 <li class="pag-item <?php echo ($pagina <= 1) ? 'disable' : ''; ?>">
-                    <a href="./mostrar_historial_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
-                                                        echo $concatparams; ?>">Anterior</a>
+                    <a href="./mostrar_historial_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1; echo $concatparams; ?>">Anterior</a>
                 </li>
 
                 <!-- Páginas -->
@@ -105,15 +145,18 @@
                 <th>ID</th>
                 <th>Cliente</th>
                 <th>Fecha</th>
-                <th>Hora</th>
+                <!-- <th></th> -->
                 <th>Estado</th>
-                <th>VER</th>
+                <th>Ver</th>
                 <!-- <th>EDITAR</th> -->
-                <th>ELIMINAR</th>
+                <th>Eliminar</th>
             </tr>
 
             <?php
-
+            if ($total_filas == 0) {
+                // Si no hay resultados, mostrar mensaje dentro de una fila y celda de la tabla
+                echo '<tr><td colspan="8">No hay resultados...</td></tr>';
+            }
 
             while ($fila = mysqli_fetch_assoc($resultado)) {
             ?>
@@ -132,17 +175,17 @@
                             // Mostrar la fecha formateada
                             echo $fecha_formateada;
                             ?></td>
-                    <td><?php
+                    <!-- <td><?php
                         // Obtener la hora de la fila
                         $hora = $fila['hora'];
                         // Formatear la hora de 24h a 12h con AM/PM
                         $hora_formateada = date("g:i A", strtotime($hora));
                         // Mostrar la hora formateada
                         echo $hora_formateada;
-                        ?></td>
+                        ?></td> -->
                     <td><?php echo $fila['estado']; ?></td>
                     <!-- Ver -->
-                    <td class="btn-ver"> <a href="../paginas/ver_cita.php?id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
+                    <td class="btn-ver"> <a href="../paginas/ver_cita.php?origen=citas&id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a></td>
                     <!-- Editar -->
                     <!-- <td class="btn-editar"> <a href="../paginas/editar_cita.php?id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/edit.png" alt=""></a></td> -->
                     <!-- Eliminar -->
@@ -151,6 +194,7 @@
                             <img src="../imagenes/borrar.png" alt="">
                         </a>
                     </td>
+
                 </tr>
             <?php
             }
@@ -162,12 +206,33 @@
     </div>
     <script>
         function validar(url, username) {
-            var eliminar = confirm("¿Estás seguro que deseas ELIMINAR la cita del cliente: " + username + "?");
-            if (eliminar == true) {
-                window.location = url;
-            }
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¿Estás seguro que deseas ELIMINAR la cita del cliente: " + username + "?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#c8c8c8",
+                cancelButtonColor: "#151e2d",
+                confirmButtonText: "Sí, eliminar cita",
+                cancelButtonText: "No, mantener"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
         }
     </script>
+    <style>
+        .swal2-confirm:focus {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .swal2-cancel:focus {
+            background-color: #FF5733;
+            color: white;
+        }
+    </style>
 </body>
 
 </html>

@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <div style="display: flex; justify-content: 'center';">
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftienda.semex.com.mx%2Fproducts%2Fsenal-de-hombre-trabajando&psig=AOvVaw07Haw5phdGpYkJMv6jO8s_&ust=1729567333335000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjdwdbCnokDFQAAAAAdAAAAABAE" alt="" style="width: 190px;">
+    <?php
+    include "../php/notificaciones.php";
+    //Notificaciones
+    session_start();
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    ?>
+    <div style="margin: auto;">
+        <div style="width: 150px;">
+            <img src="https://www.senaleticaec.com/wp-content/uploads/2022/12/Sin-titulo-10.png" alt="NAda" style="width: 190px;"><br>
+            <a href="../php/salir.php">Salir</a>
+            <a href="../paginas/registrar_cita_cliente.php">Registrar cita</a>
+            <a href="../paginas/perfil_cliente.php">Perfil</a>
+
+            <!-- <?php
+                    session_start();
+
+                    echo $_SESSION['id_cliente'] . "<br>";
+                    echo $_SESSION['nombre_cliente'] . "<br>";
+                    echo $_SESSION['verificado'] . "<br>";
+                    echo $_SESSION['rol_cliente'] . "<br>";
+                    echo $_SESSION['cliente_autentificado'] . "<br>";
+                    ?> -->
+        </div>
+
     </div>
+    <script src="../javascript/sweetalert2.js"></script>
+    <script src="../javascript/notificaciones.js" defer></script>
 </body>
+
 </html>

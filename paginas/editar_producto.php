@@ -8,7 +8,15 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php"; ?>
+    <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
+
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    }
+    ?>
     <!-- Manteniendo el menú si es necesario -->
     <div class="nuevo-usuario main-content">
         <div class="titulo">
@@ -35,7 +43,7 @@
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Nombre" value="<?php echo $info_prod['producto'] ?>"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Nombre" value="<?php echo $info_prod['producto'] ?>"><br><br>
                         <!-- Categoria -->
                         <label for="">Categoría<span>*</span></label><br>
                         <select style="width: 100%;" required name="id_categoria">
@@ -61,7 +69,7 @@
 
 
                         <!-- Precio -->
-                        <label  for="">Precio<span>*</span></label><br>
+                        <label for="">Precio<span>*</span></label><br>
                         <label for="">$</label><input style="width: 98%;" required min="0" name="precio" type="number" placeholder="" value="<?php echo $info_prod['precio'] ?>"><br><br>
                     </fieldset>
 
@@ -69,7 +77,7 @@
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea style="width: 100%;" required name="descripcion" rows="3" placeholder="Escribe una breve descripción" value=""><?php echo $info_prod['descripcion'] ?></textarea><br><br>
+                        <textarea class="validar-espacios" style="width: 100%;" required name="descripcion" rows="3" placeholder="Escribe una breve descripción" value=""><?php echo $info_prod['descripcion'] ?></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <!-- <label for="stock">Stock<span>*</span></label><br> -->
@@ -108,7 +116,7 @@
                     <!-- Botones -->
                     <div class="opciones-btn opciones-btn-registrar">
                         <div class="btn">
-                            <a href="<?php echo ($origen == 'productos')? './mostrar_productos.php':'./ver_producto.php?id=' . $id?>">Regresar</a>
+                            <a href="<?php echo ($origen == 'productos') ? './mostrar_productos.php' : './ver_producto.php?id=' . $id ?>">Regresar</a>
                         </div>
                         <input type="hidden" name="id_producto" value="<?php echo $info_prod['id_producto'] ?>">
                         <button class="btn-form" type="submit">Guardar</button>

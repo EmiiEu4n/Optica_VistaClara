@@ -8,7 +8,13 @@
 </head>
 
 <body>
-    <?php include "menu_panel.php" ?>
+    <?php include "menu_panel.php";
+    include "../php/notificaciones.php";
+
+    //Notificaciones
+    if (isset($_SESSION["icon"])) {
+        notify();
+    } ?>
 
     <div class="ver-producto-content main-content">
         <div class="titulo">
@@ -31,14 +37,14 @@
             ?>
             <div class="info formulario">
                 <!-- informacion del producto -->
-                <fieldset  style="width: 730px;" disabled = "disable">
+                <fieldset style="width: 730px;" disabled="disable">
                     <div class="imagen-prod">
                         <img src="<?php echo "$fila[img]" ?>" alt="nada">
                     </div>
                     <legend>Imagen del producto</legend>
-                    
+
                 </fieldset>
-                <fieldset disabled = "disable">
+                <fieldset disabled="disable">
                     <legend>Información del producto</legend>
                     <!-- Nombres -->
                     <label for="">Nombre:</label>

@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* Colores */
+:root {
+  --color0: #ffffff;
+  --color1: #c8ccca;
+  --color2: #151e2d;
+  --color3: #a7afb6;
+  --color4: #53504a;
+}
+
+/* font */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  /* Hack para box model */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto";
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  height: 100vh;
+  margin: 0;
+}
+
+/* css generico*/
+.ancho {
+  width: 1200px;
+  margin: auto;
+}
+
+.centrar {
+  text-align: center;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 10px 20px;
+  /* margin-left: 250px; */
+}
+
+.titulo {
+  width: 450px;
+  text-align: center;
+  margin: auto;
+  background-color: var(--color2);
+  padding: 5px;
+  color: var(--color0);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.content-info {
+  display: flex;
+  justify-content: center;
+}
+
+.content-registrar textarea {
+  width: 400px;
+}
+
+.formulario {
+  padding: 10px 10px;
+}
+
+.formulario input {
+  border: none;
+  border-bottom: var(--color1) solid 1px;
+  outline: none;
+  padding: 0 5px;
+  width: 700px;
+}
+
+fieldset {
+  width: 400px;
+}
+
+.formulario select {
+  border: none;
+  border-bottom: var(--color1) solid 1px;
+  outline: none;
+  padding: 0 5px;
+  width: 400px;
+}
+
+.formulario button {
+  background-color: var(--color3);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  color: var(--color2);
+  font-weight: bold;
+}
+
+.formulario label {
+  font-weight: bold;
+}
+
+.formulario textarea {
+  font-family: "Roboto";
+  padding: 5px;
+  width: 100%;
+  height: 85px;
+  resize: none;
+}
+
+.formulario {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario label span {
+  color: red;
+}
+
+.opciones-btn {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.opciones-btn-registrar {
+  justify-content: center;
+  width: 400px;
+  margin: auto;
+  margin-top: 30px;
+  gap: 50px;
+}
+
+/* css de ver_cliente*/
+.opciones-btn-ver {
+  margin: auto;
+  justify-content: center;
+  width: 350px;
+}
+
+.btn-form {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+
+.btn-form:hover {
+  color: var(--color0);
+  background-color: var(--color2);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  width: 110px;
+  height: 30px;
+  background-color: var(--color3);
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: var(--color2);
+  font-size: 17;
+}
+
+.btn a:hover {
+  color: var(--color0);
+  font-size: 18px;
+}
+
+.btn a {
+  display: flex;
+  color: var(--color2);
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  transition: 0.4s ease-out;
+  align-items: center;
+}
+
+/* Media Queries para Responsividad */
+
+/* Para dispositivos pequeños, como teléfonos móviles */
+@media (max-width: 768px) {
+  html {
+    font-size: 50%; /* Ajusta el tamaño base de la fuente */
+  }
+
+  .ancho {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .titulo {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.6rem;
+  }
+
+  .formulario input,
+  .formulario select,
+  .formulario textarea {
+    width: 100%;
+  }
+
+  .formulario {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .opciones-btn {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .btn-form,
+  .btn {
+    width: 100%;
+    height: 40px;
+  }
+
+  .opciones-btn-registrar {
+    width: 100%;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .content-info {
+    flex-direction: column;
+  }
+}
+
+/* Para pantallas medianas (tablets y laptops) */
+@media (max-width: 1024px) {
+  .ancho {
+    width: 90%;
+  }
+
+  .formulario input,
+  .formulario select,
+  .formulario textarea {
+    width: 100%;
+  }
+
+  .titulo {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    height: 40px;
+  }
+}
+
+/* Para pantallas grandes (computadoras de escritorio) */
+@media (min-width: 1025px) {
+  .ancho {
+    width: 1200px;
+  }
+
+  .formulario input,
+  .formulario select,
+  .formulario textarea {
+    width: 700px;
+  }
+
+  .btn {
+    width: 150px;
+  }
+}
