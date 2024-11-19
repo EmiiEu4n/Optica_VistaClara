@@ -37,27 +37,27 @@
         <form action="../php/update_cliente.php?origen=clientes" method="POST" class="form" novalidate>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input value="<?php echo $info['nombres'] ?>" type="text" id="nombre" name="nombres" placeholder="Ingresa el nombre" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
+                <input class="validar-espacios" value="<?php echo $info['nombres'] ?>" type="text" id="nombre" name="nombres" placeholder="Ingresa el nombre" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input value="<?php echo $info['apellidos'] ?>" type="text" id="apellido" name="apellidos" placeholder="Ingresa el apellido" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
+                <input class="validar-espacios" value="<?php echo $info['apellidos'] ?>" type="text" id="apellido" name="apellidos" placeholder="Ingresa el apellido" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
             </div>
             <div class="form-group">
                 <label for="correo">Correo Electrónico:</label>
-                <input value="<?php echo $info['correo'] ?>" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico" required>
+                <input class="validar-espacios" value="<?php echo $info['correo'] ?>" type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico" required>
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input value="<?php echo $info['telefono'] ?>" type="tel" id="telefono" name="telefono" placeholder="Ingresa el número telefónico" required pattern="[0-9]{10}" maxlength="10" title="Ingresa un número de teléfono válido de 10 dígitos Ej.9999123456">
+                <input class="validar-espacios" value="<?php echo $info['telefono'] ?>" type="tel" id="telefono" name="telefono" placeholder="Ingresa el número telefónico" required pattern="[0-9]{10}" maxlength="10" title="Ingresa un número de teléfono válido de 10 dígitos Ej.9999123456">
             </div>
             <div class="form-group">
                 <label for="direccion">Dirección:</label>
-                <input value="<?php echo $info['direccion'] ?>" type="text" id="direccion" name="direccion" placeholder="Ingresa la dirección" required>
+                <input class="validar-espacios" value="<?php echo $info['direccion'] ?>" type="text" id="direccion" name="direccion" placeholder="Ingresa la dirección" required>
             </div>
             <div class="form-group">
                 <label for="prescripcion">Prescripción medica:</label>
-                <textarea style="font-family:Arial, Helvetica, sans-serif;" id="prescripcion" name="prescripcion" rows="4" placeholder="Escribe la prescripción médica" required><?php echo $info['preescripcion'] ?></textarea>
+                <textarea class="validar-espacios" style="font-family:Arial, Helvetica, sans-serif;" id="prescripcion" name="prescripcion" rows="4" placeholder="Escribe la prescripción médica" required><?php echo $info['preescripcion'] ?></textarea>
             </div>
 
             <!-- Enviar ID -->
