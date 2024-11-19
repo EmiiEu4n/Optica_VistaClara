@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Óptica Vista Clara</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilos_landing.css">
     <script type="text/javascript">
         function valida_enviar() {
             if (document.contenedorformulario.nombre.value.length == 0) {
