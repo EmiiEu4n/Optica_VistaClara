@@ -55,11 +55,11 @@
                         <legend>Información del empleado</legend>
                         <!-- Nombre -->
                         <label for="">Nombre(s)<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['nombres']; ?>" required name="nombres" type="text" placeholder="Ingrese el/los nombres del empleado Ej. José Miguel"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" value="<?php echo $info['nombres']; ?>" required name="nombres" type="text" placeholder="Ingrese el/los nombres del empleado Ej. José Miguel"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['apellidos']; ?>" required name="apellidos" type="text" placeholder="Ingrese los apellidos del empleado Ej. Perez González"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" value="<?php echo $info['apellidos']; ?>" required name="apellidos" type="text" placeholder="Ingrese los apellidos del empleado Ej. Perez González"><br><br>
 
                         <!-- Domicilio-->
                         <label for="">Domicilio<span>*</span></label><br>

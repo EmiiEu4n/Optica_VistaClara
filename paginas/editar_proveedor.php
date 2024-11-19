@@ -57,7 +57,7 @@
                         <legend>Información del trabajador</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" value="<?php echo $info['contacto'] ?>" required name="contacto" type="text" placeholder="Nombre del trabajador"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" value="<?php echo $info['contacto'] ?>" required name="contacto" type="text" placeholder="Nombre del trabajador"><br><br>
 
                         <!-- Telefono -->
                         <label for="">Telefono<span>*</span></label><br>

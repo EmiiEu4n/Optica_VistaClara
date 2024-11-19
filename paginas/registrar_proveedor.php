@@ -41,7 +41,7 @@
                         <legend>Información del trabajador de la empresa</legend>
                         <!-- Nombre del trabajador -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" required name="contacto" type="text" placeholder="Nombre del trabajador"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" required name="contacto" type="text" placeholder="Nombre del trabajador"><br><br>
                         <!-- telefono del trabajador-->
                         <label for="">Teléfono<span>*</span></label><br>
                         <input class="validar-espacios" id="telefono" pattern="[0-9]{10}" maxlength="10" required placeholder="Número de celular (Ej. 9999123456)" title="Ejemplo: 9999123456" name="telefono" type="tel"><br><br>

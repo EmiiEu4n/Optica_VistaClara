@@ -37,11 +37,11 @@
         <form action="../php/update_cliente.php?origen=clientes" method="POST" class="form" novalidate>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input value="<?php echo $info['nombres'] ?>" type="text" id="nombre" name="nombres" placeholder="Ingresa el nombre" required pattern="[a-zA-Z\s]+" title="Solo letras y espacios permitidos">
+                <input value="<?php echo $info['nombres'] ?>" type="text" id="nombre" name="nombres" placeholder="Ingresa el nombre" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input value="<?php echo $info['apellidos'] ?>" type="text" id="apellido" name="apellidos" placeholder="Ingresa el apellido" required pattern="[a-zA-Z\s]+" title="Solo letras y espacios permitidos">
+                <input value="<?php echo $info['apellidos'] ?>" type="text" id="apellido" name="apellidos" placeholder="Ingresa el apellido" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">
             </div>
             <div class="form-group">
                 <label for="correo">Correo Electrónico:</label>

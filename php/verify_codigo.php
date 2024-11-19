@@ -3,8 +3,16 @@ require "./conexion.php";
 //Recibir datos
 session_start();
 $correo = addslashes($_SESSION['correo_electronico']);
-$codigo = addslashes($_POST['codigo']);
 
+// Recibirás un array en $_POST['codigo']
+$codigoArray = $_POST['codigo'];
+
+// Convertir el array en una sola cadena
+$codigo = implode('', $codigoArray);
+
+// // Ahora $codigo contiene el código completo ingresado
+// echo "El código ingresado es: " . $codigo;
+// exit();
 // Consulta para buscar en la tabla empleados
 $query_empleado = "SELECT * FROM empleados WHERE (correo = ? AND codigo_empleado = ?) LIMIT 1";
 $consulta_empleado = $conectar->prepare($query_empleado);
@@ -18,7 +26,7 @@ if ($resultado_empleado->num_rows > 0) {
     //Preparar variables de seguridad
     $_SESSION['codigoVerificado'] = "SI";
     //Desactivar la anterior variable
-    unset($_SESSION['correoEnviado']);
+    // unset($_SESSION['correoEnviado']);
 
     //Redireccion
     $url = "../paginas/restablecer_contraseña.php";
@@ -38,7 +46,7 @@ if ($resultado_empleado->num_rows > 0) {
         //Preparar variables de seguridad 
         $_SESSION['codigoVerificado'] = "SI";
         //Desactivar la anterior variable
-        unset($_SESSION['correoEnviado']);
+        // unset($_SESSION['correoEnviado']);
         $url = "../paginas/restablecer_contraseña.php";
         header("Location: " . $url);
         exit();

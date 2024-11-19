@@ -103,6 +103,11 @@ if ($origen == 'empleados') {
     session_start();
     $correo = $_SESSION['correo_electronico'];
     $tabla = $_SESSION['tabla'];
+    if ($tabla == "clientes") {
+        $campo_codigo = "codigo_cliente";
+    } else {
+        $campo_codigo = "codigo_empleado";
+    }
 
     // echo $correo;
     // echo $tabla;
@@ -116,12 +121,20 @@ if ($origen == 'empleados') {
 
     // Ejecuta la consulta
     if ($stmt->execute()) {
-        // Redirige si la actualización fue exitosa
-        header("Location: ../index.php");
+        //Resetear el codigo
+        $stmt = $conectar->prepare("UPDATE $tabla SET $campo_codigo = null WHERE correo = ?");
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
         //Desactivar variables de session
-        unset($_SESSION['verificarCodigo']);
+        unset($_SESSION['correoEnviado']);
+        unset($_SESSION['codigoVerificado']);
         unset($_SESSION['correo_electronico']);
         unset($_SESSION['tabla']);
+        // Redirige si la actualización fue exitosa
+        $_SESSION['icon'] = "success";
+        $_SESSION['titulo'] = "¡Actualización Exitosa!";
+        $_SESSION['sms'] = "Tu contraseña se ha restablecido exitosamente. ¡Enhorabuena!";
+        header("Location: ../index.php");
     } else {
         // Manejar el error si ocurre
         echo "Error al actualizar la contraseña.";

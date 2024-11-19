@@ -52,7 +52,7 @@
                     <a href="../paginas/editar_empleado.php?origen=perfil&id=<?php echo $id;?>" class="btn"><span class="material-icons">edit</span> Editar Perfil</a>
                     <a href="./actualizar_contrasena.php" class="btn"><span class="material-icons">password</span> Actualizar Contraseña</a>
                     <a href="../php/salir.php" class="btn"><span class="material-icons">logout</span> Cerrar Sesión</a>
-                    <a href="../php/verify_correo.php?correo=<?php echo $info['correo'];?>" class="btn"><span class="material-icons">lock_reset</span> Restablecer contraseña</a>
+                    <!-- <a href="../php/verify_correo.php?correo=<?php echo $info['correo'];?>" class="btn"><span class="material-icons">lock_reset</span> Restablecer contraseña</a> -->
                 </div>
             </div>
         </div>

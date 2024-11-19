@@ -49,12 +49,12 @@
                         <legend>Información del cliente</legend>
                         <!-- nombre -->
                         <label for="">Nombre(s) <span>*</span></label><br>
-                        <input pattern="[a-zA-Z\s]{3,254}" required id="nombre" name="nombres" type="text" placeholder="Ingrese el nombre Ej. José Miguel" value="<?php echo $info['nombres'] ?>" class="validar-espacios"><br><br>
+                        <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" required id="nombre" name="nombres" type="text" placeholder="Ingrese el nombre Ej. José Miguel" value="<?php echo $info['nombres'] ?>" class="validar-espacios"><br><br>
 
 
                         <!-- apellidos -->
                         <label for="">Apellidos <span>*</span></label><br>
-                        <input pattern="[a-zA-Z\s]{4,254}" required id="apellido" name="apellidos" type="text" placeholder="Ingresa los apellidos Ej. Perez González" value="<?php echo $info['apellidos'] ?>" class="validar-espacios"><br><br>
+                        <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" required id="apellido" name="apellidos" type="text" placeholder="Ingresa los apellidos Ej. Perez González" value="<?php echo $info['apellidos'] ?>" class="validar-espacios"><br><br>
 
                         <!-- direccion -->
                         <label for="">Domicilio <span>*</span></label><br>

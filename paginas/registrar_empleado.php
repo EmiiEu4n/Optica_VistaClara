@@ -37,11 +37,11 @@
                         <label for="">Nombre(s)<span>*</span></label><br>
                         <input class="validar-espacios" value="<?php if (isset($nombres)) {
                                                                     echo $nombres;
-                                                                } ?>" pattern="[a-zA-Z\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
+                                                                } ?>" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" required name="nombres" type="text" placeholder="Escribe el/los nombres del empleado Ej. José Francisco"><br><br>
 
                         <!-- Apellido -->
                         <label for="">Apellidos<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos del empleado Ej.Escamilla Gonzalez"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" required name="apellidos" type="text" placeholder="Escribe los apellidos del empleado Ej.Escamilla Gonzalez"><br><br>
 
                         <!-- Domicilio-->
                         <label for="">Domicilio<span>*</span></label><br>
@@ -63,7 +63,7 @@
 
                         <!-- usuario -->
                         <label for="">Username<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z]{3,254}" title="NO usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.franco"><br><br>
+                        <input class="validar-espacios" pattern="[a-zA-Z]{3,254}" title="No usar espacios y numeros Ejemplo: emiliano" required name="username" type="text" placeholder="Ingrese el username Ej.franco"><br><br>
 
                         <!-- roles-->
                         <label for="">Rol<span>*</span></label><br>

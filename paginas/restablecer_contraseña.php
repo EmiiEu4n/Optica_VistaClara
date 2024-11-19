@@ -13,7 +13,7 @@
 <body>
     <?php 
         session_start();
-        if (!isset($_SESSION['codigoVerificado']) && $_SESSION['codigoVerificado'] != "SI") {
+        if (!isset($_SESSION['codigoVerificado']) || $_SESSION['codigoVerificado'] != "SI") {
             header("Location: ./pagina_verificacion.php");
             exit();
         }

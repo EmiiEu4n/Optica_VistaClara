@@ -393,10 +393,10 @@ if (isset($_SESSION["icon"])) {
                 <input class="validar-espacios" pattern="[0-9]{10}" maxlength="10" type="texto" name="telefono" placeholder="Número celular" required>
 
                 <label for="">Nombre(s): <span>*</span></label>
-                <input pattern="[a-zA-Z\s]{3,254}" class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel" required>
+                <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" class="validar-espacios" name="nombres" type="text" placeholder="Escribe su nombre Ej. José Miguel" required>
 
                 <label for="">Apellidos: <span>*</span></label>
-                <input pattern="[a-zA-Z\s]{4,254}" class="validar-espacios" required name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González">
+                <input pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" class="validar-espacios" required name="apellidos" type="text" placeholder="Escribe los apellidos Ej.Pacheco González">
 
                 <label for="">Domicilio: <span>*</span></label>
                 <input class="validar-espacios" pattern="^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\.\-\#\/\°]+$" required name="direccion" type="text" placeholder="Ingresa la direccion del domicilio" minlength="5" maxlength="150">
