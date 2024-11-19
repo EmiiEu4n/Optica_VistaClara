@@ -14,6 +14,17 @@
     scroll-behavior: smooth;
   }
   /* -----Optica---- */
+  header{
+    position: fixed; /* Fijo al viewport */
+    top: 0; /* Pegado a la parte superior */
+    left: 0;
+    width: 100%; /* Ocupar todo el ancho */
+   border: 0px red solid;
+    color: white; /* Texto blanco */
+    padding: 10px 10px; /* Espaciado interno */
+    background-color: white;
+    z-index: 1000;
+  }
   .contenedor{
     border:  1px red solid;
   }
@@ -37,10 +48,10 @@
   }
   .caja{
     border:  0px blue solid;
-    width: 400px;
+    width: 450px;
   }
   .caja1{
-    margin-left: 490px;
+    margin-left: 450px;
     margin-right: 100px;
   }
   .caja1 a{
@@ -51,11 +62,14 @@
     color: #242424;
     font-weight: bold;
     padding: 10px;
+    transition: transform 0.9s ease;
+
   }
   .caja1 a:hover{
     border: 1px var(--gris1) solid;
     background-color: var(--gris1);
-    color: var(--negro);
+    color: var(--negro); 
+    transform: scale(1.05);
   }
   .caja img{
     height: 70px;
@@ -109,7 +123,7 @@
 /* ---Producto--- */
 .contenedor4{
     border: 0px red solid;
-    height: 400px;
+    height: 500px;
     text-align: center;
 }
 .caja4{
@@ -212,16 +226,51 @@
 /* ------------------ */
 /* Ver solo un producto */
 .contenedor8{
-  border:  1px red solid;
+  border:  0px red solid;
   height: 410px;
   display: flex;
+  background-color: var(--gris1);
 }
 .caja8{
-  border:  1px blue solid;
+  border:  0px blue solid;
   height: 410px;
-  width: 500px;
+  width: 700px;
 }
 .fotopromo{
   border: 0px red solid;
   width: 230px;
+}
+.fotoven{
+  border: 0px red solid;
+  border-radius: 5px;
+  width: 410px;
+}
+/* ---------- */
+.text2{
+  color: #242424;
+  font-size: 35px;
+  margin-top: 10px;
+  font-family:'Franklin Gothic Medium', ;
+}
+.text3{
+  color: var(--azul);
+}
+.espacio{
+  padding: 50px;
+}
+.espacio2{
+  padding-left: 100px;
+  padding-top: 60px;
+}
+/* ------------ */
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.9em 0.5em -0.4em #1f2937;
+  -webkit-transform: translateY(-0.25em);
+          transform: translateY(-0.25em);
+          transform: scale(1.05);
+}
+
+.raise {
+  --hover: #333;
 }

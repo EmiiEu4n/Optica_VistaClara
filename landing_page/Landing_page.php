@@ -95,7 +95,7 @@
                 <input type="email" name="email" placeholder="Correo Electrónico"><br>
                 <input type="tel" name="celular" maxlength="10" placeholder="Teléfono"><br>
                 <textarea name="comentarios" placeholder="Mensaje"></textarea><br>
-                <input type="button" class="Btn" value="Enviar" onclick="valida_enviar()">
+                <input type="button"  class="Btn raise" value="Enviar" onclick="valida_enviar()">
             </form>
         </div>
         <div class="caja6">
