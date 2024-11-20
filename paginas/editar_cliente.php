@@ -42,7 +42,7 @@
 
         <div class="content-info">
             <div class="content-edit formulario">
-                <form action="../php/update_cliente.php" method="post">
+                <form action="../php/update_cliente.php?origen=<?php echo $origen?>" method="post">
                     <label for="">Los campos con <span>*</span> son obligatorios.</label><br>
 
                     <fieldset>

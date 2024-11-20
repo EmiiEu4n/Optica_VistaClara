@@ -34,7 +34,7 @@
     ?>
     <div class="container">
         <h2>Editar Información del Cliente</h2>
-        <form action="../php/update_cliente.php?origen=clientes" method="POST" class="form" novalidate>
+        <form action="../php/update_cliente.php?origen=perfil" method="POST" class="form" novalidate>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input class="validar-espacios" value="<?php echo $info['nombres'] ?>" type="text" id="nombre" name="nombres" placeholder="Ingresa el nombre" required pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,254}" title="Solo letras y espacios permitidos">

@@ -119,8 +119,12 @@ if ($query) {
 
     // Construir la URL de redirección correctamente
     //preguntar si el origen es clientes
-    if($origen == 'clientes'){
-        $url = "../paginas/perfil_cliente.php";
+    if ($origen == 'usuariosver' || $origen == 'usuarios') {
+        $url = "../paginas/ver_cliente.php?origen=usuarios&id=" . $id;
+        header("Location: " . $url);
+        exit();
+    }else if($origen == 'perfil'){
+        $url = "../paginas/portal_cliente.php";
         header("Location: " . $url);
         exit();
     }

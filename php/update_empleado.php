@@ -1,23 +1,5 @@
 <?php
-// $origen = $_GET['origen'];
-
-// if ($origen == 'usuarios') {
-//     echo '
-//     <script>
-//         window.onload = function() {
-//             location.href="../paginas/ver_empleado.php?origen=usuarios&id=' . $id . '&showAlert=true";
-//         }
-//     </script>';
-// }
-//  elseif ($origen == 'empleados') {
-//     header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
-// } elseif ($origen == 'usuariosver') {
-//     header("location:../paginas/ver_empleado.php?origen=usuarios&id=" . $id);
-// } elseif ($origen == 'empleadosver') {
-//     header("location:../paginas/ver_empleado.php?origen=empleados&id=" . $id);
-// }
-// exit();
-// require './seguridad.php';
+$origen = isset($_GET['origen']) ? $_GET['origen'] : "";
 require "conexion.php";
 
 // informacion antigua
@@ -157,6 +139,13 @@ if ($query) {
     $_SESSION['icon'] = "success";
     $_SESSION['titulo'] = "¡Actualizado!";
     $_SESSION['sms'] = "Se actualizó los datos del $rol exitosamente";
+
+    //Redireccion si viene de usuarios
+    if ($origen == 'usuariosver' || $origen == 'usuarios') {
+        $url = "../paginas/ver_empleado.php?origen=usuarios&id=". $id;
+        header("Location: " . $url);
+        exit();
+    }
 
     // Construir la URL de redirección correctamente
     $url = "../paginas/ver_empleado.php?id=" . $id;
