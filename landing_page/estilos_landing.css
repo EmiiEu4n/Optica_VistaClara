@@ -101,6 +101,17 @@
   .caja2 h1{
     font-size: 70px;
   }
+  .BtnAC{
+    border:  0px red solid;
+    border-radius: 5px;
+    background-color: blue;
+    padding: 10px 20px;
+    color:  var(--blanco);
+    text-decoration: none;
+    opacity: 100;
+    position: relative;
+    z-index: 1;
+  }
     /* Nuestro Servicio */
 .contenedor3{
     border:  0px red solid;
@@ -239,7 +250,7 @@
 .contenedor7{
     border: 0px red solid;
     text-align: center;
-    height: 120px;
+    height: 130px;
     background-color: var(--azul);
     color: white;
 }
@@ -259,4 +270,7 @@
 .fotopromo{
   border: 0px red solid;
   width: 230px;
+}
+.reds{
+  height: 50px;
 }

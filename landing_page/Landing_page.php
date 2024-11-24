@@ -40,6 +40,8 @@
             <h1>Tu visión, nuestra pasión</h1>
             <br>
             <h4>Descubre una nueva forma de ver el mundo con Óptica Visión Clara</h4>
+            <br>
+            <a class="BtnAC" href="">Agenda una cita</a>
         </div>
     </div>
 
