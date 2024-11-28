@@ -13,7 +13,7 @@
           <a href="<?php echo $fila['img'] ?>" target="_blank"><img class="fotopromo" src="<?php echo $fila['img'] ?>" alt=""></a>
           <p class="tex1"> <?php echo $fila['nombre'] ?> </p>
           <p> <?php echo $fila['descripcion'] ?> </p><br>
-          <a class="Btn3" href="ver_lente.php?id=<?php echo $fila['id_producto']; ?>">Ver Lente</a>
+          <!-- <a class="Btn3" href="ver_lente.php?id=<?php echo $fila['id_producto']; ?>">Ver Lente</a> -->
         </div>
         
       <?php

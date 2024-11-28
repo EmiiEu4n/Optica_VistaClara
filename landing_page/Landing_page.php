@@ -41,9 +41,11 @@
             <br>
             <h4>Descubre una nueva forma de ver el mundo con Óptica Visión Clara</h4>
             <br>
-            <a class="BtnAC" href="">Agenda una cita</a>
+            <a href="../index.php" class="BtnAC">Agendar cita</a>
         </div>
     </div>
+
+    <?php include "../landing_page/Verficar_IS.php"; ?>
 
     <!-- Servicios -->
     <div class="contenedor3" id="aqui2">
