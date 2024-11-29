@@ -1,0 +1,170 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+:root{
+    --gris: #ccc;
+    --negro: #333;
+    --azul: #1f2937;
+}
+header {
+    background-color: var(--azul);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+ h2, h3 {
+    color: var(--negro);
+}
+
+/* Estilos para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 0px solid red;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--azul);
+    color: white;
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.btn-cancelar {
+    background-color: #f44336;
+}
+
+.btn-cancelar:hover {
+    background-color: #da190b;
+}
+
+/* Estilos para el formulario */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    resize: none;
+    border-radius: 4px;
+}
+
+/* Estilos para las notificaciones */
+.notificacion {
+    background-color: #f1f1f1;
+    border-left: 5px solid var(--azul);
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.fecha-notificacion {
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        content: attr(data-label);
+        font-weight: bold;
+    }
+
+    .citas-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .citas-proximas, .citas-pasadas {
+        width: 100%;
+    }
+}

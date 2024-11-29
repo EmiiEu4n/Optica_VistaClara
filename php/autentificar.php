@@ -52,7 +52,7 @@ if ($resultado_empleado->num_rows > 0) {
     if ($resultado_cliente->num_rows > 0) {
         // El usuario es un cliente
         $info_cliente = $resultado_cliente->fetch_assoc();
-        if (!password_verify($contrasena, $info_cliente['contrasena']) and $info_cliente['verificado'] == 'False') {
+        if (password_verify($contrasena, $info_cliente['contrasena']) and $info_cliente['verificado'] == 'False') {
             // iniciar sesion
             session_start();
             //informacion del cliente

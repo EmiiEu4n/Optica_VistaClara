@@ -1,15 +1,10 @@
-<?php
-// include "seguirdad.php";
-session_start();
-$usuario = $_SESSION['nombre_cliente'];
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal del Cliente - Óptica Vista Clara</title>
-    <link rel="stylesheet" href="../cliente/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -17,8 +12,8 @@ $usuario = $_SESSION['nombre_cliente'];
         <nav>
             <ul>
                 <li><a href="#citas">Mis Citas</a></li>
-                <li><a href="../paginas/perfil_cliente.php">Mi Perfil</a></li>
-                <li><a href="../php/salir.php">Cerrar Sesión</a></li>
+                <li><a href="#perfil">Mi Perfil</a></li>
+                <li><a href="#logout">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -92,22 +87,22 @@ $usuario = $_SESSION['nombre_cliente'];
             </div>
         </section>
 
-        <!-- <section id="perfil">
+        <section id="perfil">
             <h2>Mi Perfil</h2>
             <?php
-        //   require "../php/conexion.php";
-        //   $id = $_SESSION['id_cliente'];
+          require "../php/conexion.php";
+          $id = $_GET['id'];
 
-        //   $ver_usuario = "SELECT * FROM clientes WHERE id_cliente = '$id'";
-        //   $resultado = mysqli_query($conectar, $ver_usuario);
+          $ver_usuario = "SELECT * FROM clientes WHERE id_cliente = '$id'";
+          $resultado = mysqli_query($conectar, $ver_usuario);
 
-        //   $fila = $resultado->fetch_array();
+          $fila = $resultado->fetch_array();
         //   echo $fila ["nombre"];
           ?>
             <form action="../php/update_cliente.php?origen=<?php echo $origen?>" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombres" value="php " required>
+                    <input type="text" name="nombres" value=" " required>
                 </div>
                 <div class="form-group">
                     <label for="email">Correo electrónico:</label>
@@ -123,7 +118,7 @@ $usuario = $_SESSION['nombre_cliente'];
                 </div>
                 <button type="submit" class="btn-actualizar">Actualizar Perfil</button>
             </form>
-        </section> -->
+        </section>
 
         <!-- <section id="notificaciones">
             <h2>Notificaciones</h2>
