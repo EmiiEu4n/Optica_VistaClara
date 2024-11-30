@@ -120,7 +120,7 @@
             </form>
         </section>
 
-        <!-- <section id="notificaciones">
+        <!-- <section id="notificacones">
             <h2>Notificaciones</h2>
             <div class="notificacion">
                 <p><strong>Cita actualizada:</strong> Su cita del 15/06/2023 ha sido confirmada.</p>
