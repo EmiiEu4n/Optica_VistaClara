@@ -663,3 +663,10 @@ span {
   background-color: #ff5733 !important; /* Color de fondo rojo al hacer focus */
   color: white !important; /* Color de texto blanco */
 }
+ /* mostrar_citas */
+ 
+ .opciones-citas{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }

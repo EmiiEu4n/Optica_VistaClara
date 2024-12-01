@@ -43,7 +43,7 @@ if ($resultado_empleado->num_rows > 0) {
     }
 } else {
     // Si no es empleado, busca en la tabla de clientes
-    $query_cliente = "SELECT * FROM clientes WHERE correo = ? LIMIT 1";
+    $query_cliente = "SELECT *, concat(nombres, ' ', apellidos) as nombre_cliente FROM clientes WHERE correo = ? LIMIT 1";
     $consulta_cliente = $conectar->prepare($query_cliente);
     $consulta_cliente->bind_param("s", $username);
     $consulta_cliente->execute();
@@ -57,7 +57,8 @@ if ($resultado_empleado->num_rows > 0) {
             session_start();
             //informacion del cliente
             $_SESSION['id_cliente'] = $info_cliente['id_cliente'];
-            $_SESSION['nombre_cliente'] = $info_cliente['nombres'];
+            $_SESSION['nombre_cliente'] = $info_cliente['nombre_cliente'];
+            $_SESSION['correo_cliente'] = $info_cliente['correo'];
             $_SESSION['verificado'] = $info_cliente['verificado'];
             $_SESSION['rol_cliente'] = $info_cliente['rol'];
             $_SESSION['cliente_autentificado'] = 'SI';

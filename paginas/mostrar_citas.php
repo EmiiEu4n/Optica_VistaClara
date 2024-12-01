@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     include "menu_panel.php";
     require "../php/conexion.php";
 
@@ -28,7 +28,7 @@
     $ordenFecha = isset($_GET['orden_fecha']) ? $_GET['orden_fecha'] : 'ASC';
 
     // Consulta inicial
-    $datos = "SELECT ci.id_cita, cl.nombres, cl.apellidos, ci.fecha_cita, ci.hora, ci.estado 
+    $datos = "SELECT ci.id_cita, concat(cl.nombres, ' ',cl.apellidos) as nombre_cliente, ci.fecha_cita, ci.hora, ci.estado, ci.motivo 
               FROM citas ci 
               INNER JOIN clientes cl ON ci.id_cliente = cl.id_cliente 
               WHERE 1=1";
@@ -44,7 +44,7 @@
     }
 
     // Ordenamiento por fecha
-    $datos .= " ORDER BY ci.fecha_cita $ordenFecha";
+    $datos .= " ORDER BY ci.fecha_cita $ordenFecha, ci.hora ASC";
 
     // Realizar consulta
     $resultado = mysqli_query($conectar, $datos);
@@ -79,7 +79,7 @@
                 <a href="./registrar_cliente.php?origen=citas">Registrar cliente</a>
             </div>
             <div class="btn-nuevo-cliente btn">
-                <a href="./mostrar_citas.php">Tabla completa</a>
+                <a href="./mostrar_citas.php">Ver todos</a>
             </div>
         </div><br>
 
@@ -98,31 +98,36 @@
         </div>
 
         <!-- Paginación -->
-        <nav class="pagination">
-            <ul class="pagination-list">
-                <!-- Anterior -->
-                <li class="pag-item <?php echo ($pagina <= 1) ? 'disable' : ''; ?>">
-                    <a href="./mostrar_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
-                                                    echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Anterior</a>
-                </li>
+        <div class="opciones-citas">
 
-                <!-- Páginas -->
-                <?php for ($i = 1; $i <= $paginas; $i++): ?>
-                    <li class="pag-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
-                        <a href="./mostrar_citas.php?pagina=<?php echo $i . $concatparams . '&orden_fecha=' . $ordenFecha; ?>">
-                            <?php echo $i; ?>
-                        </a>
+            <nav class="pagination">
+                <ul class="pagination-list">
+                    <!-- Anterior -->
+                    <li class="pag-item <?php echo ($pagina <= 1) ? 'disable' : ''; ?>">
+                        <a href="./mostrar_citas.php?pagina=<?php echo ($pagina > 1) ? $pagina - 1 : 1;
+                                                            echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Anterior</a>
                     </li>
-                <?php endfor; ?>
 
-                <!-- Siguiente -->
-                <li class="pag-item <?php echo ($pagina >= $paginas) ? 'disable' : ''; ?>">
-                    <a href="./mostrar_citas.php?pagina=<?php echo ($pagina < $paginas) ? $pagina + 1 : $paginas;
-                                                    echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Siguiente</a>
-                </li>
-            </ul>
-        </nav>
+                    <!-- Páginas -->
+                    <?php for ($i = 1; $i <= $paginas; $i++): ?>
+                        <li class="pag-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
+                            <a href="./mostrar_citas.php?pagina=<?php echo $i . $concatparams . '&orden_fecha=' . $ordenFecha; ?>">
+                                <?php echo $i; ?>
+                            </a>
+                        </li>
+                    <?php endfor; ?>
 
+                    <!-- Siguiente -->
+                    <li class="pag-item <?php echo ($pagina >= $paginas) ? 'disable' : ''; ?>">
+                        <a href="./mostrar_citas.php?pagina=<?php echo ($pagina < $paginas) ? $pagina + 1 : $paginas;
+                                                            echo $concatparams . '&orden_fecha=' . $ordenFecha; ?>">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="btn-nuevo-cliente btn">
+                <a target="_blank" href="../php/citas_programadas_pdf.php?busca_nombre=<?php echo $nombre ?>&filtro_estado=<?php echo $estadoSeleccionado ?>&orden_fecha=<?php echo $ordenFecha ?>">Descargar PDF</a>
+            </div>
+        </div>
         <table>
             <tr>
                 <th>ID</th>
@@ -143,23 +148,23 @@
             } else {
                 while ($fila = mysqli_fetch_assoc($resultado)) {
                     $fecha_formateada = date("j M, Y", strtotime($fila['fecha_cita']));
-                    $hora_formateada = date("g:i A", strtotime($fila['hora']));
+                    $hora_formateada = ($fila['hora'] != "") ? date("g:i A", strtotime($fila['hora'])) : "N/D";
             ?>
-                <tr>
-                    <td><?php echo $fila['id_cita']; ?></td>
-                    <td><?php echo $fila['nombres'] . " " . $fila['apellidos']; ?></td>
-                    <td><?php echo $fecha_formateada; ?></td>
-                    <td><?php echo $hora_formateada; ?></td>
-                    <td><?php echo $fila['estado']; ?></td>
-                    <td class="btn-ver">
-                        <a href="../paginas/ver_cita.php?origen=citas&id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a>
-                    </td>
-                    <td class="btn-eliminar">
-                        <a href="#" onclick="validar('../php/delete_cita.php?id=<?php echo $fila['id_cita'] ?>', '<?php echo addslashes($fila['nombres']) . ' ' . addslashes($fila['apellidos']) ?>')">
-                            <img src="../imagenes/borrar.png" alt="">
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo $fila['id_cita']; ?></td>
+                        <td><?php echo $fila['nombre_cliente'] ?></td>
+                        <td><?php echo $fecha_formateada; ?></td>
+                        <td><?php echo $hora_formateada; ?></td>
+                        <td><?php echo $fila['estado']; ?></td>
+                        <td class="btn-ver">
+                            <a href="../paginas/ver_cita.php?origen=citas&id=<?php echo $fila['id_cita']; ?>"><img src="../imagenes/ojo.png" alt=""></a>
+                        </td>
+                        <td class="btn-eliminar">
+                            <a href="#" onclick="validar('../php/delete_cita.php?id=<?php echo $fila['id_cita'] ?>', '<?php echo addslashes($fila['nombre_cliente']) ?>')">
+                                <img src="../imagenes/borrar.png" alt="">
+                            </a>
+                        </td>
+                    </tr>
             <?php
                 }
             }
@@ -190,6 +195,7 @@
             background-color: #4CAF50;
             color: white;
         }
+
         .swal2-cancel:focus {
             background-color: #FF5733;
             color: white;
