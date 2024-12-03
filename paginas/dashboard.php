@@ -87,7 +87,7 @@
     $total_citas = mysqli_fetch_assoc($result)['total'];
 
     //Citas de hoy
-    $result = mysqli_query($conectar, "SELECT COUNT(*) as total FROM citas WHERE DATE(fecha_cita) = CURDATE()");
+    $result = mysqli_query($conectar, "SELECT COUNT(*) as total FROM citas WHERE DATE(fecha_cita) = CURDATE() AND estado = 'Pendiente'");
     $citas_hoy = mysqli_fetch_assoc($result)['total'];
 
 

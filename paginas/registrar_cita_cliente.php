@@ -80,11 +80,6 @@ if (!isset($_SESSION['id_cliente'])) {
               <option value="16:00:00">04:00 PM</option>
               <option value="16:30:00">04:30 PM</option>
               <option value="17:00:00">05:00 PM</option>
-              <option value="20:00:00">08:00 PM</option>
-              <option value="20:30:00">08:30 PM</option>
-              <option value="21:00:00">09:00 PM</option>
-              <option value="21:30:00">09:30 PM</option>
-              <option value="20:00:00">12:00 PM</option>
             </select><br><br>
             </select><br><br>
 
@@ -96,7 +91,7 @@ if (!isset($_SESSION['id_cliente'])) {
 
           <div class="opciones-btn opciones-btn-registrar">
             <div style="width: 190px;" class="btn">
-              <a href="./portal_cliente.php">Regresar</a>
+              <a href="./mostrar_citas_cliente.php">Regresar</a>
             </div>
             <button style="width: 190px;" class="btn-form" type="submit">Agendar</button>
           </div>
