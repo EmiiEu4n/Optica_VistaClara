@@ -1,22 +1,31 @@
+<?php require "../php/seguridad_cliente.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Material Icons para los iconos -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Preconexión a los servidores necesarios -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- Preload de la fuente Roboto -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style">
+
+    <!-- Carga asíncrona de Material Icons y Font Awesome -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+
+    <!-- Carga de la fuente Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
 
 </head>
 
 <body>
 
     <?php
-    session_start();
     include "../php/notificaciones.php";
     include "../php/conexion.php";
 
@@ -107,14 +116,32 @@
         }
     </script>
     <style>
-        
+        :root {
+            --primary-color: #8577ED;
+            /* Color principal para los botones y fondo */
+            --hover-color: #9249d0;
+            /* Color al pasar el cursor por los botones */
+            --header-bg-color: #151e2d;
+            /* Fondo del encabezado del perfil */
+            --text-color-light: white;
+            /* Color blanco para el texto */
+            --text-color-dark: #333;
+            /* Color oscuro para los textos principales */
+            --text-color-muted: #555;
+            /* Color gris para los textos secundarios */
+            --border-color: #ccc;
+            /* Color del borde de los inputs */
+            --input-bg-color: #fff;
+            /* Fondo blanco para los inputs */
+            --btn-radius: 5px;
+            /* Radio de los bordes de los botones */
+        }
+
         body {
-
             font-family: 'Roboto', sans-serif;
-
-
-            background-image: url('https://images.pexels.com/photos/29348783/pexels-photo-29348783/free-photo-of-conjunto-de-gafas-minimalistas-sobre-fondo-blanco.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            /* Cambia esta URL por una imagen adecuada */
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)),
+                url('../imagenes/img2.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -131,7 +158,7 @@
         }
 
         .profile-card {
-            background-color: #fff;
+            background-color: var(--input-bg-color);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -141,16 +168,16 @@
         }
 
         .profile-header {
-            background-color: #a7afb6;
+            background-color: var(--header-bg-color);
             padding: 20px;
-            color: white;
+            color: var(--text-color-light);
         }
 
         .profile-image {
             width: 100px;
             height: 100px;
             border-radius: 100%;
-            border: 3px solid white;
+            border: 3px solid var(--input-bg-color);
         }
 
         .profile-header h2 {
@@ -168,12 +195,12 @@
 
         .profile-info h3 {
             margin-bottom: 15px;
-            color: #333;
+            color: var(--text-color-dark);
         }
 
         .profile-info p {
             margin-bottom: 10px;
-            color: #555;
+            color: var(--text-color-muted);
         }
 
         .profile-options {
@@ -185,29 +212,28 @@
         }
 
         .profile-options .btn {
-            background-color: #53504a;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
             text-decoration: none;
             padding: 10px 15px;
-            border-radius: 5px;
+            border-radius: var(--btn-radius);
             display: flex;
             align-items: center;
             gap: 5px;
             font-size: 14px;
             margin: 10px;
             flex: 1 1 30%;
-            /* Ajuste para que los botones se distribuyan bien en pantallas pequeñas */
             max-width: 200px;
             justify-content: center;
         }
 
         .profile-options .btn:hover {
-            background-color: #151e2d;
+            background-color: var(--hover-color);
         }
 
         .material-icons {
             font-size: 22px;
-            color: white;
+            color: var(--text-color-light);
         }
 
         @media (max-width: 768px) {
@@ -233,14 +259,26 @@
 
     <!-- Modal -->
     <style>
-        /* CSS provisto por ti */
+        :root {
+            /* Colores Globales */
+            --color-primary: #8577ED;
+            --color-primary-hover: #9249d0;
+            --color-secondary: #53504a;
+            --color-secondary-hover: #9249d0;
+            --color-background: #f4f4f4;
+            --color-white: white;
+            --color-black: #333;
+            --color-gray-light: #ccc;
+            --color-gray-dark: #8577ED;
+            --color-shadow: rgba(0, 0, 0, 0.3);
+        }
+
         body {
-            background-color: #f4f4f4;
+            background-color: var(--color-background);
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow-y: auto;
-            /* Permite scroll en el cuerpo si es necesario */
         }
 
         .content-btn-modal {
@@ -250,8 +288,8 @@
         }
 
         .open-modal-btn {
-            background-color: #8577ED;
-            color: white;
+            background-color: var(--color-primary);
+            color: var(--color-white);
             padding: 10px 30px;
             border: none;
             cursor: pointer;
@@ -260,7 +298,7 @@
         }
 
         .open-modal-btn:hover {
-            background-color: #9249d0;
+            background-color: var(--color-primary-hover);
         }
 
         .modal {
@@ -273,21 +311,18 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             overflow-y: auto;
-            /* Activa el scroll en el modal si el contenido es grande */
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--color-white);
             margin: 5% auto;
             padding: 20px;
             border-radius: 10px;
             width: 80%;
             max-width: 550px;
             max-height: 90vh;
-            /* Limita la altura para evitar que el modal se salga de la pantalla */
             overflow-y: auto;
-            /* Activa el scroll en el modal si el contenido es grande */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px var(--color-shadow);
             animation: slide-down 0.3s ease-out;
         }
 
@@ -307,13 +342,13 @@
             float: right;
             font-size: 24px;
             font-weight: bold;
-            color: #aaa;
+            color: var(--color-gray-dark);
             cursor: pointer;
         }
 
         .close-btn:hover,
         .close-btn:focus {
-            color: black;
+            color: var(--color-black);
         }
 
         form {
@@ -323,9 +358,8 @@
 
         label {
             margin-bottom: 5px;
-            color: #333;
+            color: var(--color-black);
         }
-
 
         .password-container {
             position: relative;
@@ -333,9 +367,7 @@
 
         .password-container input {
             width: 100%;
-            /* Mantiene el ancho del input dentro del contenedor */
             padding-right: 40px;
-            /* Añade espacio para el ícono */
         }
 
         .toggle-password {
@@ -344,23 +376,20 @@
             top: 37%;
             transform: translateY(-50%);
             cursor: pointer;
-            color: #333;
+            color: var(--color-black);
         }
-
-        /* fin */
-
 
         input {
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color-gray-light);
             border-radius: 5px;
             font-size: 16px;
         }
 
         button {
-            background-color: #53504a;
-            color: white;
+            background-color: var(--color-gray-dark);
+            color: var(--color-white);
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -369,7 +398,7 @@
         }
 
         button:hover {
-            background-color: #151e2d;
+            background-color: var(--color-secondary-hover);
         }
 
         /* Estilos responsivos */
@@ -384,7 +413,6 @@
             }
         }
 
-
         .password-container {
             position: relative;
             display: flex;
@@ -395,7 +423,6 @@
         .password-container input {
             width: 100%;
             padding-right: 40px;
-            /* Espacio para el ícono de la contraseña */
         }
 
         .toggle-password {

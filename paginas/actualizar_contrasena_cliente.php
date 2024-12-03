@@ -188,7 +188,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #53504a;
+            background-color: #8577ED;
             color: white;
             border: none;
             border-radius: 4px;
@@ -197,7 +197,7 @@
         }
 
         button:hover {
-            background-color: #151e2d;
+            background-color: #9249d0;
         }
 
         .validation-list {

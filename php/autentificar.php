@@ -24,6 +24,7 @@ if ($resultado_empleado->num_rows > 0) {
     if (password_verify($contrasena, $info_empleado['contrasena'])) {
         // iniciar sesion
         session_start();
+        
         // tiempo de la cookie
         $_SESSION['tiempo_expiracion'] = 60 * 10;
 
@@ -55,6 +56,13 @@ if ($resultado_empleado->num_rows > 0) {
         if (password_verify($contrasena, $info_cliente['contrasena']) and $info_cliente['verificado'] == 'False') {
             // iniciar sesion
             session_start();
+
+            // tiempo de la cookie
+            $_SESSION['tiempo_expiracion'] = 60 * 10;
+
+            //Crear la cookie de sesion
+            setcookie("sesion_iniciada", time() + $_SESSION['tiempo_expiracion'], time() + $_SESSION['tiempo_expiracion'], '/');
+
             //informacion del cliente
             $_SESSION['id_cliente'] = $info_cliente['id_cliente'];
             $_SESSION['nombre_cliente'] = $info_cliente['nombre_cliente'];

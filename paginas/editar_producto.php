@@ -22,7 +22,7 @@
         <div class="titulo">
             <h3>EDITAR PRODUCTO</h3>
         </div>
-        <!-- -----Para poder estrar de la BD ----- -->
+        <!-- -----Para poder entrar de la BD ----- -->
         <?php
         require "../php/conexion.php";
         //get de origen

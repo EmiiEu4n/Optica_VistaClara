@@ -28,7 +28,7 @@
     ?>
     <div class="ver-producto-content main-content">
         <div class="titulo">
-            <h3>Proveedor: <?php echo $info_prov['nombre'] ?></h3>
+            <h3>Proveedor: <span><?php echo $info_prov['nombre'] ?></span> </h3>
         </div>
 
 

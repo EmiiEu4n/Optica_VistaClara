@@ -30,7 +30,7 @@ class PDF extends FPDF
 
         // Título "Citas Programadas"
         $this->SetFont('Arial', 'B', 20); // Título en fuente grande y negrita
-        $this->SetTextColor(0, 102, 204); // Color azul para el título
+        $this->SetTextColor(21, 30, 45); // Color azul para el título
         $this->Cell(190, 10, 'TABLA DE CITAS', 0, 1, 'C'); // Título centrado
 
         // Línea separadora
@@ -142,7 +142,7 @@ class PDF extends FPDF
         $widths = array(60, 30, 30, 70); // Anchos de cada columna
 
         // Encabezados de la tabla
-        $this->SetFillColor(0, 102, 204);
+        $this->SetFillColor(21, 30, 45);
         $this->SetTextColor(255);
         $this->SetFont('Arial', 'B', 10);
 

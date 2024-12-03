@@ -7,29 +7,32 @@ function notificacion(title, text, icon) {
   });
 }
 
-//Cancelar
+// Cancelar
 document.addEventListener("DOMContentLoaded", () => {
-  const cancelarEnlace = document.querySelector(".cancelar-cita");
+  const cancelarEnlaces = document.querySelectorAll(".cancelar-cita");
 
-  cancelarEnlace.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevenir la acción por defecto del enlace
+  cancelarEnlaces.forEach((cancelarEnlace) => {
+    cancelarEnlace.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevenir la acción por defecto del enlace
 
-    Swal.fire({
-      title: "¿Estás seguro?",
-      text: "Se va cancelar la cita y el horario pasara a disponibilidad, ¡No podrás revertir esto!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#8c8c8c",
-      cancelButtonColor: "#151e2d",
-      confirmButtonText: "Sí, cancelar cita",
-      cancelButtonText: "No, mantener",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = cancelarEnlace.href; // Redirigir si el usuario confirma
-      }
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se va cancelar la cita y el horario pasara a disponibilidad, ¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#8c8c8c",
+        cancelButtonColor: "#151e2d",
+        confirmButtonText: "Sí, cancelar cita",
+        cancelButtonText: "No, mantener",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = cancelarEnlace.href; // Redirigir si el usuario confirma
+        }
+      });
     });
   });
 });
+
 
 //Confirmar cita
 document.addEventListener("DOMContentLoaded", () => {

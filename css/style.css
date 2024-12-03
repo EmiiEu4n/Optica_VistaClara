@@ -5,7 +5,7 @@
   --color1: #c8ccca;
   --color2: #151e2d;
   --color3: #a7afb6;
-  --color4: #53504a;
+  --color4: #8577ed;
 }
 
 /* font */
@@ -476,7 +476,6 @@ span {
 
 
 /* Controlar la posición del enlace Perfil */
-/*  */
 
 .menu-productos {
   padding: 20px;

@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+:root {
+  --gris1: #8577ED;
+  --gris2: #f3f4f6;
+  --blanco: #fff;
+  --negro: #000000;
+  --azul: #000000;
+  --transparente-negro: rgba(0, 0, 0, 0.8); /* Fondo con opacidad */
+  --azul-hover: #8577ED; /* Efecto hover del botón BtnAC */
+}
 
 * {
   box-sizing: border-box;
@@ -6,54 +14,44 @@
   padding: 0;
 }
 body {
+  margin-top: 98px;
   font-family: "Roboto";
   font-size: 16px;
   line-height: 24px;
-  color: #333;
-  max-width: 1350px;
+  color: var(--negro);
+  width: 100%;
 }
+
 html {
   scroll-behavior: smooth;
 }
 /* -----Optica---- */
 header {
-  position: fixed; /* Fijo al viewport */
-  top: 0; /* Pegado a la parte superior */
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%; /* Ocupar todo el ancho */
-  border: 0px red solid;
-  color: white; /* Texto blanco */
-  padding: 10px 10px; /* Espaciado interno */
-  background-color: white;
+  width: 100%;
+  color: var(--blanco);
+  padding: 10px 10px;
+  background-color: var(--blanco);
   z-index: 1000;
 }
 
 .contenedor {
-  border: 1px red solid;
+  border: 1px var(--rojo) solid;
 }
 .contenedor1 {
   display: flex;
   justify-content: space-between;
   background-color: var(--blanco);
 }
-/* ---Color--- */
-:root {
-  --gris1: #ccc;
-  --blanco: #fff;
-  --negro: #333;
-  --gris2: #f3f4f6;
-  --azul: #1f2937;
-}
-/* ---Color--- */
 .contenedor1 h2 {
   line-height: 70px;
-  font-size: 34;
+  font-size: 34px;
 }
 .caja {
   border: 0px blue solid;
   width: 450px;
-}
-.caja1 {
 }
 .caja1 a {
   border: 1px var(--gris1) solid;
@@ -63,15 +61,19 @@ header {
   color: #242424;
   font-weight: bold;
   padding: 10px;
+  transition: background-color .3s ease-in-out;
 }
 .caja1 a:hover {
   border: 1px var(--gris1) solid;
   background-color: var(--gris1);
   color: var(--negro);
+  color: var(--blanco);
 }
 .caja img {
   height: 70px;
+  max-width: 100%; /* Evita que las imágenes desborden */
 }
+
 .tamaño {
   width: 70px;
 }
@@ -81,38 +83,50 @@ header {
 /* ---Bienvenida-- */
 .contenedor2 {
   background-image: url(../imagenes/imagen1.png);
-  background-size: 100%;
+  background-size: cover;
   height: 400px;
-}
-.caja2 {
-  border: 0px green solid;
-  height: 400px;
-  background-color: rgb(10%, 10%, 10%);
-  background-size: 100%;
-  opacity: 0.69;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--blanco);
   text-align: center;
+  position: relative;
 }
+
+.caja2 {
+  height: 400px;
+  background-color: var(--transparente-negro);
+  color: var(--blanco);
+  text-align: center;
+  padding: 20px;
+}
+
+.BtnAC {
+  
+  border-radius: 5px;
+  background-color: var(--azul);
+  padding: 10px 20px;
+  color: var(--blanco);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+
+.BtnAC:hover {
+  background-color: var(--azul-hover); /* Efecto de hover */
+}
+
 .tamaño1 {
   width: 1350px;
 }
 .caja2 h1 {
   font-size: 70px;
 }
-.BtnAC {
-  border: 0px red solid;
-  border-radius: 5px;
-  background-color: blue;
-  padding: 10px 20px;
-  color: var(--blanco);
-  text-decoration: none;
-  opacity: 100;
-  position: relative;
-  z-index: 1;
-}
+
 /* Nuestro Servicio */
 .contenedor3 {
-  border: 0px red solid;
+  
   text-align: center;
   background-color: var(--gris2);
   height: 370px;
@@ -130,7 +144,7 @@ header {
 }
 /* ---Producto--- */
 .contenedor4 {
-  border: 0px red solid;
+  
   height: 500px;
   text-align: center;
 }
@@ -181,22 +195,26 @@ header {
 }
 /* ---Contactanos-- */
 .contenedor6 {
-  border: 0px blue solid;
+  border: 0px var(--azul) solid;
   padding: 10px;
   height: 500px;
+}
+.content-ubi{
+  display: flex;
 }
 .contenedor6 h1 {
   text-align: center;
   padding: 10px;
 }
 .caja6 {
-  border: 0px red solid;
   display: flex;
+  justify-content: space-evenly;
   height: 300px;
-  width: 1200px;
+  width: 100%;
   padding: 10px;
-  margin-left: 80px;
+  margin-left: 0; /* Elimina márgenes innecesarios */
 }
+
 .caja7 input {
   border: 1px var(--gris1) solid;
   border-radius: 5px;
@@ -205,9 +223,7 @@ header {
   margin: 5px;
   padding: 5px;
 }
-.caja7 {
-  border: 0px red solid;
-}
+
 .caja7 textarea {
   border: 1px var(--gris1) solid;
   border-radius: 5px;
@@ -219,10 +235,15 @@ header {
 }
 .Btn {
   background-color: var(--negro);
-  color: white;
+  color: var(--blanco);
+  cursor: pointer;
+  transition: background-color .5s ease-in-out;
+}
+.Btn:hover{
+  background-color: var(--gris1);
 }
 .contenedor9 {
-  border: 0px red solid;
+  
   text-align: center;
   background-color: var(--gris2);
   padding: 10px;
@@ -237,55 +258,58 @@ header {
 }
 .maps {
   border-radius: 10px;
-  width: 560px;
+  width: 750px;
   height: 350px;
   margin: 20px;
 }
 
 .info {
-  list-style-type: none; /* Elimina los puntos de la lista */
-  padding: 0; /* Elimina el relleno */
+  list-style-type: none;
+  padding: 0;
   font-family: Arial, sans-serif;
 }
 
 .info span {
-  vertical-align: middle; /* Alinea verticalmente los íconos y el texto */
-  margin-left: 8px; /* Añade un pequeño espacio entre el ícono y el texto */
+  vertical-align: middle;
+  margin-left: 8px;
 }
 
 .info h2,
 .info p {
-  text-align: justify; /* Centra los encabezados y párrafos */
+  text-align: justify;
 }
 
 .info br {
-  margin-bottom: 10px; /* Añade espacio entre los elementos */
+  margin-bottom: 10px;
 }
 
 /* ----La parte de abajo--- */
 .contenedor7 {
-  border: 0px red solid;
+  
   text-align: center;
   height: 130px;
   background-color: var(--azul);
-  color: white;
+  color: var(--blanco);
+}
+
+.contenedor7 a {
+  text-decoration: none;
 }
 /* ------------------ */
 /* Ver solo un producto */
 .contenedor8 {
-  border: 0px red solid;
+  
   height: 410px;
   display: flex;
   background-color: var(--gris1);
 }
 .caja8 {
-  border: 0px blue solid;
+  border: 0px var(--azul) solid;
   height: 410px;
   width: 700px;
 }
 .fotopromo {
-  border: 0px red solid;
-  width: 230px;
+  max-width: 280px;
 }
 .reds {
   height: 50px;

@@ -8,7 +8,6 @@
 </head>
 <body>
         <!-- Encabezado -->
-
         <?php include "Encabezado.php"; ?>
 
         <!-- Ver un lente -->

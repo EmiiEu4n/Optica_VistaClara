@@ -31,7 +31,7 @@
 
     <div class="nuevo-usuario main-content">
         <div class="titulo">
-            <h3>Proveedor: <?php echo $info['nombre'] ?></h3>
+            <h3>Proveedor: <span><?php echo $info['nombre'] ?></span> </h3>
         </div>
 
         <div class="content-info">

@@ -78,7 +78,7 @@ if ($resultado_empleado->num_rows > 0) {
             </div>
 
             <hr>
-            <h3>Username: <span><?php echo $info_empleado['usuario'] ?></span></h3>
+            <h3>Username: <?php echo $info_empleado['usuario'] ?></h3>
             <hr>
             <div class="btn-sidebar">
                 <?php echo $options ?>

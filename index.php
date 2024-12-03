@@ -20,314 +20,241 @@ if (isset($_SESSION["icon"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Inicio de sesión</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)),
-                url("https://cdn.pixabay.com/photo/2021/02/16/20/45/eye-glasses-6022344_960_720.jpg") no-repeat center center;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
-        }
+        :root {
+    --primary-bg-color: #151e2d;
+    --primary-text-color: #333;
+    --secondary-bg-color: #8577ED;
+    --secondary-hover-bg-color: #9249d0;
+    --input-border-color: #ccc;
+    --input-bg-color: #fff;
+    --error-color: #F27474;
+    --modal-bg-color: rgba(0, 0, 0, 0.5);
+    --success-color: green;
+}
 
-        .content-inicio-sesion {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            max-width: 400px;
-            width: 100%;
-        }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 1)),
+        url("https://cdn.pixabay.com/photo/2021/02/16/20/45/eye-glasses-6022344_960_720.jpg") no-repeat center center;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+}
 
-        .img-logo {
-            display: flex;
-            justify-content: center;
-        }
+.content-inicio-sesion {
+    background: var(--input-bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+    width: 100%;
+}
 
-        .img-logo img {
-            width: 100px;
-            border-radius: 50%;
-        }
+.img-logo {
+    display: flex;
+    justify-content: center;
+}
 
-        .container-iniciar-sesion h3 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+.img-logo img {
+    width: 100px;
+    border-radius: 50%;
+}
 
-        .container-iniciar-sesion .avisoerror {
-            color: #F27474;
-            text-align: center;
-        }
+.container-iniciar-sesion h3 {
+    text-align: center;
+    color: var(--primary-text-color);
+    margin-bottom: 20px;
+}
 
-        .container-iniciar-sesion a {
-            color: #151e2d;
-            /* font-weight: bold; */
-            text-decoration: none;
-            font-size: 14px;
-        }
+.container-iniciar-sesion .avisoerror {
+    color: var(--error-color);
+    text-align: center;
+}
 
-        .container-iniciar-sesion a:hover {
-            color: #8577ED;
-        }
+.container-iniciar-sesion a {
+    color: var(--primary-bg-color);
+    text-decoration: none;
+    font-size: 14px;
+}
 
-        .container-iniciar-sesion input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            /* Asegura que el padding esté incluido en el tamaño total del input */
-        }
+.container-iniciar-sesion a:hover {
+    color: var(--secondary-hover-bg-color);
+}
 
-        .password-container {
-            position: relative;
-        }
+.container-iniciar-sesion input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 
-        .password-container input {
-            width: 100%;
-            /* Mantiene el ancho del input dentro del contenedor */
-            padding-right: 40px;
-            /* Añade espacio para el ícono */
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 37%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #333;
-        }
-
-        .btn-form {
-            width: 100%;
-            padding: 10px;
-            background-color: #151e2d;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            transition: 0.2s ease-out;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .btn-form:hover {
-            background-color: #9249d0;
-            color: white;
-        }
-
-        @media (max-width: 600px) {
-            .content-inicio-sesion {
-                padding: 15px;
-                margin: 10px;
-            }
-
-            .img-logo img {
-                width: 80px;
-            }
-        }
-
-        /* .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .button-container a {
-            display: inline-block;
-            background-color: #8577ED;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .button-container a:hover {
-            background-color: #9249d0;
-            color: white;
-        } */
-        .password-container {
-            position: relative;
+.password-container {
+    position: relative;
             display: flex;
             align-items: center;
             width: 100%;
-        }
+}
 
-        .password-container input {
-            width: 100%;
-            padding-right: 40px;
-            /* Espacio para el ícono de la contraseña */
-        }
+.password-container input {
+    width: 100%;
+    padding-right: 40px;
+}
 
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #888;
-        }
-    </style>
-    <style>
-        /* CSS provisto por ti */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow-y: auto;
-            /* Permite scroll en el cuerpo si es necesario */
-        }
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 37%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--primary-text-color);
+}
 
-        .content-btn-modal {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+.btn-form {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-bg-color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    transition: 0.2s ease-out;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
 
-        .open-modal-btn {
-            background-color: #8577ED;
-            color: white;
-            padding: 10px 30px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+.btn-form:hover {
+    background-color: var(--secondary-hover-bg-color);
+}
 
-        .open-modal-btn:hover {
-            background-color: #9249d0;
-        }
+.content-btn-modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow-y: auto;
-            /* Activa el scroll en el modal si el contenido es grande */
-        }
+.open-modal-btn {
+    background-color: var(--secondary-bg-color);
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
 
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 550px;
-            max-height: 90vh;
-            /* Limita la altura para evitar que el modal se salga de la pantalla */
-            overflow-y: auto;
-            /* Activa el scroll en el modal si el contenido es grande */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: slide-down 0.3s ease-out;
-        }
+.open-modal-btn:hover {
+    background-color: var(--secondary-hover-bg-color);
+}
 
-        @keyframes slide-down {
-            from {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-bg-color);
+    overflow-y: auto;
+}
 
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
+.modal-content {
+    background-color: var(--input-bg-color);
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: slide-down 0.3s ease-out;
+}
 
-        .close-btn {
-            float: right;
-            font-size: 24px;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-        }
+.close-btn {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
 
-        .close-btn:hover,
-        .close-btn:focus {
-            color: black;
-        }
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+}
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
+form {
+    display: flex;
+    flex-direction: column;
+}
 
-        label, p {
-            margin-bottom: 5px;
-            color: #333;
-        }
+label, p {
+    margin-bottom: 5px;
+    color: var(--primary-text-color);
+}
 
-        input {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    font-size: 16px;
+}
 
-        button {
-            background-color: #151e2d;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+button {
+    background-color: var(--primary-bg-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        button:hover {
-            background-color: #8577ED;
-        }
+button:hover {
+    background-color: var(--secondary-hover-bg-color);
+}
 
-        /* Estilos responsivos */
-        @media (max-width: 600px) {
-            .modal-content {
-                width: 90%;
-            }
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+    }
 
-            input,
-            button {
-                font-size: 14px;
-            }
-        }
+    input,
+    button {
+        font-size: 14px;
+    }
+}
 
-        /* Estilos para la validación de contraseña */
-        .validation-list {
-            list-style: none;
-            padding: 0;
-            color: #F27474;
-        }
+.validation-list {
+    list-style: none;
+    padding: 0;
+    color: var(--error-color);
+}
 
-        .validation-list li {
-            display: flex;
-            align-items: center;
-        }
+.validation-list li {
+    display: flex;
+    align-items: center;
+}
 
-        .validation-list li .status {
-            margin-left: 10px;
-        }
+.validation-list li .status {
+    margin-left: 10px;
+}
 
-        .valid {
-            color: green;
-        }
+.valid {
+    color: var(--success-color);
+}
 
-        .invalid {
-            color: #F27474;
-        }
+.invalid {
+    color: var(--error-color);
+}
+
     </style>
 
 </head>

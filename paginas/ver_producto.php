@@ -16,25 +16,25 @@
         notify();
     } ?>
 
+    <?php
+    require "../php/conexion.php";
+    //get de origen
+    $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
+    $id = $_GET['id'];
+    $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor, productos.img  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
+    $resultado = mysqli_query($conectar, $ver_usuario);
+
+    $fila = $resultado->fetch_array();
+    //   echo $fila ["nombre"];
+    ?>
     <div class="ver-producto-content main-content">
         <div class="titulo">
-            <h3>Producto: <span></h3>
+            <h3>Producto: <span><?php echo "$fila[producto]" . "&nbsp" ?></span></h3>
         </div>
 
 
         <div class="content-info">
             <!-- ---Lo usamos para extraer la información de la BD----- -->
-            <?php
-            require "../php/conexion.php";
-            //get de origen
-            $origen = isset($_GET['origen']) ? $_GET['origen'] : "";
-            $id = $_GET['id'];
-            $ver_usuario = "SELECT productos.nombre AS producto, categorias.nombre_categoria, productos.precio, productos.descripcion, productos.stock, proveedores.nombre AS proveedor, productos.img  FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria INNER JOIN proveedores ON productos.id_proveedor = proveedores.id_proveedor WHERE id_producto = '$id'";
-            $resultado = mysqli_query($conectar, $ver_usuario);
-
-            $fila = $resultado->fetch_array();
-            //   echo $fila ["nombre"];
-            ?>
             <div class="info formulario">
                 <!-- informacion del producto -->
                 <fieldset style="width: 730px;" disabled="disable">

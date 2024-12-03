@@ -7,7 +7,7 @@ $estadoSeleccionado = isset($_GET['filtro_estado']) ? $_GET['filtro_estado'] : "
 $ordenFecha = isset($_GET['orden_fecha']) ? $_GET['orden_fecha'] : 'ASC';
 
 // Consulta inicial
-$datos = "SELECT ci.id_cita, concat(cl.nombres, ' ',cl.apellidos) as nombre_cliente, ci.fecha_cita, ci.hora, ci.estado, ci.motivo 
+$datos = "SELECT ci.id_cita,  concat(cl.nombres, ' ',cl.apellidos) as nombre_cliente, ci.fecha_cita, ci.hora, ci.estado, ci.motivo 
               FROM citas ci 
               INNER JOIN clientes cl ON ci.id_cliente = cl.id_cliente 
               WHERE 1=1";
@@ -30,9 +30,7 @@ $result = mysqli_query($conectar, $datos);
 
 // Crear instancia de la clase PDF
 $pdf = new PDF();
-$pdf->AddPage();
-
-// Datos de ejemplo
+// Datos
 $header = array('Cliente', 'Fecha', 'Hora', 'Motivo de cita');
 $data = array();
 // Recorrer los resultados y agregar a $data
@@ -48,8 +46,6 @@ while ($row = $result->fetch_assoc()) {
     );
 }
 
-// Crear el PDF
-$pdf = new PDF();
 $pdf->AddPage();
 
 // Generar la tabla con encabezados y datos

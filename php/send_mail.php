@@ -202,13 +202,56 @@ function codigo_verificacion($correo, $codigo, $asunto)
             $plantilla = str_replace('{{codigo}}', $codigo, $plantilla);
         } else {
             $plantilla = file_get_contents("../template_correos/");
-            
         }
 
 
         // Establecer el contenido del correo
         $mail->Body   = $plantilla;
 
+        // Enviar correo
+        $mail->send();
+        return 0;
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
+}
+function contactanos($nombre, $correo, $telefono, $mensaje)
+{
+
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'gaspareuan155@gmail.com';
+        $mail->Password   = 'nerscgkwzsayjyvh'; // Reemplaza con tu contraseña segura
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        // Configura la codificación a UTF-8
+        $mail->CharSet = 'UTF-8';
+
+        // Remitente y destinatario
+        $mail->setFrom('no-reply@optica-vc.com', 'Optica VC');
+        $mail->addAddress("emilianoeuan155@gmail.com");
+
+        // Contenido
+        $mail->isHTML(true);
+        $mail->Subject = "Mensaje de la web";
+
+        $plantilla = file_get_contents("../template_correos/");
+
+
+        // Establecer el contenido del correo en formato HTML
+        $mail->Body = '
+            <h3>Nuevo mensaje recibido desde el formulario de contacto:</h3>
+            <p><strong>Nombre:</strong> ' . htmlspecialchars($nombre) . '</p>
+            <p><strong>Correo Electrónico:</strong> ' . htmlspecialchars($correo) . '</p>
+            <p><strong>Teléfono:</strong> ' . htmlspecialchars($telefono) . '</p>
+            <p><strong>Mensaje:</strong> ' . nl2br(htmlspecialchars($mensaje)) . '</p>
+        ';
         // Enviar correo
         $mail->send();
         return 0;

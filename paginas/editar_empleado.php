@@ -118,7 +118,7 @@
                     </fieldset>
 
                     <!-- contraseña -->
-                    <label class="btn-resetear-contrasena" for="">¿NO recuerda su contraseña? <a href="#"> Cambiar contraseña</a></label><br>
+                    <!-- <label class="btn-resetear-contrasena" for="">¿NO recuerda su contraseña? <a href="#"> Cambiar contraseña</a></label><br> -->
 
                     <!-- boton -->
                     <div class="opciones-btn opciones-btn-registrar">

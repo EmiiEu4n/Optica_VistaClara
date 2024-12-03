@@ -33,7 +33,7 @@
     }
     ?>
     <div class="container">
-        <h2>Editar Información del Cliente</h2>
+        <h2>✎ <?php echo $info['nombres'].' '.$info['apellidos'] ?></h2>
         <form action="../php/update_cliente.php?origen=perfil" method="POST" class="form" novalidate>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -66,10 +66,10 @@
             <!-- Correo antiguo -->
             <input type="hidden" value="<?php echo $antiguoCorreo ?>" name="a_correo">
             <input type="hidden" value="<?php echo $antiguoVerificado ?>" name="a_verificado">
-            <button type="submit" id="guardarCambios" disabled>Guardar Cambios</button>
+            <button type="submit" id="guardarCambios" disabled>✎ Guardar Cambios</button>
             
         </form><br>
-        <button type="submit" onclick="window.location.href='./perfil_cliente.php';">Regresar al perfil</button>
+        <button type="submit" onclick="window.location.href='./perfil_cliente.php';">↩ Regresar al perfil</button>
 
     </div>
 
@@ -150,7 +150,7 @@
         h2 {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             color: #333;
         }
 
@@ -185,7 +185,7 @@
 
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: #007bff;
+            border-color: #9249d0;
             background-color: #eef7ff;
             outline: none;
         }
@@ -193,7 +193,7 @@
         button {
             width: 100%;
             padding: 14px;
-            background-color: #007bff;
+            background-color: #8577ed;
             color: white;
             border: none;
             border-radius: 8px;
@@ -203,12 +203,12 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #9249d0;
             transform: scale(1.02);
         }
 
         button:active {
-            background-color: #004494;
+            background-color: #9249d0;
             transform: scale(1);
         }
 

@@ -59,7 +59,8 @@ if (mysqli_num_rows($result) > 0) {
             $_SESSION['icon'] = "success";
             $_SESSION['titulo'] = "¡Cita registrada!";
             $_SESSION['sms'] = "Se registro una nueva cita. Fecha: $fecha_formateada, Hora: $hora_formateada";
-            header("location:../paginas/portal_cliente.php");
+            header("location:../paginas/mostrar_citas_cliente.php");
+            exit();
         } else {
             session_start();
             $_SESSION['icon'] = "success";
