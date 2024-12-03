@@ -19,7 +19,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: var(--negro);
-  width: 100%;
+  /* width: 100%; */
 }
 
 html {
@@ -309,8 +309,47 @@ header {
   width: 700px;
 }
 .fotopromo {
-  max-width: 280px;
+  width: 280px;
+  height: 180px;
+  object-fit: cover;
 }
 .reds {
   height: 50px;
+}
+.caja4-scroll {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  gap: 20px;  /* Espacio entre los productos */
+  padding: 20px 0;
+}
+
+.cajaproducto {
+  min-width: 250px;
+  max-width: 300px; /* Ajusta según el tamaño que desees */
+  flex-shrink: 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cajaproducto img {
+  width: 280px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.tex1 {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
 }

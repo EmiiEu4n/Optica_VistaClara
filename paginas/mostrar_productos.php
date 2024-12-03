@@ -60,7 +60,7 @@
 
           <td class="btn-editar"> <a href="../paginas/editar_producto.php?origen=productos&id=<?php echo $fila['id_producto']; ?>"><img src="../imagenes/edit.png" alt=""></a></td>
 
-          <td class="btn-eliminar"><a href="#" onclick="validar('../php/delete_producto.php?id=<?php echo $fila['id_producto']; ?>')"> <img src="../imagenes/borrar.png" alt=""> </a>
+          <td class="btn-eliminar"><a href="#" onclick="validar('../php/delete_producto.php?id=<?php echo $fila['id_producto']; ?>&url=<?php echo $fila['img']; ?>')"> <img src="../imagenes/borrar.png" alt=""> </a>
           </td>
         </tr>
 

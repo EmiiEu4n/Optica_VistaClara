@@ -11,9 +11,9 @@ if (!$resultLlenas) {
 }
 
 // Extraer las fechas llenas y formatearlas en un array
-$fechasLlenas = array_map(function($fecha) {
+$fechasLlenas = $resultLlenas->num_rows > 0 ? array_map(function($fecha) {
     return date('Y-m-d', strtotime($fecha['fecha_cita']));
-}, $resultLlenas->fetch_all(MYSQLI_ASSOC));
+}, $resultLlenas->fetch_all(MYSQLI_ASSOC)) : [];
 
 // Retornar la lista de fechas llenas en formato JSON
 header('Content-Type: application/json');

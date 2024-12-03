@@ -4,7 +4,7 @@ require "./conexion.php";
 
 // Recibe la fecha del cuerpo de la solicitud
 $datos = json_decode(file_get_contents("php://input"), true);
-$fecha = $datos['fecha'];
+$fecha = $datos['fecha'] ?? '';
 
 // Prepara la consulta para evitar inyecciones SQL
 $sql = "SELECT hora FROM citas WHERE fecha_cita = ?";

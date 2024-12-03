@@ -30,7 +30,7 @@
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Ingrese el nombre"><br><br>
+                        <input maxlength="35" class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Ingrese el nombre maximo 5 palabras"><br><br>
 
                         <!-- Categoría -->
                         <label for="">Categoría<span>*</span></label><br>
@@ -58,7 +58,7 @@
                         <legend>Detalles del producto</legend>
                         <!-- Descripción -->
                         <label for="">Descripción<span>*</span></label><br>
-                        <textarea class="validar-espacios" style="width: 100%;" required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
+                        <textarea maxlength="150" class="validar-espacios" style="width: 100%;" required name="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea><br><br>
 
                         <!-- Stock (solo permite números) -->
                         <!-- <label for="stock">Stock<span>*</span></label><br> -->

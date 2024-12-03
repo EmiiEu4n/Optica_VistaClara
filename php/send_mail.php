@@ -225,8 +225,8 @@ function contactanos($nombre, $correo, $telefono, $mensaje)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'gaspareuan155@gmail.com';
-        $mail->Password   = 'nerscgkwzsayjyvh'; // Reemplaza con tu contraseña segura
+        $mail->Username   = '';
+        $mail->Password   = ''; // Reemplaza con tu contraseña segura
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 

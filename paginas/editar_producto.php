@@ -43,7 +43,7 @@
                         <legend>Información del producto</legend>
                         <!-- Nombre -->
                         <label for="">Nombre<span>*</span></label><br>
-                        <input class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Nombre" value="<?php echo $info_prod['producto'] ?>"><br><br>
+                        <input maxlength="35" class="validar-espacios" pattern="[a-zA-Z0-9\s]{3,254}" required name="nombre" type="text" placeholder="Nombre del producto maximo 5 palabras" value="<?php echo $info_prod['producto'] ?>"><br><br>
                         <!-- Categoria -->
                         <label for="">Categoría<span>*</span></label><br>
                         <select style="width: 100%;" required name="id_categoria">

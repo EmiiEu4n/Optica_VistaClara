@@ -28,11 +28,25 @@ $datos .= " ORDER BY ci.fecha_cita $ordenFecha, ci.hora ASC";
 // Realizar consulta
 $result = mysqli_query($conectar, $datos);
 
+if ($result->num_rows == 0) {
+    session_start();
+    $_SESSION['icon'] = "error";
+    $_SESSION['titulo'] = "¡NO se generó el PDF!";
+    $_SESSION['sms'] = "¡La tabla de citas se encuentra vacía! Por favor, agenda una cita.";
+    
+    // Redirigir usando header
+    header('Location: ../paginas/mostrar_citas.php');
+    exit(); 
+}
+
+
 // Crear instancia de la clase PDF
 $pdf = new PDF();
+
 // Datos
 $header = array('Cliente', 'Fecha', 'Hora', 'Motivo de cita');
 $data = array();
+
 // Recorrer los resultados y agregar a $data
 while ($row = $result->fetch_assoc()) {
     $fecha_formateada = date("j M, Y", strtotime($row['fecha_cita']));
@@ -45,6 +59,7 @@ while ($row = $result->fetch_assoc()) {
         $row['motivo']
     );
 }
+
 
 $pdf->AddPage();
 

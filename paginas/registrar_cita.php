@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agendar cita</title>
-  <link rel="stylesheet" href="../css/agendar.css">
+  <!-- <link rel="stylesheet" href="../css/agendar.css"> -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
@@ -182,6 +182,7 @@
       fetch('../php/consulta_fechas.php')
         .then(response => response.json())
         .then(data => {
+          console.log('Fechas llenas recibidas:', data);
           // console.log('Fechas llenas recibidas:', data.fechasLlenas); // Depuración
 
           const fechasLlenas = data.fechasLlenas.map(fecha => new Date(fecha + 'T00:00:00'));

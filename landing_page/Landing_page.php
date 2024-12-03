@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-<link rel="stylesheet" href="estilos_landing.css">
+    <link rel="stylesheet" href="estilos_landing.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +34,7 @@
 
     <!-- Encabezado -->
 
-    <?php 
+    <?php
     include "Encabezado.php";
 
     $btn_dinamic = (isset($_SESSION['cliente_autentificado']) && $_SESSION['cliente_autentificado'] == "SI") ? '' : '<a href="../index.php?origen=landing" class="BtnAC"><i class="fa-regular fa-calendar-check"> </i>   Agendar cita</a>';
@@ -72,24 +72,21 @@
             <p>Ajuste perfecto para tus gafas con precisión milimétrica.</p>
         </div>
         <div class="caja3">
-            <i class="fas fa-eye-dropper" style="font-size: 48px;"></i>
+            <i class="fa-solid fa-bullseye" style="font-size: 48px;"></i>
             <h4>Lentes de Contacto</h4>
             <p>Adaptación y seguimiento para tu máxima comodidad.</p>
         </div>
     </div>
 
     <!-- Productos -->
-    <div class="contenedor4" id="aqui3">
-        <br>
-        <h1>Nuestros Productos</h1>
-        <br><br>
+
         <?php include "lentes.php"; ?>
-    </div>
+
 
     <!-- Conócenos -->
     <div class="contenedor5" id="aqui4">
         <div class="caja5_1">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/mB8oifYG7yY?si=w_zwwpA0NnQ7QnvW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/tH-JxECXPpg?si=o-54CNFys2hUTN8x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="caja5_2">
             <h2>¿Quiénes Somos?</h2>
@@ -103,10 +100,10 @@
         <h1>Nuestra Ubicación</h1>
         <br>
         <div class="content-ubi">
-            
+
         </div>
         <div class="caja6">
-            <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29795.63750301002!2d-89.66632947276004!3d21.014485294122878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f56733863546b79%3A0xe6fc87d55bcb3859!2sBen%20%26%20Frank!5e0!3m2!1ses-419!2smx!4v1717285680631!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.667158321636!2d-89.62592300280646!3d20.965877551316165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5671626e1ce385%3A0x20788a3e7e48f5f0!2s%C3%93PTICA%20VISTA!5e0!3m2!1ses!2smx!4v1733200179926!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
             <ul class="info">
                 <h2>Visítanos en nuestra tienda</h2><br>
@@ -119,7 +116,7 @@
                 <i class="fas fa-envelope"></i><span> info@opticavistaclara.com</span><br><br>
 
                 <!-- Ubicación -->
-                <i class="fas fa-map-marker-alt"></i><span> Calle Principal 123, Ciudad</span><br><br>
+                <i class="fas fa-map-marker-alt"></i><span> C. 62 Local 2 Entre Calle 63 y 65, Centro, 97000 Mérida, Yuc.</span><br><br>
 
                 <!-- Horario -->
                 <i class="fas fa-clock"></i><span> Lun - Sab: 10:00 am - 5:00 pm</span>
