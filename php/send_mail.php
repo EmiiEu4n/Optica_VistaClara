@@ -8,7 +8,7 @@ require '../PHPMailer/PHPMailer.php';
 require '../PHPMailer/SMTP.php';
 
 $user = 'gaspareuan155@gmail.com';
-$pass = 'mrgablgheqgtfxpd';
+$pass = ''; // Reemplaza con tu contraseña segura
 
 function welcome_pass($correo, $nombre, $contrasena)
 {
@@ -20,7 +20,7 @@ function welcome_pass($correo, $nombre, $contrasena)
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Password   = $GLOBALS['pass'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
@@ -59,7 +59,7 @@ function welcome_worker($correo, $username, $nombre, $contrasena)
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Password   = $GLOBALS['pass']; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
@@ -99,7 +99,7 @@ function welcome($correo, $nombre)
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Password   = $GLOBALS['pass']; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet = 'UTF-8';
@@ -137,8 +137,8 @@ function confirm_cita($correo, $nombre, $hora, $fecha, $motivo)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Username   = $GLOBALS['user'];
+        $mail->Password   = $GLOBALS['pass']; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
@@ -182,8 +182,8 @@ function codigo_verificacion($correo, $codigo, $asunto)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Username   = $GLOBALS['user'];
+        $mail->Password   = $GLOBALS['pass']; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
@@ -228,8 +228,8 @@ function contactanos($nombre, $correo, $telefono, $mensaje)
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = $GLOBALS['user'];;
-        $mail->Password   = $GLOBALS['pass']; // Reemplaza con tu contraseña segura
+        $mail->Username   = $GLOBALS['user'];
+        $mail->Password   = $GLOBALS['pass'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
